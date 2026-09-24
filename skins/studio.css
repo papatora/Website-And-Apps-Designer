@@ -1,0 +1,37 @@
+/* Studio — warm, approachable, crafted. Characterful grotesk display,
+   cream paper, terracotta accent, soft radius and restrained shadows.
+   Good for: consumer apps, small businesses, SaaS that wants to feel human. */
+
+[data-skin="studio"] {
+  color-scheme: light dark;
+
+  --font-display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --font-body: "Figtree", "Avenir Next", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --display-weight: 700;
+  --display-tracking: -0.035em;
+  --display-transform: none;
+  --body-weight: 400;
+  --eyebrow-tracking: 0.06em;
+
+  --bg: light-dark(#fbf6ef, #191613);
+  --surface: light-dark(#ffffff, #221e1a);
+  --surface-2: light-dark(#f2e8db, #2c2621);
+  --ink: light-dark(#231c15, #f3ebe1);
+  --ink-muted: light-dark(#675a4c, #b3a696);
+  --line: light-dark(#e6d9c6, #3b332b);
+
+  --accent: light-dark(#b2431d, #f28c5e);
+  --accent-ink: light-dark(#ffffff, #191613);
+
+  --focus: light-dark(#2156c4, #8fb3ff);
+  --success: light-dark(#2f6b3b, #86cf95);
+  --warning: light-dark(#8a5a00, #f0bb5a);
+  --danger: light-dark(#b3261e, #ff8b80);
+
+  --radius: var(--radius-3);
+  --radius-lg: var(--radius-4);
+  --border-w: 1px;
+  --shadow-1: 0 1px 2px light-dark(#231c1512, #00000066);
+  --shadow-2: 0 1px 2px light-dark(#231c1510, #00000066), 0 12px 32px -16px light-dark(#231c1538, #000000aa);
+}

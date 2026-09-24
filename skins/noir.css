@@ -1,0 +1,37 @@
+/* Noir — dark-first luxury. High-contrast serif caps display, quiet
+   sans body, brass accent, generous negative space, no radius.
+   Good for: fashion, hospitality, architecture, premium portfolios. */
+
+[data-skin="noir"] {
+  color-scheme: dark;
+
+  --font-display: "Cormorant Garamond", "Didot", Georgia, serif;
+  --font-body: "Manrope", "Helvetica Neue", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --display-weight: 500;
+  --display-tracking: 0.01em;
+  --display-transform: none;
+  --body-weight: 400;
+  --eyebrow-tracking: 0.28em;
+
+  --bg: light-dark(#f4f1ec, #0c0b0a);
+  --surface: light-dark(#fbf9f6, #141311);
+  --surface-2: light-dark(#e8e3da, #1c1a17);
+  --ink: light-dark(#151311, #ebe5da);
+  --ink-muted: light-dark(#5c554d, #9b9388);
+  --line: light-dark(#d6cfc3, #2a2723);
+
+  --accent: light-dark(#7d5f26, #cdac6c);
+  --accent-ink: light-dark(#fbf9f6, #0c0b0a);
+
+  --focus: light-dark(#1f56b3, #9dbbff);
+  --success: light-dark(#2d6a39, #8ccf98);
+  --warning: light-dark(#80590a, #e3bb6a);
+  --danger: light-dark(#a3261b, #ff8e80);
+
+  --radius: var(--radius-0);
+  --radius-lg: var(--radius-0);
+  --border-w: 1px;
+  --shadow-1: none;
+  --shadow-2: none;
+}

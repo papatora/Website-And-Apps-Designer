@@ -1,0 +1,86 @@
+/* ==========================================================================
+   base.css — skin-agnostic design tokens
+   Scales only. No colors, no fonts: those belong to a skin (see /skins).
+   ========================================================================== */
+
+:root {
+  /* ---- Spacing: 4px base, non-linear so steps stay distinguishable ---- */
+  --space-0: 0;
+  --space-1: 0.25rem;  /*  4px */
+  --space-2: 0.5rem;   /*  8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.5rem;   /* 24px */
+  --space-6: 2rem;     /* 32px */
+  --space-7: 3rem;     /* 48px */
+  --space-8: 4rem;     /* 64px */
+  --space-9: 6rem;     /* 96px */
+  --space-10: 8rem;    /* 128px */
+
+  /* Section rhythm scales with the viewport so mobile doesn't drown in air */
+  --section-y: clamp(var(--space-8), 10vw, var(--space-10));
+  --gutter: clamp(var(--space-4), 4vw, var(--space-6));
+
+  /* ---- Type scale: fluid, ~1.25 on mobile to ~1.333 on desktop ---- */
+  --text-xs: clamp(0.75rem, 0.73rem + 0.1vw, 0.8rem);
+  --text-sm: clamp(0.875rem, 0.85rem + 0.12vw, 0.925rem);
+  --text-base: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+  --text-lg: clamp(1.125rem, 1.08rem + 0.25vw, 1.25rem);
+  --text-xl: clamp(1.35rem, 1.26rem + 0.45vw, 1.6rem);
+  --text-2xl: clamp(1.6rem, 1.45rem + 0.8vw, 2.1rem);
+  --text-3xl: clamp(2rem, 1.7rem + 1.5vw, 2.9rem);
+  --text-4xl: clamp(2.5rem, 2rem + 2.5vw, 4rem);
+  --text-5xl: clamp(3rem, 2.2rem + 4vw, 5.75rem);
+
+  --leading-tight: 1.05;
+  --leading-snug: 1.25;
+  --leading-body: 1.6;
+  --measure: 66ch;        /* comfortable line length for body copy */
+  --measure-narrow: 45ch;
+
+  /* ---- Radius scale (skins pick which step is their default) ---- */
+  --radius-0: 0;
+  --radius-1: 2px;
+  --radius-2: 6px;
+  --radius-3: 10px;
+  --radius-4: 16px;
+  --radius-pill: 999px;
+
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --dur-1: 120ms;  /* hovers, presses */
+  --dur-2: 200ms;  /* small reveals, toggles */
+  --dur-3: 320ms;  /* panels, drawers */
+  --dur-4: 500ms;  /* page-level transitions — use rarely */
+
+  /* ---- Layout ---- */
+  --container: 72rem;
+  --container-wide: 88rem;
+  --container-narrow: 42rem;
+
+  /* ---- Layers ---- */
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-overlay: 30;
+  --z-modal: 40;
+  --z-toast: 50;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-1: 0ms;
+    --dur-2: 0ms;
+    --dur-3: 0ms;
+    --dur-4: 0ms;
+  }
+}
+
+/* ---- Mode control ----
+   Skins declare colors with light-dark(). By default the OS preference wins;
+   set data-mode="light" | "dark" on <html> to force one. */
+:root[data-mode="light"],
+[data-skin][data-mode="light"] { color-scheme: light; }
+:root[data-mode="dark"],
+[data-skin][data-mode="dark"] { color-scheme: dark; }

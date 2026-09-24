@@ -1,0 +1,37 @@
+/* Terminal — dark-first, monospace everywhere, phosphor green accent.
+   Density over decoration. Good for: dev tools, CLIs, infra dashboards,
+   changelogs, API docs. */
+
+[data-skin="terminal"] {
+  color-scheme: dark;
+
+  --font-display: "JetBrains Mono", ui-monospace, monospace;
+  --font-body: "JetBrains Mono", ui-monospace, monospace;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --display-weight: 700;
+  --display-tracking: -0.03em;
+  --display-transform: none;
+  --body-weight: 400;
+  --eyebrow-tracking: 0.04em;
+
+  --bg: light-dark(#f2f3ec, #0b0d0a);
+  --surface: light-dark(#fbfbf6, #11140f);
+  --surface-2: light-dark(#e4e6da, #192016);
+  --ink: light-dark(#171c13, #d2e3c7);
+  --ink-muted: light-dark(#535c4a, #869a7b);
+  --line: light-dark(#c9cdbb, #253020);
+
+  --accent: light-dark(#1d6f1d, #7dff6a);
+  --accent-ink: light-dark(#fbfbf6, #0b0d0a);
+
+  --focus: light-dark(#0b57d0, #6ee7ff);
+  --success: light-dark(#1d6f1d, #7dff6a);
+  --warning: light-dark(#7d5a00, #ffd166);
+  --danger: light-dark(#b3261e, #ff7b72);
+
+  --radius: var(--radius-1);
+  --radius-lg: var(--radius-1);
+  --border-w: 1px;
+  --shadow-1: none;
+  --shadow-2: 0 0 0 1px var(--line);
+}

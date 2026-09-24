@@ -1,0 +1,37 @@
+/* Swiss — International Typographic Style. One grotesk, strong grid,
+   flush-left rag, black/white with a single signal red. Zero radius.
+   Good for: agencies, architecture, product sites that want authority. */
+
+[data-skin="swiss"] {
+  color-scheme: light dark;
+
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --display-weight: 800;
+  --display-tracking: -0.04em;
+  --display-transform: none;
+  --body-weight: 400;
+  --eyebrow-tracking: 0.02em;
+
+  --bg: light-dark(#f7f7f5, #0e0e0e);
+  --surface: light-dark(#ffffff, #171717);
+  --surface-2: light-dark(#ebebe8, #222222);
+  --ink: light-dark(#0b0b0b, #f2f2f0);
+  --ink-muted: light-dark(#545454, #a6a6a6);
+  --line: light-dark(#cfcfca, #343434);
+
+  --accent: light-dark(#c8241a, #ff5b4c);
+  --accent-ink: light-dark(#ffffff, #0e0e0e);
+
+  --focus: light-dark(#0b57d0, #8ab4ff);
+  --success: light-dark(#1f6f3a, #6fd08f);
+  --warning: light-dark(#8a5b00, #f0b43c);
+  --danger: light-dark(#c8241a, #ff5b4c);
+
+  --radius: var(--radius-0);
+  --radius-lg: var(--radius-0);
+  --border-w: 1px;
+  --shadow-1: none;
+  --shadow-2: none;
+}

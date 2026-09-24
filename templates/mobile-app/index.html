@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en" data-skin="studio">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Handover — mobile app screens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../../tokens/base.css">
+  <link rel="stylesheet" id="skin-css" href="../../skins/studio.css">
+  <link rel="stylesheet" href="../../components/components.css">
+  <script src="../../skins/registry.js"></script>
+  <script src="../_shared/skin-switcher.js"></script>
+  <style>
+    /* ---- Presentation canvas (not part of the app) ---- */
+    .canvas { padding-block: var(--space-8); }
+    .canvas__head { max-width: var(--measure-narrow); margin-bottom: var(--space-7); }
+    .screens { display: flex; gap: var(--space-7); overflow-x: auto; padding-bottom: var(--space-5); scroll-snap-type: x mandatory; }
+    .shot { flex: none; scroll-snap-align: start; display: grid; gap: var(--space-4); width: 360px; }
+    .shot figcaption { font-size: var(--text-sm); color: var(--ink-muted); max-width: 36ch; }
+    .shot figcaption strong { color: var(--ink); display: block; }
+
+    /* ---- Device ---- */
+    .phone {
+      width: 360px; height: 760px; border-radius: 44px; padding: 10px;
+      background: var(--ink); box-shadow: var(--shadow-2);
+    }
+    .screen {
+      height: 100%; border-radius: 34px; overflow: hidden; background: var(--bg);
+      display: flex; flex-direction: column; position: relative; font-size: 15px;
+    }
+    .status { display: flex; justify-content: space-between; padding: 14px 26px 6px; font: 600 13px/1 var(--font-body); }
+    .appbar { padding: 8px 20px 12px; }
+    .appbar h1, .appbar .title { font-size: 28px; line-height: 1.1; }
+    .appbar .sub { color: var(--ink-muted); font-size: 14px; margin-top: 4px; }
+    .body { flex: 1; overflow: hidden; padding: 0 16px 16px; display: grid; gap: 12px; align-content: start; }
+
+    .tabbar { display: grid; grid-template-columns: repeat(4, 1fr); border-top: var(--border-w) solid var(--line); background: var(--surface); padding: 6px 8px 22px; }
+    .tabbar a { display: grid; justify-items: center; gap: 3px; min-height: 44px; padding-top: 6px; font-size: 11px; color: var(--ink-muted); text-decoration: none; }
+    .tabbar a[aria-current="page"] { color: var(--accent); font-weight: 600; }
+    .tabbar svg { width: 22px; height: 22px; }
+
+    .shift { background: var(--accent); color: var(--accent-ink); border-radius: var(--radius-lg); padding: 16px; display: grid; gap: 10px; }
+    .shift .big { font-family: var(--font-display); font-size: 34px; font-weight: var(--display-weight); letter-spacing: var(--display-tracking); line-height: 1; }
+    .shift .row { display: flex; justify-content: space-between; font-size: 13px; opacity: 0.9; }
+    .list { background: var(--surface); border: var(--border-w) solid var(--line); border-radius: var(--radius-lg); }
+    .item { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; min-height: 56px; padding: 10px 14px; border-bottom: var(--border-w) solid var(--line); }
+    .item:last-child { border-bottom: 0; }
+    .item .meta { font-size: 13px; color: var(--ink-muted); }
+    .bed { width: 36px; height: 36px; border-radius: var(--radius); background: var(--surface-2); display: grid; place-items: center; font: 600 13px var(--font-mono); }
+    .section-label { font-size: 13px; font-weight: 600; color: var(--ink-muted); padding: 6px 4px 0; }
+
+    .note { background: var(--surface); border: var(--border-w) solid var(--line); border-radius: var(--radius-lg); padding: 14px; display: grid; gap: 10px; }
+    .note h2 { font-size: 18px; font-family: var(--font-body); font-weight: 600; letter-spacing: 0; text-transform: none; }
+    .kv { display: grid; grid-template-columns: 90px 1fr; gap: 6px 10px; font-size: 14px; }
+    .kv dt { color: var(--ink-muted); }
+    .composer { margin-top: auto; display: flex; gap: 8px; padding: 10px 16px 24px; border-top: var(--border-w) solid var(--line); background: var(--surface); }
+    .composer .input { border-radius: var(--radius-pill); min-height: 44px; }
+    .icon-btn { width: 44px; height: 44px; flex: none; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: var(--accent-ink); border: 0; }
+
+    .week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; font-size: 12px; }
+    .day { padding: 8px 0; border-radius: var(--radius); display: grid; gap: 4px; }
+    .day b { font-size: 16px; font-variant-numeric: tabular-nums; }
+    .day[aria-current="date"] { background: var(--ink); color: var(--bg); }
+    .pill { font-size: 10px; font-weight: 700; padding: 2px 0; border-radius: var(--radius); }
+    .pill--d { background: var(--surface-2); }
+    .pill--n { background: var(--ink); color: var(--bg); }
+    .day[aria-current="date"] .pill--d { background: color-mix(in srgb, var(--bg) 22%, transparent); color: var(--bg); }
+    .day[aria-current="date"] .pill--n { background: var(--bg); color: var(--ink); }
+  </style>
+</head>
+<body>
+  <main class="container--wide container canvas">
+    <header class="canvas__head stack">
+      <span class="eyebrow">Mobile app · 3 core screens</span>
+      <h1 class="h2">Handover</h1>
+      <p class="muted">A shift companion for ward nurses. Designed for one-handed use at 3 a.m.: large targets in the thumb zone, no gestures that are the only way to do something, and nothing that needs reading twice.</p>
+    </header>
+
+    <div class="screens">
+      <!-- Screen 1: Today -->
+      <figure class="shot">
+        <div class="phone"><div class="screen">
+          <div class="status" aria-hidden="true"><span>06:42</span><span>●●● 82%</span></div>
+          <div class="appbar"><h2 class="title">Today</h2><p class="sub">Ward 4B · Thursday 24 Sep</p></div>
+          <div class="body">
+            <div class="shift">
+              <div class="row"><span>Day shift</span><span>starts in 48 min</span></div>
+              <div class="big">07:30 – 19:30</div>
+              <div class="row"><span>6 patients · bay C</span><span>with Priya, Tomás</span></div>
+            </div>
+            <p class="section-label">Due in the first hour</p>
+            <div class="list">
+              <div class="item"><span class="bed">C1</span><div><div>IV antibiotics</div><div class="meta">Due 08:00 · last given 00:04</div></div><span class="badge badge--warning">Due</span></div>
+              <div class="item"><span class="bed">C3</span><div><div>Obs, post-op day 1</div><div class="meta">Every 2 h · NEWS 3 at 06:00</div></div><span class="badge">08:00</span></div>
+              <div class="item"><span class="bed">C4</span><div><div>Fasting from 06:00</div><div class="meta">Theatre list, 2nd case</div></div><span class="badge badge--danger">NBM</span></div>
+            </div>
+          </div>
+          <nav class="tabbar" aria-label="Tabs">
+            <a href="#" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>Today</a>
+            <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h14v16H5z"/><path d="M8.5 9h7M8.5 13h7M8.5 17h4"/></svg>Notes</a>
+            <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="1"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Rota</a>
+            <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c1-3.6 3.6-5.5 7-5.5s6 1.9 7 5.5"/></svg>Me</a>
+          </nav>
+        </div></div>
+        <figcaption><strong>Today</strong>The only question at 06:42 is “what's first?”. The shift card answers when; the list answers what, sorted by due time rather than bed number.</figcaption>
+      </figure>
+
+      <!-- Screen 2: Handover note -->
+      <figure class="shot">
+        <div class="phone"><div class="screen">
+          <div class="status" aria-hidden="true"><span>07:31</span><span>●●● 80%</span></div>
+          <div class="appbar"><p class="sub">← Bay C</p><h2 class="title">C3 · Mr A. Brandt</h2><p class="sub">68 · Right hemicolectomy, day 1</p></div>
+          <div class="body">
+            <section class="note">
+              <div class="split"><h2>Night handover</h2><span class="badge">from Lena, 07:15</span></div>
+              <dl class="kv">
+                <dt>Pain</dt><dd>3/10 on PCA, used 4× overnight</dd>
+                <dt>Obs</dt><dd>HR 96, BP 118/74, T 37.9 at 06:00</dd>
+                <dt>Drain</dt><dd>40 ml serous since 22:00</dd>
+                <dt>Watch</dt><dd>Temp trending up — recheck 08:00, escalate if ≥ 38.0</dd>
+              </dl>
+            </section>
+            <div class="callout small">Allergy: penicillin (rash). Charted and confirmed with patient.</div>
+          </div>
+          <form class="composer" onsubmit="return false">
+            <label class="visually-hidden" for="add-note">Add to handover</label>
+            <input class="input" id="add-note" placeholder="Add to handover…">
+            <button class="icon-btn" type="submit" aria-label="Add note"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+          </form>
+        </div></div>
+        <figcaption><strong>Patient handover</strong>Definition list, not paragraphs: nurses scan labels on the left. The single “watch” line carries the one thing that must not be missed.</figcaption>
+      </figure>
+
+      <!-- Screen 3: Rota -->
+      <figure class="shot">
+        <div class="phone"><div class="screen">
+          <div class="status" aria-hidden="true"><span>12:04</span><span>●●● 61%</span></div>
+          <div class="appbar"><h2 class="title">Rota</h2><p class="sub">Week 39 · 37.5 of 37.5 h</p></div>
+          <div class="body">
+            <div class="week" role="list">
+              <div class="day" role="listitem"><span>M</span><b>21</b><span class="pill pill--d">D</span></div>
+              <div class="day" role="listitem"><span>T</span><b>22</b><span class="pill pill--d">D</span></div>
+              <div class="day" role="listitem"><span>W</span><b>23</b><span>–</span></div>
+              <div class="day" role="listitem" aria-current="date"><span>T</span><b>24</b><span class="pill pill--d">D</span></div>
+              <div class="day" role="listitem"><span>F</span><b>25</b><span>–</span></div>
+              <div class="day" role="listitem"><span>S</span><b>26</b><span class="pill pill--n">N</span></div>
+              <div class="day" role="listitem"><span>S</span><b>27</b><span class="pill pill--n">N</span></div>
+            </div>
+            <p class="section-label">Swap requests</p>
+            <div class="list">
+              <div class="item"><span class="bed">PK</span><div><div>Priya wants your Sat night</div><div class="meta">Offers Tue 29 day</div></div><button class="btn btn--sm" type="button">View</button></div>
+              <div class="item"><span class="bed">TR</span><div><div>Tomás swapped Fri → Mon</div><div class="meta">Approved by ward manager</div></div><span class="badge badge--success">Done</span></div>
+            </div>
+            <button class="btn btn--primary" type="button" style="width:100%">Request a swap</button>
+          </div>
+          <nav class="tabbar" aria-label="Tabs">
+            <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>Today</a>
+            <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h14v16H5z"/><path d="M8.5 9h7M8.5 13h7M8.5 17h4"/></svg>Notes</a>
+            <a href="#" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="1"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Rota</a>
+            <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c1-3.6 3.6-5.5 7-5.5s6 1.9 7 5.5"/></svg>Me</a>
+          </nav>
+        </div></div>
+        <figcaption><strong>Rota</strong>Night shifts are inverted (dark pill) so a week's pattern reads at a glance without relying on color alone.</figcaption>
+      </figure>
+    </div>
+  </main>
+</body>
+</html>

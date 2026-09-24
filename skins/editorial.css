@@ -1,0 +1,37 @@
+/* Editorial — newspaper & long-form magazine. Serif-led, paper tones,
+   oxblood accent, hairline rules instead of boxes and shadows.
+   Good for: publications, blogs, essays, law/finance firms, bookish brands. */
+
+[data-skin="editorial"] {
+  color-scheme: light dark;
+
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --display-weight: 560;
+  --display-tracking: -0.022em;
+  --display-transform: none;
+  --body-weight: 400;
+  --eyebrow-tracking: 0.12em;
+
+  --bg: light-dark(#f5f0e6, #15120e);
+  --surface: light-dark(#fbf8f2, #1d1914);
+  --surface-2: light-dark(#ece5d7, #27221b);
+  --ink: light-dark(#1c1915, #ece5d8);
+  --ink-muted: light-dark(#5a5247, #a79d8e);
+  --line: light-dark(#d6ccba, #3a3329);
+
+  --accent: light-dark(#8c2f1e, #e58a72);
+  --accent-ink: light-dark(#fbf8f2, #15120e);
+
+  --focus: light-dark(#1f56b3, #8db4ff);
+  --success: light-dark(#2d6a39, #82c48e);
+  --warning: light-dark(#8a5a00, #e6b457);
+  --danger: light-dark(#a3261b, #ff8b7c);
+
+  --radius: var(--radius-1);
+  --radius-lg: var(--radius-2);
+  --border-w: 1px;
+  --shadow-1: none;
+  --shadow-2: 0 1px 0 var(--line);
+}

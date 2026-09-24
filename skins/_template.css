@@ -1,0 +1,47 @@
+/* ==========================================================================
+   SKIN TEMPLATE — copy to skins/<your-skin>.css and rename the selector.
+   Every variable below is part of the skin contract; components rely on all
+   of them. Colors must be hex inside light-dark(LIGHT, DARK) so
+   `npm run check:contrast` can verify them.
+   ========================================================================== */
+
+[data-skin="your-skin"] {
+  color-scheme: light dark; /* use `dark` alone for a dark-first skin */
+
+  /* Type — pick ONE deliberate pairing. Never ship the default stack. */
+  --font-display: "Your Display", Georgia, serif;
+  --font-body: "Your Text", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --display-weight: 600;
+  --display-tracking: -0.02em;
+  --display-transform: none;   /* or uppercase */
+  --body-weight: 400;
+  --eyebrow-tracking: 0.08em;
+
+  /* Surfaces & ink */
+  --bg: light-dark(#ffffff, #000000);
+  --surface: light-dark(#ffffff, #000000);   /* cards, inputs */
+  --surface-2: light-dark(#ffffff, #000000); /* wells, hovers, code */
+  --ink: light-dark(#000000, #ffffff);       /* >= 7:1 on --bg */
+  --ink-muted: light-dark(#000000, #ffffff); /* >= 4.5:1 on --bg and --surface */
+  --line: light-dark(#000000, #ffffff);      /* hairlines, borders */
+
+  /* One accent. Not two. Not a gradient. */
+  --accent: light-dark(#000000, #ffffff);    /* >= 3:1 on --bg (UI), used for links too */
+  --accent-ink: light-dark(#ffffff, #000000);/* text on --accent, >= 4.5:1 */
+  /* Optional: --link (defaults to --accent). Set it when the accent is a
+     fill color that can't carry text, e.g. yellow on cream. */
+
+  /* Status */
+  --focus: light-dark(#000000, #ffffff);
+  --success: light-dark(#000000, #ffffff);
+  --warning: light-dark(#000000, #ffffff);
+  --danger: light-dark(#000000, #ffffff);
+
+  /* Shape & depth */
+  --radius: var(--radius-2);
+  --radius-lg: var(--radius-3);
+  --border-w: 1px;
+  --shadow-1: none;
+  --shadow-2: none;
+}

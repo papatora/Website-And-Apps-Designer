@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en" data-skin="editorial">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The case for fewer colors — Margins</title>
+  <meta name="description" content="Most interfaces don't have a color problem. They have a too-many-colors problem. An essay on restraint, with a method.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../../tokens/base.css">
+  <link rel="stylesheet" id="skin-css" href="../../skins/editorial.css">
+  <link rel="stylesheet" href="../../components/components.css">
+  <script src="../../skins/registry.js"></script>
+  <script src="../_shared/skin-switcher.js"></script>
+  <style>
+    .masthead { border-bottom: var(--border-w) solid var(--ink); }
+    .masthead .nav__inner { justify-content: space-between; }
+    .masthead .nav__brand { font-size: var(--text-2xl); }
+
+    .article-head { padding-block: var(--space-8) var(--space-7); display: grid; gap: var(--space-5); }
+    .article-head h1 { font-size: var(--text-5xl); max-width: 18ch; }
+    .dek { font-size: var(--text-xl); line-height: var(--leading-snug); color: var(--ink-muted); max-width: 36ch; font-family: var(--font-display); font-style: italic; }
+    .byline { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); font-size: var(--text-sm); color: var(--ink-muted); padding-top: var(--space-4); border-top: var(--border-w) solid var(--line); }
+    .byline strong { color: var(--ink); }
+
+    .body { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-7); padding-bottom: var(--space-9); }
+    @media (min-width: 70rem) { .body { grid-template-columns: 12rem minmax(0, var(--measure)) 1fr; } }
+    .toc { font-size: var(--text-sm); position: sticky; top: var(--space-6); align-self: start; }
+    .toc ol { list-style: none; padding: 0; display: grid; gap: var(--space-2); margin-top: var(--space-3); }
+    .toc a { color: var(--ink-muted); text-decoration: none; }
+    .toc a:hover { color: var(--ink); }
+    @media (max-width: 70rem) { .toc { display: none; } }
+
+    .prose { font-size: var(--text-lg); }
+    .prose > p:first-of-type::first-letter {
+      float: left; font-family: var(--font-display); font-weight: var(--display-weight);
+      font-size: 4.2em; line-height: 0.82; padding: 0.06em 0.08em 0 0; color: var(--accent);
+    }
+    .pull { border: 0; border-block: var(--border-w) solid var(--ink); padding: var(--space-5) 0; font-size: var(--text-2xl); text-align: left; }
+    .swatches { display: grid; grid-template-columns: repeat(5, 1fr); border: var(--border-w) solid var(--line); }
+    .swatches div { aspect-ratio: 1; }
+    sup a { text-decoration: none; font-family: var(--font-mono); font-size: 0.7em; }
+    .notes { font-size: var(--text-sm); color: var(--ink-muted); border-top: var(--border-w) solid var(--line); padding-top: var(--space-5); }
+    .notes li + li { margin-top: var(--space-2); }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="nav masthead">
+    <nav class="container nav__inner" aria-label="Primary">
+      <a class="nav__brand" href="#">Margins</a>
+      <ul class="nav__links" style="margin-left:0">
+        <li><a href="#">Essays</a></li><li><a href="#">Notes</a></li><li><a href="#">Archive</a></li><li><a href="#">Subscribe</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" class="container">
+    <header class="article-head">
+      <a class="eyebrow" href="#" style="text-decoration:none">Essay · Color</a>
+      <h1>The case for fewer colors</h1>
+      <p class="dek">Most interfaces don't have a color problem. They have a too-many-colors problem.</p>
+      <div class="byline"><span>By <strong>Ines Takahashi</strong></span><time datetime="2026-09-18">18 September 2026</time><span>11 min read</span></div>
+    </header>
+
+    <div class="body">
+      <aside class="toc" aria-label="Contents">
+        <span class="eyebrow">Contents</span>
+        <ol>
+          <li><a href="#s1">Where the extra colors come from</a></li>
+          <li><a href="#s2">A method: one accent, earned</a></li>
+          <li><a href="#s3">What neutrals are for</a></li>
+        </ol>
+      </aside>
+
+      <article class="prose">
+        <p>Open any product built in the last five years and count the colors that mean something. Not the ones that are there — the ones that mean something. In most interfaces the first number is somewhere around twenty and the second is about three. Everything in between is noise wearing a brand guideline.</p>
+        <p>This isn't an argument for grey. It's an argument that color is a signal, and a signal that fires constantly stops being heard.</p>
+
+        <h2 id="s1">Where the extra colors come from</h2>
+        <p>They arrive one reasonable decision at a time. Marketing wants the pricing badge to “pop”. A status needs a fourth state, so it gets a fourth hue. Someone adds a gradient to the hero because the page “felt flat”, and now there are two blues that almost match.<sup><a href="#n1" id="r1">1</a></sup></p>
+        <blockquote class="pull">A signal that fires constantly stops being heard.</blockquote>
+        <p>None of these is wrong on its own. The problem is cumulative: every new color lowers the value of every existing one.</p>
+
+        <h2 id="s2">A method: one accent, earned</h2>
+        <p>Start with neutrals only — a background, a surface, two inks and a line. Build the entire screen. Then ask what the one action is that a person should take here, and give that, and only that, the accent.</p>
+        <figure>
+          <div class="swatches" role="img" aria-label="Five swatches: background, surface, ink, muted ink and a single accent">
+            <div style="background:var(--bg)"></div><div style="background:var(--surface-2)"></div><div style="background:var(--ink)"></div><div style="background:var(--ink-muted)"></div><div style="background:var(--accent)"></div>
+          </div>
+          <figcaption>The whole palette of this page: four neutrals and one accent.</figcaption>
+        </figure>
+        <p>If a second thing needs emphasis, try weight, size or position before reaching for hue. Status colors are the exception, because they carry meaning outside your brand: <code>danger</code> is red in every product your users have ever touched.</p>
+
+        <h2 id="s3">What neutrals are for</h2>
+        <p>Neutrals do the structural work — hierarchy, grouping, depth — so the accent doesn't have to. Tint them slightly toward your accent's hue and the page feels designed rather than default, without adding a single new color.<sup><a href="#n2" id="r2">2</a></sup></p>
+
+        <ol class="notes">
+          <li id="n1">In one audit of a mid-size SaaS product we found 14 distinct blues in production CSS, 11 of them introduced by accident. <a href="#r1" aria-label="Back to text">↩</a></li>
+          <li id="n2">A 2–4% chroma shift is usually enough. More than that and your “neutral” becomes a color. <a href="#r2" aria-label="Back to text">↩</a></li>
+        </ol>
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container split"><span>Margins is written in Rotterdam and published on Fridays.</span><a href="#">RSS</a></div>
+  </footer>
+</body>
+</html>

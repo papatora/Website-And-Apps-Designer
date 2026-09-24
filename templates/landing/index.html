@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en" data-skin="studio">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ledgerline — Bookkeeping for independent studios</title>
+  <meta name="description" content="Ledgerline matches bank transactions to receipts in your inbox and hands your accountant a clean month-end. Built for studios of 1–30 people.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../../tokens/base.css">
+  <link rel="stylesheet" id="skin-css" href="../../skins/studio.css">
+  <link rel="stylesheet" href="../../components/components.css">
+  <script src="../../skins/registry.js"></script>
+  <script src="../_shared/skin-switcher.js"></script>
+  <style>
+    .hero { padding-block: var(--space-9) var(--section-y); }
+    .hero h1 { max-width: 14ch; }
+    .hero .lead { margin-top: var(--space-5); }
+    .hero .cluster { margin-top: var(--space-6); }
+    .hero__note { margin-top: var(--space-4); font-size: var(--text-sm); color: var(--ink-muted); }
+
+    /* Product mock: real UI, not an illustration */
+    .mock { padding: 0; overflow: hidden; }
+    .mock__bar { display: flex; justify-content: space-between; align-items: center; padding: var(--space-3) var(--space-4); border-bottom: var(--border-w) solid var(--line); font-size: var(--text-sm); }
+    .mock__row { display: grid; grid-template-columns: 1fr auto auto; gap: var(--space-4); align-items: center; padding: var(--space-3) var(--space-4); border-bottom: var(--border-w) solid var(--line); font-size: var(--text-sm); }
+    .mock__row:last-child { border-bottom: 0; }
+    .mock__row .muted { font-size: var(--text-xs); }
+    .mock__foot { padding: var(--space-3) var(--space-4); background: var(--surface-2); font-size: var(--text-sm); display: flex; justify-content: space-between; }
+
+    .logos { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-7); align-items: baseline; margin-top: var(--space-4); }
+    .logos span { font-family: var(--font-display); font-size: var(--text-lg); color: var(--ink-muted); letter-spacing: var(--display-tracking); }
+
+    .steps { list-style: none; padding: 0; display: grid; gap: 0; counter-reset: step; }
+    .steps li { display: grid; grid-template-columns: 4rem 1fr; gap: var(--space-4); padding-block: var(--space-5); border-top: var(--border-w) solid var(--line); counter-increment: step; }
+    .steps li::before { content: counter(step, decimal-leading-zero); font-family: var(--font-mono); font-size: var(--text-sm); color: var(--ink-muted); padding-top: 0.35em; }
+    .steps h3 { margin-bottom: var(--space-2); }
+
+    .compare th:first-child, .compare td:first-child { width: 34%; }
+    .quote { font-family: var(--font-display); font-size: var(--text-2xl); line-height: var(--leading-snug); letter-spacing: var(--display-tracking); max-width: 28ch; }
+    .quote-by { margin-top: var(--space-5); font-size: var(--text-sm); }
+
+    .price { font-family: var(--font-display); font-size: var(--text-4xl); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); line-height: 1; }
+    .plan ul { padding-left: 1.1em; font-size: var(--text-sm); }
+    .plan ul li + li { margin-top: var(--space-2); }
+
+    details { border-top: var(--border-w) solid var(--line); padding-block: var(--space-4); }
+    details:last-of-type { border-bottom: var(--border-w) solid var(--line); }
+    summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: var(--space-4); }
+    summary::after { content: "+"; font-family: var(--font-mono); color: var(--ink-muted); }
+    details[open] summary::after { content: "–"; }
+    details p { margin-top: var(--space-3); color: var(--ink-muted); max-width: var(--measure); }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <nav class="container nav__inner" aria-label="Primary">
+      <a class="nav__brand" href="#">Ledgerline</a>
+      <ul class="nav__links">
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">Questions</a></li>
+        <li><a href="#">Sign in</a></li>
+      </ul>
+      <a class="btn btn--primary btn--sm" href="#pricing">Start trial</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container sidebar-layout sidebar-layout--reverse" style="align-items:center">
+        <div>
+          <span class="eyebrow">Bookkeeping for studios of 1–30 people</span>
+          <h1 style="margin-top:var(--space-4)">Close the month in an afternoon, not a weekend.</h1>
+          <p class="lead">Ledgerline reads the receipts already sitting in your inbox, matches them to bank transactions, and hands your accountant a month-end they won't email you about.</p>
+          <div class="cluster">
+            <a class="btn btn--primary btn--lg" href="#pricing">Start a 30-day trial</a>
+            <a class="btn btn--ghost btn--lg" href="#how">See a sample month-end</a>
+          </div>
+          <p class="hero__note">No card required. Exports to Xero, QuickBooks and plain CSV.</p>
+        </div>
+
+        <figure class="card mock" aria-label="Ledgerline reconciliation screen, September">
+          <div class="mock__bar">
+            <strong>September · Studio account</strong>
+            <span class="badge badge--success"><span class="dot"></span>38 of 41 matched</span>
+          </div>
+          <div class="mock__row">
+            <div><div>Adobe Creative Cloud</div><div class="muted">Receipt from billing@adobe.com</div></div>
+            <span class="tabular">−€89.99</span>
+            <span class="badge badge--success">Matched</span>
+          </div>
+          <div class="mock__row">
+            <div><div>Hollis &amp; Oke — Invoice 0142</div><div class="muted">Payment received</div></div>
+            <span class="tabular">+€6,400.00</span>
+            <span class="badge badge--success">Matched</span>
+          </div>
+          <div class="mock__row">
+            <div><div>Deutsche Bahn</div><div class="muted">No receipt found yet</div></div>
+            <span class="tabular">−€142.60</span>
+            <span class="badge badge--warning">Needs receipt</span>
+          </div>
+          <div class="mock__row">
+            <div><div>Figma</div><div class="muted">Receipt from no-reply@figma.com</div></div>
+            <span class="tabular">−€45.00</span>
+            <span class="badge badge--success">Matched</span>
+          </div>
+          <figcaption class="mock__foot"><span class="muted">3 left to review</span><span class="tabular">Net €11,208.14</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" style="padding-block:var(--space-7)">
+      <div class="container">
+        <p class="small muted">Keeping the books for 1,240 studios in 31 countries, including</p>
+        <div class="logos" aria-label="Customer studios">
+          <span>Hollis &amp; Oke</span><span>Studio Marrow</span><span>Northbound Type</span><span>Pale Fire Films</span><span>Atelier Kinsey</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="container sidebar-layout">
+        <div class="stack">
+          <span class="eyebrow">How it works</span>
+          <h2>Three steps, and two of them happen without you.</h2>
+          <p class="muted">Most studios spend 6–9 hours a month chasing receipts. Our customers report a median of 47 minutes after their second month.</p>
+        </div>
+        <ol class="steps">
+          <li><div><h3>Connect your bank and inbox</h3><p class="muted">Read-only access through your bank's open-banking API and a Gmail or Outlook label you choose. We never see anything outside that label.</p></div></li>
+          <li><div><h3>Ledgerline matches overnight</h3><p class="muted">Receipts are paired with transactions by amount, date and merchant. Anything uncertain waits for you instead of being guessed.</p></div></li>
+          <li><div><h3>Review the leftovers, then export</h3><p class="muted">Usually three or four items. Fix them, press export, and your accountant gets a categorised ledger with every receipt attached.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container stack" style="--stack:var(--space-6)">
+        <div class="stack" style="max-width:var(--measure-narrow)">
+          <span class="eyebrow">Before and after</span>
+          <h2>What actually changes at month-end</h2>
+        </div>
+        <div class="table-wrap">
+          <table class="table compare">
+            <thead><tr><th scope="col">Task</th><th scope="col">Spreadsheet + inbox</th><th scope="col">With Ledgerline</th></tr></thead>
+            <tbody>
+              <tr><td>Finding receipts</td><td>Search email for each transaction</td><td>Already attached</td></tr>
+              <tr><td>Foreign currency</td><td>Look up the rate on the day</td><td>ECB rate applied, rate stored with the entry</td></tr>
+              <tr><td>VAT per line</td><td>Guess from the PDF</td><td>Read from the receipt, flagged if missing</td></tr>
+              <tr><td>Handing over</td><td>Zip file and an apology</td><td>One export your accountant can import</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container sidebar-layout" style="align-items:end">
+        <blockquote>
+          <p class="quote">“Our accountant used to send back a list of 30 questions. In September it was two, and both were about my handwriting.”</p>
+          <footer class="quote-by"><strong>Maren Oke</strong> <span class="muted">— Partner, Hollis &amp; Oke (12 people, Rotterdam)</span></footer>
+        </blockquote>
+        <div class="grid" style="--grid-min:9rem">
+          <div class="stat"><span class="stat__label">Hours saved per month</span><span class="stat__value">7.2</span></div>
+          <div class="stat"><span class="stat__label">Receipts matched automatically</span><span class="stat__value">93%</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pricing">
+      <div class="container stack" style="--stack:var(--space-6)">
+        <div class="stack" style="max-width:var(--measure-narrow)">
+          <span class="eyebrow">Pricing</span>
+          <h2>Two plans. Priced per studio, not per seat.</h2>
+        </div>
+        <div class="grid" style="--grid-min:18rem">
+          <article class="card plan stack">
+            <h3>Solo</h3>
+            <p><span class="price">€12</span> <span class="muted">/ month</span></p>
+            <p class="muted small">For freelancers and two-person studios.</p>
+            <ul><li>1 bank account, 1 inbox</li><li>Up to 150 transactions a month</li><li>CSV and Xero export</li></ul>
+            <a class="btn" href="#">Start Solo trial</a>
+          </article>
+          <article class="card plan stack" style="border-color:var(--ink)">
+            <div class="split"><h3>Studio</h3><span class="badge badge--accent">Most studios pick this</span></div>
+            <p><span class="price">€39</span> <span class="muted">/ month</span></p>
+            <p class="muted small">For teams up to 30, with a separate login for your accountant.</p>
+            <ul><li>Unlimited accounts and inboxes</li><li>Unlimited transactions</li><li>Xero, QuickBooks, DATEV and CSV export</li><li>Accountant access at no extra cost</li></ul>
+            <a class="btn btn--primary" href="#">Start Studio trial</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container sidebar-layout">
+        <div class="stack"><span class="eyebrow">Questions</span><h2>Things people ask before signing up</h2></div>
+        <div>
+          <details><summary>Does Ledgerline replace my accountant?</summary><p>No. It replaces the part of their invoice that's spent chasing you. They still do your filings; they just start from clean data.</p></details>
+          <details><summary>Which banks are supported?</summary><p>Any bank on the EU/UK open-banking networks — around 2,400 institutions. If yours isn't, you can upload a CSV or MT940 statement instead.</p></details>
+          <details><summary>What happens to my data if I cancel?</summary><p>You get a full export (ledger plus every receipt as a PDF) and we delete the rest 30 days later. Nothing is kept for training or resale.</p></details>
+          <details><summary>Can I try it on last month's books?</summary><p>Yes. The trial imports up to 90 days of history, so you can compare against a month you've already closed.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split">
+        <h2 style="max-width:18ch">Try it on last month. You'll know by Friday.</h2>
+        <a class="btn btn--primary btn--lg" href="#pricing">Start a 30-day trial</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container split">
+      <span>© 2026 Ledgerline B.V. · Amsterdam</span>
+      <span class="cluster"><a href="#">Security</a><a href="#">Privacy</a><a href="#">Status</a><a href="#">Changelog</a></span>
+    </div>
+  </footer>
+</body>
+</html>

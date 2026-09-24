@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" data-skin="noir">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hollis &amp; Oke — Identity and type studio, Rotterdam</title>
+  <meta name="description" content="Hollis & Oke is a twelve-person identity and type studio in Rotterdam working with cultural institutions, publishers and a few stubborn manufacturers.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../../tokens/base.css">
+  <link rel="stylesheet" id="skin-css" href="../../skins/noir.css">
+  <link rel="stylesheet" href="../../components/components.css">
+  <script src="../../skins/registry.js"></script>
+  <script src="../_shared/skin-switcher.js"></script>
+  <style>
+    .intro { padding-block: var(--space-10) var(--space-9); }
+    .intro h1 { font-size: clamp(2.75rem, 1.5rem + 5.5vw, 7rem); max-width: 16ch; }
+    .intro p:not(.eyebrow) { margin-top: var(--space-6); max-width: 44ch; color: var(--ink-muted); font-size: var(--text-lg); }
+
+    /* Work index: a list, not a card grid. Hover reveals the image. */
+    .index { list-style: none; padding: 0; border-top: var(--border-w) solid var(--line); }
+    .index a {
+      display: grid; grid-template-columns: 4rem minmax(0, 1fr) minmax(0, 1fr) 6rem;
+      gap: var(--space-4); align-items: baseline;
+      padding-block: var(--space-5); border-bottom: var(--border-w) solid var(--line);
+      color: var(--ink); text-decoration: none;
+      transition: padding var(--dur-2) var(--ease-out), color var(--dur-1) var(--ease-out);
+    }
+    .index a:hover { padding-left: var(--space-3); color: var(--accent); }
+    .index .yr, .index .cat { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--ink-muted); letter-spacing: 0.04em; }
+    .index .name { font-family: var(--font-display); font-size: var(--text-2xl); letter-spacing: var(--display-tracking); line-height: 1.1; }
+    .index .cat { text-align: right; }
+    @media (max-width: 48rem) {
+      .index a { grid-template-columns: 3rem 1fr; }
+      .index .desc, .index .cat { grid-column: 2; text-align: left; }
+    }
+
+    .feature { display: grid; gap: var(--space-5); }
+    @media (min-width: 60rem) { .feature { grid-template-columns: 7fr 5fr; align-items: end; } }
+    .plate {
+      aspect-ratio: 4 / 3; background: var(--surface-2); border: var(--border-w) solid var(--line);
+      display: grid; place-items: center; overflow: hidden;
+    }
+    .plate span { font-family: var(--font-display); font-size: clamp(4rem, 12vw, 11rem); color: var(--ink); line-height: 0.8; letter-spacing: -0.02em; }
+
+    .people { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: var(--space-5); }
+    .people dt { font-weight: 600; }
+    .people dd { color: var(--ink-muted); font-size: var(--text-sm); }
+
+    .contact { font-family: var(--font-display); font-size: clamp(2rem, 1rem + 4vw, 4.5rem); line-height: 1; letter-spacing: var(--display-tracking); }
+    .contact a { color: var(--ink); text-decoration-thickness: 1px; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="nav" style="background:transparent;backdrop-filter:none;border-bottom:0;position:absolute;left:0;right:0">
+    <nav class="container nav__inner" aria-label="Primary">
+      <a class="nav__brand" href="#">Hollis &amp; Oke</a>
+      <ul class="nav__links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#studio">Studio</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="container intro">
+      <p class="eyebrow">Identity &amp; type · Rotterdam · since 2014</p>
+      <h1 style="margin-top:var(--space-5)">We draw letters for institutions that intend to stay.</h1>
+      <p>Twelve people making identities, custom typefaces and the systems that keep them intact after we leave — mostly for museums, publishers and a few stubborn manufacturers.</p>
+    </section>
+
+    <section class="container section" id="work" style="padding-top:0">
+      <div class="split" style="margin-bottom:var(--space-5)"><h2 class="eyebrow">Selected work</h2><span class="eyebrow">2019–2026</span></div>
+      <ol class="index">
+        <li><a href="#"><span class="yr">2026</span><span class="name">Kunsthal Zuid</span><span class="desc muted small">Identity and a variable display face with 1,400 glyphs</span><span class="cat">Identity</span></a></li>
+        <li><a href="#"><span class="yr">2025</span><span class="name">Van Heusden Ceramics</span><span class="desc muted small">Kiln stamps, packaging, and a 110-year archive digitised</span><span class="cat">Packaging</span></a></li>
+        <li><a href="#"><span class="yr">2024</span><span class="name">Northbound Type</span><span class="desc muted small">Specimen site and retail typeface “Meridian”</span><span class="cat">Type</span></a></li>
+        <li><a href="#"><span class="yr">2023</span><span class="name">Stadsarchief Delft</span><span class="desc muted small">Wayfinding for a 17th-century building with no right angles</span><span class="cat">Signage</span></a></li>
+        <li><a href="#"><span class="yr">2021</span><span class="name">Uitgeverij Marrow</span><span class="desc muted small">Series design for 64 translated novels, one grid</span><span class="cat">Editorial</span></a></li>
+      </ol>
+    </section>
+
+    <section class="container section">
+      <div class="feature">
+        <figure class="plate" aria-label="Specimen of the Kunsthal Zuid display typeface"><span>Aa&nbsp;Zz</span></figure>
+        <div class="stack">
+          <p class="eyebrow">In focus · Kunsthal Zuid</p>
+          <h2 class="h3">A typeface that gets wider as the building gets taller.</h2>
+          <p class="muted">The museum's three wings are different heights. The display face has a width axis mapped to each wing, so signage on the tallest floor sets in the widest cut. Visitors don't notice. Staff did, and started using it for their own posters.</p>
+          <a href="#">Read the case study</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section" id="studio">
+      <div class="sidebar-layout">
+        <h2 class="h3">The studio</h2>
+        <dl class="people">
+          <div><dt>Maren Oke</dt><dd>Partner, identity. Previously in-house at the Stedelijk.</dd></div>
+          <div><dt>Ruben Hollis</dt><dd>Partner, type design. Teaches at KABK on Thursdays.</dd></div>
+          <div><dt>Ines Takahashi</dt><dd>Design lead, systems and guidelines.</dd></div>
+          <div><dt>Jonas Weir</dt><dd>Developer. Makes the specimen sites and the font tooling.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="container section" id="contact">
+      <p class="eyebrow" style="margin-bottom:var(--space-5)">New projects from spring 2027</p>
+      <p class="contact"><a href="mailto:studio@example.com">studio@example.com</a></p>
+      <p class="muted" style="margin-top:var(--space-5)">Schiedamsedijk 44, Rotterdam · +31 10 000 0000</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container split"><span>© Hollis &amp; Oke 2026</span><span class="cluster"><a href="#">Instagram</a><a href="#">Are.na</a><a href="#">Colophon</a></span></div>
+  </footer>
+</body>
+</html>

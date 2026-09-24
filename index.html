@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en" data-skin="swiss">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Website &amp; Apps Designer — Skin gallery</title>
+  <meta name="description" content="Six production-ready skins, five templates, and the tools to keep your interface from looking machine-made.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="tokens/base.css">
+  <link rel="stylesheet" href="skins/editorial.css">
+  <link rel="stylesheet" href="skins/swiss.css">
+  <link rel="stylesheet" href="skins/brutalist.css">
+  <link rel="stylesheet" href="skins/terminal.css">
+  <link rel="stylesheet" href="skins/studio.css">
+  <link rel="stylesheet" href="skins/noir.css">
+  <link rel="stylesheet" href="components/components.css">
+  <script src="skins/registry.js"></script>
+  <script>
+    // Load every skin's fonts for the gallery (a real project loads one).
+    for (const s of window.DESIGN_SKINS) {
+      const l = document.createElement("link");
+      l.rel = "stylesheet";
+      l.href = s.fonts;
+      document.head.appendChild(l);
+    }
+  </script>
+  <style>
+    .hero { padding-block: var(--space-9) var(--space-7); }
+    .hero h1 { max-width: 15ch; }
+    .hero p { margin-top: var(--space-5); }
+
+    .skins { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr)); gap: var(--space-5); }
+    .specimen {
+      background: var(--bg); color: var(--ink);
+      border: var(--border-w) solid var(--line); border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-2);
+      padding: var(--space-5); display: grid; gap: var(--space-4); align-content: start;
+    }
+    .specimen__type { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); text-transform: var(--display-transform); font-size: var(--text-4xl); line-height: 1; }
+    .specimen__chips { display: flex; height: 28px; border: var(--border-w) solid var(--line); border-radius: var(--radius); overflow: hidden; }
+    .specimen__chips span { flex: 1; }
+    .specimen__row { display: flex; gap: var(--space-2); flex-wrap: wrap; align-items: center; }
+    .specimen__modes { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2); }
+    .specimen__modes > div { padding: var(--space-3); border: var(--border-w) solid var(--line); border-radius: var(--radius); background: var(--bg); color: var(--ink); font-size: var(--text-sm); }
+    .specimen__links { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); font-size: var(--text-sm); border-top: var(--border-w) solid var(--line); padding-top: var(--space-4); }
+
+    .templates { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr)); gap: var(--space-4); }
+    .templates a.card { display: grid; gap: var(--space-2); }
+    .templates .h3 { font-size: var(--text-lg); }
+
+    .kit { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: var(--space-5); }
+    .kit h3 { font-size: var(--text-base); font-family: var(--font-body); letter-spacing: 0; }
+    .kit p { color: var(--ink-muted); font-size: var(--text-sm); margin-top: var(--space-2); }
+    pre.cmd { background: var(--surface-2); padding: var(--space-4); overflow-x: auto; font-size: var(--text-sm); border-radius: var(--radius); }
+  </style>
+</head>
+<body>
+  <main id="main">
+    <section class="container hero">
+      <span class="eyebrow">Website &amp; Apps Designer</span>
+      <h1 style="margin-top:var(--space-4)">Skins, templates and tools for interfaces that look designed.</h1>
+      <p class="lead">Six skins with real typographic opinions, five templates written with real copy, and a linter that flags the patterns that make a site look machine-made. Plain HTML and CSS — no build step, no framework lock-in.</p>
+    </section>
+
+    <section class="container section" style="padding-top:0" aria-labelledby="skins-h">
+      <div class="split" style="margin-bottom:var(--space-5)"><h2 id="skins-h" class="h3">Skins</h2><span class="small muted">Every pair checked against WCAG AA in light and dark</span></div>
+      <div class="skins" id="skins"></div>
+    </section>
+
+    <section class="container section" aria-labelledby="tpl-h">
+      <h2 id="tpl-h" class="h3" style="margin-bottom:var(--space-5)">Templates</h2>
+      <div class="templates">
+        <a class="card" href="templates/landing/"><span class="eyebrow">Marketing</span><span class="h3">Landing page</span><span class="small muted">Product mock in the hero, steps, comparison table, pricing, FAQ.</span></a>
+        <a class="card" href="templates/dashboard/"><span class="eyebrow">App</span><span class="h3">Dashboard</span><span class="small muted">Sidebar shell, KPI strip, SVG chart, activity feed, data table.</span></a>
+        <a class="card" href="templates/mobile-app/"><span class="eyebrow">Mobile</span><span class="h3">Mobile app screens</span><span class="small muted">Three annotated phone screens with tab bar and thumb-zone actions.</span></a>
+        <a class="card" href="templates/portfolio/"><span class="eyebrow">Studio</span><span class="h3">Portfolio</span><span class="small muted">Work index as a list, feature case, team, oversized contact.</span></a>
+        <a class="card" href="templates/article/"><span class="eyebrow">Editorial</span><span class="h3">Long-form article</span><span class="small muted">Drop cap, pull quote, sticky contents, footnotes.</span></a>
+      </div>
+    </section>
+
+    <section class="container section" aria-labelledby="kit-h">
+      <h2 id="kit-h" class="h3" style="margin-bottom:var(--space-5)">In the kit</h2>
+      <div class="kit">
+        <div><h3>docs/anti-slop.md</h3><p>The tells that make a UI look generated, and what to do instead.</p></div>
+        <div><h3>tools/slop-lint.mjs</h3><p>Scans HTML, CSS, JSX and more for those tells. Runs in CI.</p></div>
+        <div><h3>tools/contrast-check.mjs</h3><p>Verifies every skin's color pairs in both modes.</p></div>
+        <div><h3>.claude/skills</h3><p>Claude Code skills for designing, reviewing and scaffolding.</p></div>
+      </div>
+      <pre class="cmd" style="margin-top:var(--space-6)"><code>node tools/new-project.mjs --template landing --skin editorial --out ../my-site
+npm run lint:slop -- ../my-site</code></pre>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container split"><span>Website &amp; Apps Designer</span><a href="docs/anti-slop.md">Read the anti-slop guide</a></div></footer>
+
+  <script>
+    const tpl = ["landing", "dashboard", "mobile-app", "portfolio", "article"];
+    const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+    document.getElementById("skins").innerHTML = window.DESIGN_SKINS.map((s) => `
+      <article class="specimen" data-skin="${s.id}" aria-labelledby="sk-${s.id}">
+        <div class="split"><span class="eyebrow" id="sk-${s.id}">${esc(s.label)}</span><code class="small muted">skins/${s.id}.css</code></div>
+        <div class="specimen__type" aria-hidden="true">Aa Gg 24</div>
+        <p class="small">${esc(s.mood)}</p>
+        <div class="specimen__chips" aria-hidden="true">
+          <span style="background:var(--bg)"></span><span style="background:var(--surface-2)"></span><span style="background:var(--line)"></span><span style="background:var(--ink-muted)"></span><span style="background:var(--ink)"></span><span style="background:var(--accent)"></span>
+        </div>
+        <div class="specimen__row">
+          <button class="btn btn--primary btn--sm" type="button">Primary</button>
+          <button class="btn btn--sm" type="button">Secondary</button>
+          <span class="badge badge--success"><span class="dot"></span>Live</span>
+          <a href="#" class="small">A link</a>
+        </div>
+        <div class="specimen__modes">
+          <div data-skin="${s.id}" data-mode="light">Light mode</div>
+          <div data-skin="${s.id}" data-mode="dark">Dark mode</div>
+        </div>
+        <p class="small muted">Good for: ${esc(s.goodFor)}</p>
+        <div class="specimen__links">${tpl.map((t) => `<a href="templates/${t}/?skin=${s.id}">${t}</a>`).join("")}</div>
+      </article>`).join("");
+  </script>
+</body>
+</html>

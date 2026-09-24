@@ -1,0 +1,17 @@
+{
+  "name": "website-and-apps-designer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Skins, templates, references and tools for building websites and apps that don't look machine-made.",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "dev": "node tools/serve.mjs",
+    "new": "node tools/new-project.mjs",
+    "lint:slop": "node tools/slop-lint.mjs",
+    "lint": "node tools/slop-lint.mjs index.html templates components",
+    "check:contrast": "node tools/contrast-check.mjs",
+    "test": "node tests/run.mjs",
+    "check": "npm test && npm run check:contrast && npm run lint"
+  }
+}

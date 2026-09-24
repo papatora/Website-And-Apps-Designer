@@ -1,0 +1,61 @@
+/* Juru — page styles shared by every page. Reads only skin tokens. */
+
+body { font-size: var(--text-lg); }
+.demo-note { background: var(--surface-2); font-size: var(--text-sm); padding-block: var(--space-2); }
+mark { background: var(--accent); color: var(--accent-ink); padding: 0 0.15em; border-radius: 3px; }
+
+/* Buttons: the highlighter fill needs an ink edge to read on paper. */
+.btn--primary { --btn-border: var(--ink); }
+.section--field .btn--primary { --btn-bg: var(--accent); --btn-fg: var(--accent-ink); --btn-border: var(--accent); }
+
+/* Header: wordmark with its links, one action on the right. */
+.top { display: flex; align-items: center; gap: var(--space-5); min-height: 4.5rem; }
+.wordmark { font-family: var(--font-display); font-weight: 600; font-size: var(--text-2xl); letter-spacing: -0.03em; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: var(--space-2); line-height: 1; }
+.wordmark svg { width: 1.1em; height: 1.1em; }
+.top nav { margin-right: auto; }
+.top__links { display: flex; gap: var(--space-5); list-style: none; padding: 0; font-size: var(--text-sm); }
+.top__links a { color: var(--ink-muted); text-decoration: none; }
+.top__links a:hover, .top__links a[aria-current="page"] { color: var(--ink); }
+.top__links a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 3px; text-underline-offset: 0.35em; }
+@media (max-width: 52rem) { .top__links { display: none; } .top .btn { margin-left: auto; } }
+
+/* Headings */
+.page-title { font-size: clamp(2.5rem, 1.5rem + 3.6vw, 4.5rem); line-height: 1.02; max-width: 16ch; }
+.section h2 { font-size: var(--text-4xl); max-width: 20ch; margin-bottom: var(--space-6); }
+.section h2 + .lead { margin-top: calc(var(--space-4) * -1); margin-bottom: var(--space-6); }
+.intro { padding-block: var(--space-7) var(--space-8); display: grid; gap: var(--space-5); }
+.intro .lead { font-size: var(--text-xl); max-width: 40ch; }
+
+/* Speakers: colour = who said it */
+[data-spk="rina"] { --spk: var(--spk-rina); }
+[data-spk="bayu"] { --spk: var(--spk-bayu); }
+[data-spk="dimas"] { --spk: var(--spk-dimas); }
+.spk { color: var(--spk); font-weight: 700; }
+.spk-dot { display: inline-block; width: 0.6em; height: 0.6em; border-radius: 50%; background: var(--spk); margin-right: 0.35em; }
+.ts { font-family: var(--font-mono); font-size: 0.78em; color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+
+/* Tables with inline bars (evaluation) */
+.bars td.num { width: 5rem; }
+.doc .toc h2 { font-family: var(--font-body); font-size: var(--text-sm); font-weight: 700; margin-bottom: var(--space-3); letter-spacing: 0; }
+.bar-cell { width: 45%; vertical-align: middle; }
+/* Schibsted Grotesk widens the decimal comma under tnum; plain figures read better here. */
+.table .num { font-variant-numeric: normal; }
+.bar-track { display: block; min-width: 6rem; height: 0.6rem; border-radius: var(--radius-pill); background: var(--surface-2); overflow: hidden; }
+.bar-fill { display: block; height: 100%; width: var(--v); border-radius: var(--radius-pill); background: var(--ink); }
+.bar-fill--weak { background: var(--danger); }
+
+/* Lists that explain, not cards */
+.rows { list-style: none; padding: 0; border-top: 1px solid var(--line); }
+.rows > li { display: grid; gap: var(--space-3) var(--space-7); padding-block: var(--space-6); border-bottom: 1px solid var(--line); }
+@media (min-width: 60rem) { .rows > li { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); } }
+.rows h3 { font-size: var(--text-2xl); }
+.rows p { color: var(--ink-muted); font-size: var(--text-base); max-width: var(--measure); }
+.quote-line { font-size: var(--text-base); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: var(--space-4) var(--space-5); }
+
+details { border-top: 1px solid var(--line); padding-block: var(--space-4); max-width: 48rem; }
+details:last-of-type { border-bottom: 1px solid var(--line); }
+summary { cursor: pointer; font-weight: 700; }
+details p { margin-top: var(--space-3); color: var(--ink-muted); font-size: var(--text-base); max-width: var(--measure); }
+
+.footer .container { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-5); }
+.table { font-size: var(--text-base); }

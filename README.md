@@ -80,6 +80,11 @@ review against the default clusters, then lint, contrast and browser checks. It 
 Cloudflare Workers config, so `npx wrangler@latest deploy --temporary` puts it online for 60 minutes
 without an account.
 
+[`examples/juru`](examples/juru) goes further: a three-page site for a sample AI project (meeting
+minutes for mixed Indonesian/English meetings), with an interactive transcript-to-minutes demo, a
+how-it-works page with evaluation and known limits, and a data-policy page.
+Both are live at https://papatora.github.io/Website-And-Apps-Designer/celengan/ and `/juru/`.
+
 ## Using it in other stacks
 
 - **Tailwind**: see [`adapters/tailwind`](adapters/tailwind/README.md). You get classes like `bg-accent`, `text-ink-muted`, `font-heading` and `rounded-skin`, and the default rainbow palette is removed.

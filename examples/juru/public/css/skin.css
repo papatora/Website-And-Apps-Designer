@@ -1,0 +1,60 @@
+/* Juru — custom skin, planned with the kit's process (docs/anti-slop.md §1).
+
+   Subject: meeting minutes for Indonesian teams whose meetings mix Bahasa
+   Indonesia, English and regional accents.
+   References (Fudge DESIGN.md):
+     wisprflow.ai — dark sections in deep teal instead of black; strict role
+                    split, serif for display, sans for interface. (Its cream
+                    canvas and lavender buttons are default clusters; not taken.)
+     voiceos.com  — one colour family, restraint, paired card/pill radii.
+     withdavid.ai — flat and editorial: serif display over a sans, no shadows,
+                    outlined icons.
+   Vernacular: paper minutes marked with a yellow highlighter ("stabilo"),
+   so the accent is a highlighter and it marks decisions in the product too.
+   Speakers get their own colour: colour = who said it, everywhere.
+   Cluster review: cool paper (not cream), teal field (not near-black + acid),
+   soft radii (not broadsheet), no shadowed card grid, no template chrome,
+   and none of the AI-product clichés (purple, sparkles, chat bubbles, orbs). */
+
+[data-skin="juru"] {
+  color-scheme: light dark;
+
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-body: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace; /* timestamps only */
+  --display-weight: 500;
+  --display-tracking: -0.02em;
+  --display-transform: none;
+  --body-weight: 400;
+
+  --bg: light-dark(#f7f8f8, #0c1f20);
+  --surface: light-dark(#ffffff, #112a2b);
+  --surface-2: light-dark(#eaeeee, #173536);
+  --ink: light-dark(#0f2a2c, #e8efee);
+  --ink-muted: light-dark(#4a5c5e, #9fb3b2);
+  --line: light-dark(#d5dcdc, #264546);
+
+  /* The highlighter. A fill with ink text; buttons get an ink border. */
+  --accent: light-dark(#ffd84a, #ffd84a);
+  --accent-ink: light-dark(#0f2a2c, #0c1f20);
+  --link: light-dark(#0b6b66, #7fd6cf);
+
+  --field: light-dark(#0b3b3a, #133f3e);
+  --field-ink: light-dark(#eef5f4, #eef5f4);
+
+  --focus: light-dark(#1d5fa8, #8fc0ff);
+  --success: light-dark(#2f7d32, #7fd18a);
+  --warning: light-dark(#8a5a00, #e3b341);
+  --danger: light-dark(#b3261e, #ff8a80);
+
+  --radius: var(--radius-pill);
+  --radius-lg: 1.25rem;
+  --border-w: 1px;
+  --shadow-1: none;
+  --shadow-2: 0 16px 40px -16px light-dark(#0f2a2c40, #000000cc);
+
+  /* Speakers: colour = who said it, across transcript, notes and tasks. */
+  --spk-rina: light-dark(#1d5fa8, #8fc0ff);
+  --spk-bayu: light-dark(#a8326a, #f28bbd);
+  --spk-dimas: light-dark(#2f7d32, #7fd18a);
+}

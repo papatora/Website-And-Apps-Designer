@@ -275,7 +275,9 @@ a.card:hover { border-color: var(--ink); }
 }
 
 /* ---------- Data ---------- */
-.table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); font-variant-numeric: tabular-nums; }
+.table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
+/* Tabular figures only where numbers line up: some faces also widen , and . under tnum. */
+.table .num, .table .mono, .table .tabular { font-variant-numeric: tabular-nums; }
 .table th {
   text-align: left; font-weight: 600; color: var(--ink-muted);
   font-size: var(--text-sm);

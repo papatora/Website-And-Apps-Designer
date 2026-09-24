@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="id" data-skin="juru">
+<!-- Demo site built with Website-And-Apps-Designer. Juru is a sample AI
+     project, not a real product; the meeting, people and every figure are examples. -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Juru: notulen rapat berbahasa campur, lengkap dengan tugas dan tenggat</title>
+  <meta name="description" content="Demo proyek AI: Juru mendengarkan rapat berbahasa Indonesia yang campur Inggris, lalu menulis keputusan dan tugas, dan setiap poin menunjuk ke kalimat sumbernya.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='8' width='5' height='14' rx='2.5' fill='%231d5fa8'/%3E%3Crect x='13.5' y='4' width='5' height='18' rx='2.5' fill='%23a8326a'/%3E%3Crect x='23' y='10' width='5' height='12' rx='2.5' fill='%232f7d32'/%3E%3Crect x='3' y='25' width='26' height='4' rx='2' fill='%23ffd84a'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..600&family=Schibsted+Grotesk:wght@400..700&family=JetBrains+Mono:wght@400&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/skin.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/site.css">
+  <style>
+    .hero { padding-block: var(--space-6) var(--space-7); }
+    .hero h1 { font-size: clamp(2.6rem, 1.4rem + 4vw, 4.75rem); line-height: 1.02; max-width: 15ch; }
+    .hero__top { display: grid; gap: var(--space-5) var(--space-8); align-items: end; }
+    @media (min-width: 62rem) { .hero__top { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
+    .hero__top .lead { font-size: var(--text-lg); max-width: 38ch; }
+    .hero__top .cluster { margin-top: var(--space-5); }
+
+    /* The demo: transcript and minutes side by side */
+    .demo { margin-top: var(--space-7); border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); display: grid; grid-template-columns: minmax(0, 1fr); overflow: hidden; }
+    @media (min-width: 62rem) { .demo { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); } }
+    .demo__col { padding: var(--space-5); display: grid; gap: var(--space-4); align-content: start; min-width: 0; }
+    .demo__col + .demo__col { border-top: 1px solid var(--line); background: var(--bg); }
+    @media (min-width: 62rem) { .demo__col + .demo__col { border-top: 0; border-left: 1px solid var(--line); } }
+    .demo__head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-3); }
+    .demo__head h2 { font-size: var(--text-xl); }
+    .demo__meta { font-size: var(--text-sm); color: var(--ink-muted); }
+
+    .transcript { list-style: none; padding: 0; display: grid; gap: var(--space-3); font-size: var(--text-base); }
+    .line { display: grid; grid-template-columns: 3.2rem minmax(0, 1fr); gap: var(--space-3); padding: var(--space-2) var(--space-3); margin-inline: calc(var(--space-3) * -1); border-radius: 0.75rem; transition: background-color var(--dur-2) var(--ease-out), opacity var(--dur-2) var(--ease-out); }
+    .line .ts { padding-top: 0.2em; }
+    .line[data-state="hidden"] { opacity: 0.18; }
+    .line[data-source] { background: color-mix(in srgb, var(--accent) 45%, transparent); }
+    .en { font-style: italic; }
+
+    .minutes { display: grid; gap: var(--space-5); font-size: var(--text-base); }
+    .minutes h3 { font-family: var(--font-body); font-size: var(--text-sm); font-weight: 700; margin-bottom: var(--space-2); }
+    .minutes ul { list-style: none; padding: 0; display: grid; gap: var(--space-2); }
+    .note { display: block; width: 100%; text-align: left; background: none; border: 1px solid transparent; border-radius: 0.75rem; padding: var(--space-2) var(--space-3); margin-inline: calc(var(--space-3) * -1); cursor: pointer; transition: background-color var(--dur-1) var(--ease-out), border-color var(--dur-1) var(--ease-out); }
+    .note:hover, .note[aria-pressed="true"] { background: var(--surface); border-color: var(--line); }
+    .note[data-state="hidden"] { visibility: hidden; }
+    .note__meta { display: block; font-size: var(--text-sm); color: var(--ink-muted); margin-top: 2px; }
+    .check { width: 1.05em; height: 1.05em; border: 1.5px solid var(--spk, var(--ink-muted)); border-radius: 4px; display: inline-block; vertical-align: -0.15em; margin-right: var(--space-2); }
+    .flag { color: var(--danger); font-weight: 600; }
+    .demo__hint { font-size: var(--text-sm); color: var(--ink-muted); }
+
+    .langs td:first-child { font-weight: 600; }
+    .price { font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 500; letter-spacing: -0.02em; }
+    .price small { font-family: var(--font-body); font-size: var(--text-sm); color: var(--ink-muted); }
+    .plans th, .plans td { padding: var(--space-4); }
+    .privacy { display: grid; gap: var(--space-6); }
+    @media (min-width: 60rem) { .privacy { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); align-items: end; } }
+    .privacy h2 { margin-bottom: 0; }
+    .privacy ul { padding-left: 1.1em; display: grid; gap: var(--space-2); font-size: var(--text-base); }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Langsung ke isi</a>
+  <p class="demo-note"><span class="container" style="display:block">Situs demo untuk menguji kit desain. Juru adalah contoh proyek AI, bukan produk sungguhan; rapat, orang dan angka di sini hanya contoh.</span></p>
+
+  <header class="container top">
+    <a class="wordmark" href="./" aria-label="Juru, beranda">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="8" width="5" height="14" rx="2.5" fill="var(--spk-rina)"/><rect x="13.5" y="4" width="5" height="18" rx="2.5" fill="var(--spk-bayu)"/><rect x="23" y="10" width="5" height="12" rx="2.5" fill="var(--spk-dimas)"/><rect x="3" y="25" width="26" height="4" rx="2" fill="var(--accent)"/></svg>
+      juru
+    </a>
+    <nav aria-label="Utama">
+      <ul class="top__links">
+        <li><a href="cara-kerja.html">Cara kerja</a></li>
+        <li><a href="privasi.html">Privasi</a></li>
+        <li><a href="#harga">Harga</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--primary btn--sm" href="#mulai">Coba di rapat berikutnya</a>
+  </header>
+
+  <main id="main">
+    <section class="container hero" aria-labelledby="hero-h">
+      <div class="hero__top">
+        <h1 id="hero-h">Rapatnya campur bahasa. Notulennya tetap rapi.</h1>
+        <div>
+          <p class="lead">Juru mendengarkan rapat tim Anda, yang separuh Indonesia dan separuh Inggris, lalu menulis keputusan dan tugas beserta penanggung jawab dan tenggatnya. Setiap poin menunjuk ke kalimat asalnya, jadi Anda bisa memeriksa, bukan sekadar percaya.</p>
+          <div class="cluster">
+            <a class="btn btn--primary btn--lg" href="#mulai">Coba di rapat berikutnya</a>
+            <a class="btn btn--ghost btn--lg" href="cara-kerja.html">Baca cara kerjanya</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo" id="demo">
+        <section class="demo__col" aria-labelledby="tr-h">
+          <div class="demo__head">
+            <div><h2 id="tr-h">Transkrip</h2><p class="demo__meta">Rapat mingguan tim produk, Kamis 24 September, 1 menit 30 detik</p></div>
+            <button class="btn btn--sm" type="button" id="replay">Putar ulang rapat</button>
+          </div>
+          <ol class="transcript" id="transcript">
+            <li class="line" id="l1" data-spk="rina"><span class="ts">00:04</span><span><span class="spk">Rina</span> Oke, kita mulai ya. Agendanya cuma dua: <span class="en">launch</span> aplikasi kasir sama <span class="en">budget</span> iklan Q4.</span></li>
+            <li class="line" id="l2" data-spk="bayu"><span class="ts">00:19</span><span><span class="spk">Bayu</span> Untuk <span class="en">launch</span>, QA masih nemu tiga bug di <span class="en">checkout</span>. <span class="en">Honestly</span> aku nggak yakin bisa tanggal 1.</span></li>
+            <li class="line" id="l3" data-spk="dimas"><span class="ts">00:31</span><span><span class="spk">Dimas</span> Kalau di-<span class="en">push</span> ke tanggal 8, tim <span class="en">marketing</span> masih sempat revisi materi, sih.</span></li>
+            <li class="line" id="l4" data-spk="rina"><span class="ts">00:44</span><span><span class="spk">Rina</span> Oke, <span class="en">deal</span>. <span class="en">Launch</span> pindah ke Rabu, 8 Oktober. Bayu, tolong kabari QA sore ini.</span></li>
+            <li class="line" id="l5" data-spk="dimas"><span class="ts">01:02</span><span><span class="spk">Dimas</span> <span class="en">Budget</span> iklan aku usul tetap 40 juta, tapi 60 persen ke TikTok, sisanya Meta.</span></li>
+            <li class="line" id="l6" data-spk="bayu"><span class="ts">01:15</span><span><span class="spk">Bayu</span> Setuju, asal ada laporan mingguan tiap Senin.</span></li>
+            <li class="line" id="l7" data-spk="rina"><span class="ts">01:23</span><span><span class="spk">Rina</span> Sip. Dimas, bikin draf pembagiannya sebelum Jumat ya.</span></li>
+          </ol>
+        </section>
+
+        <section class="demo__col" aria-labelledby="mn-h">
+          <div class="demo__head"><h2 id="mn-h">Notulen dari Juru</h2></div>
+          <div class="minutes" id="minutes">
+            <div>
+              <h3>Keputusan</h3>
+              <ul>
+                <li><button class="note" type="button" data-src="l4" data-at="4" aria-pressed="false"><mark>Peluncuran aplikasi kasir mundur ke Rabu, 8 Oktober 2026.</mark><span class="note__meta">Diputuskan Rina, 00:44. Alasan: tiga bug di <em>checkout</em> (Bayu, 00:19).</span></button></li>
+                <li><button class="note" type="button" data-src="l5 l6" data-at="6" aria-pressed="false"><mark>Anggaran iklan Q4 tetap Rp40 juta: 60% TikTok, 40% Meta.</mark><span class="note__meta">Diusulkan Dimas, 01:02, disetujui Bayu, 01:15.</span></button></li>
+              </ul>
+            </div>
+            <div>
+              <h3>Tugas</h3>
+              <ul>
+                <li data-spk="bayu"><button class="note" type="button" data-src="l4" data-at="4" aria-pressed="false"><span class="check" aria-hidden="true"></span>Kabari tim QA soal jadwal peluncuran yang baru<span class="note__meta"><span class="spk-dot"></span>Bayu, hari ini sebelum pukul 17.00</span></button></li>
+                <li data-spk="dimas"><button class="note" type="button" data-src="l7" data-at="7" aria-pressed="false"><span class="check" aria-hidden="true"></span>Buat draf pembagian anggaran iklan TikTok dan Meta<span class="note__meta"><span class="spk-dot"></span>Dimas, Jumat 26 September</span></button></li>
+                <li data-spk="dimas"><button class="note" type="button" data-src="l6" data-at="6" aria-pressed="false"><span class="check" aria-hidden="true"></span>Kirim laporan iklan mingguan<span class="note__meta"><span class="spk-dot"></span>Belum ada penanggung jawab. Usulan: Dimas, setiap Senin</span></button></li>
+              </ul>
+            </div>
+            <div>
+              <h3>Perlu dipastikan</h3>
+              <ul>
+                <li><button class="note" type="button" data-src="l2" data-at="2" aria-pressed="false"><span class="flag">Tiga bug di <em>checkout</em> belum punya penanggung jawab.</span><span class="note__meta">Disebut Bayu, 00:19, tidak dibahas lagi.</span></button></li>
+              </ul>
+            </div>
+            <p class="demo__hint" id="demo-hint">Pilih salah satu poin untuk melihat kalimat asalnya di transkrip.</p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="paham-h">
+      <div class="container">
+        <h2 id="paham-h">Yang membuat rapat Indonesia sulit ditranskrip.</h2>
+        <ul class="rows">
+          <li>
+            <div><h3>Campur bahasa di tengah kalimat</h3><p>"Kalau di-push ke tanggal 8" bukan bahasa Inggris dan bukan bahasa Indonesia baku. Juru dilatih pada rapat sungguhan yang memang begini, bukan pada teks berita.</p></div>
+            <p class="quote-line"><span class="ts">00:31</span> Kalau di-<span class="en">push</span> ke tanggal 8, tim <span class="en">marketing</span> masih sempat revisi materi, sih.</p>
+          </li>
+          <li>
+            <div><h3>Keputusan yang tidak diucapkan sebagai keputusan</h3><p>Tidak ada yang bilang "kami memutuskan". Yang ada "Oke, deal". Juru mencari persetujuan, bukan kata kunci, dan menulis siapa yang memutuskan.</p></div>
+            <p class="quote-line"><span class="ts">00:44</span> Oke, <span class="en">deal</span>. <span class="en">Launch</span> pindah ke Rabu, 8 Oktober.</p>
+          </li>
+          <li>
+            <div><h3>Yang terlupa di akhir rapat</h3><p>Hal yang disebut lalu tidak dibahas lagi masuk ke "Perlu dipastikan", bukan hilang. Juru tidak mengarang penanggung jawab; ia hanya mengusulkan.</p></div>
+            <p class="quote-line"><span class="ts">00:19</span> QA masih nemu tiga bug di <span class="en">checkout</span>.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="akurasi-h">
+      <div class="container">
+        <h2 id="akurasi-h">Seberapa sering Juru salah dengar.</h2>
+        <p class="lead">Persentase kata yang salah pada 40 jam rapat uji. Angka contoh untuk demo ini; detail dan batasannya ada di <a href="cara-kerja.html#evaluasi">halaman cara kerja</a>.</p>
+        <div class="table-wrap">
+          <table class="table bars langs">
+            <thead><tr><th scope="col">Kondisi rapat</th><th scope="col" class="num">Kata salah</th><th scope="col"><span class="visually-hidden">Grafik</span></th></tr></thead>
+            <tbody>
+              <tr><td>Bahasa Indonesia baku, mikrofon laptop</td><td class="num">6%</td><td class="bar-cell"><span class="bar-track"><span class="bar-fill" style="--v:24%"></span></span></td></tr>
+              <tr><td>Campur Indonesia dan Inggris</td><td class="num">9%</td><td class="bar-cell"><span class="bar-track"><span class="bar-fill" style="--v:36%"></span></span></td></tr>
+              <tr><td>Aksen daerah, rata-rata enam dialek</td><td class="num">12%</td><td class="bar-cell"><span class="bar-track"><span class="bar-fill" style="--v:48%"></span></span></td></tr>
+              <tr><td>Lebih dari lima orang bicara bersamaan</td><td class="num">21%</td><td class="bar-cell"><span class="bar-track"><span class="bar-fill bar-fill--weak" style="--v:84%"></span></span></td></tr>
+              <tr><td>Rekaman HP di ruangan bergema</td><td class="num">24%</td><td class="bar-cell"><span class="bar-track"><span class="bar-fill bar-fill--weak" style="--v:96%"></span></span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--field" aria-labelledby="privasi-h">
+      <div class="container privacy">
+        <div class="stack">
+          <h2 id="privasi-h">Rekaman rapat Anda tidak dipakai melatih model.</h2>
+          <p><a class="btn" href="privasi.html">Baca kebijakan datanya</a></p>
+        </div>
+        <ul>
+          <li>Audio dihapus otomatis setelah 30 hari, atau langsung setelah transkrip jadi.</li>
+          <li>Transkrip dan notulen milik Anda; ekspor atau hapus kapan saja.</li>
+          <li>Tidak ada yang dikirim ke peserta sebelum Anda menyetujui notulennya.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="harga" aria-labelledby="harga-h">
+      <div class="container">
+        <h2 id="harga-h">Bayar per orang yang memimpin rapat, bukan per peserta.</h2>
+        <div class="table-wrap">
+          <table class="table plans">
+            <thead><tr><th scope="col"><span class="visually-hidden">Fitur</span></th><th scope="col">Coba</th><th scope="col">Tim</th></tr></thead>
+            <tbody>
+              <tr><td>Harga</td><td><span class="price">Rp0</span></td><td><span class="price">Rp79.000 <small>per pemimpin rapat, per bulan</small></span></td></tr>
+              <tr><td>Jam rapat per bulan</td><td>5</td><td>40</td></tr>
+              <tr><td>Glosarium istilah tim</td><td class="muted">Tidak</td><td>Ya</td></tr>
+              <tr><td>Kirim tugas ke Slack atau Google Calendar</td><td class="muted">Tidak</td><td>Ya</td></tr>
+              <tr><td>Audio dihapus langsung setelah transkrip</td><td>Ya</td><td>Ya</td></tr>
+              <tr><td></td><td><a class="btn" href="#mulai">Coba 5 jam gratis</a></td><td><a class="btn btn--primary" href="#mulai">Mulai paket Tim</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="faq-h">
+      <div class="container">
+        <h2 id="faq-h">Pertanyaan yang sering muncul.</h2>
+        <details><summary>Apakah Juru ikut masuk ke rapat sebagai peserta?</summary><p>Tidak. Anda merekam dari aplikasi rapat atau HP seperti biasa, lalu mengunggah rekamannya. Semua peserta tetap harus tahu rapat direkam.</p></details>
+        <details><summary>Bagaimana kalau Juru salah menulis nama atau istilah?</summary><p>Perbaiki sekali di glosarium tim, dan Juru memakainya di rapat berikutnya. Nama orang yang jarang dan singkatan internal adalah kesalahan yang paling sering.</p></details>
+        <details><summary>Bisakah rapat berbahasa Jawa atau Sunda?</summary><p>Belum. Juru memahami aksen daerah dalam bahasa Indonesia, tetapi percakapan penuh dalam bahasa daerah belum didukung.</p></details>
+        <details><summary>Apakah notulen langsung dikirim ke peserta?</summary><p>Tidak pernah otomatis. Anda memeriksa, mengubah, lalu menekan Kirim. Notulen yang belum diperiksa diberi tanda.</p></details>
+      </div>
+    </section>
+
+    <section class="section section--field" id="mulai" aria-labelledby="mulai-h">
+      <div class="container stack" style="--stack:var(--space-5)">
+        <h2 id="mulai-h" style="margin-bottom:0">Rekam rapat berikutnya, periksa notulennya lima menit kemudian.</h2>
+        <p><a class="btn btn--primary btn--lg" href="#">Coba 5 jam gratis</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container"><span>© 2026 Juru (demo)</span><a href="cara-kerja.html">Cara kerja</a><a href="privasi.html">Privasi</a><a href="#">Kontak</a></div>
+  </footer>
+
+  <script src="js/demo.js"></script>
+</body>
+</html>

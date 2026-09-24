@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="id" data-skin="juru">
+<!-- Demo site built with Website-And-Apps-Designer. Juru is a sample AI
+     project; its components, evaluation figures and limits are examples. -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cara kerja Juru: dari rekaman rapat ke notulen yang bisa diperiksa</title>
+  <meta name="description" content="Enam langkah dari rekaman ke notulen, komponen yang dipakai, hasil evaluasi, dan batasan Juru yang sudah kami ketahui.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='8' width='5' height='14' rx='2.5' fill='%231d5fa8'/%3E%3Crect x='13.5' y='4' width='5' height='18' rx='2.5' fill='%23a8326a'/%3E%3Crect x='23' y='10' width='5' height='12' rx='2.5' fill='%232f7d32'/%3E%3Crect x='3' y='25' width='26' height='4' rx='2' fill='%23ffd84a'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..600&family=Schibsted+Grotesk:wght@400..700&family=JetBrains+Mono:wght@400&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/skin.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/site.css">
+  <style>
+    .doc { display: grid; gap: var(--space-7); grid-template-columns: minmax(0, 1fr); padding-bottom: var(--space-9); }
+    @media (min-width: 64rem) { .doc { grid-template-columns: 13rem minmax(0, 1fr); } }
+    .toc { position: sticky; top: var(--space-5); align-self: start; font-size: var(--text-sm); }
+    .toc h2 { font-family: var(--font-body); font-size: var(--text-sm); font-weight: 700; margin-bottom: var(--space-3); }
+    .toc ol { list-style: none; padding: 0; display: grid; gap: var(--space-2); }
+    .toc a { color: var(--ink-muted); text-decoration: none; }
+    .toc a:hover { color: var(--ink); }
+    @media (max-width: 64rem) { .toc { display: none; } }
+    .doc section + section { margin-top: var(--space-8); }
+    .doc h2 { font-size: var(--text-3xl); margin-bottom: var(--space-4); max-width: 22ch; }
+    .doc > div > section > p, .doc .prose { max-width: var(--measure); color: var(--ink-muted); font-size: var(--text-base); }
+
+    /* The pipeline: a real sequence, drawn as a numbered track */
+    .pipeline { list-style: none; padding: 0; margin-top: var(--space-6); display: grid; gap: 0; counter-reset: step; }
+    .pipeline li { counter-increment: step; display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: var(--space-4); padding-bottom: var(--space-6); position: relative; }
+    .pipeline li::before { content: counter(step); width: 2.25rem; height: 2.25rem; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: var(--text-sm); background: var(--surface); border: 1.5px solid var(--ink); }
+    .pipeline li:not(:last-child)::after { content: ""; position: absolute; left: calc(1.125rem - 0.75px); top: 2.5rem; bottom: 0.25rem; width: 1.5px; background: var(--line); }
+    .pipeline li:last-child::before { background: var(--accent); border-color: var(--ink); }
+    .pipeline h3 { font-size: var(--text-xl); }
+    .pipeline p { color: var(--ink-muted); font-size: var(--text-base); max-width: var(--measure); margin-top: var(--space-1); }
+    .pipeline .io { display: block; margin-top: var(--space-2); font-size: var(--text-sm); color: var(--ink); }
+
+    .limits { padding-left: 1.1em; display: grid; gap: var(--space-3); font-size: var(--text-base); max-width: var(--measure); }
+    .limits strong { display: block; }
+    .dont { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); margin-top: var(--space-5); }
+    .dont > div { border-top: 3px solid var(--danger); padding-top: var(--space-3); font-size: var(--text-base); }
+    .dont h3 { font-family: var(--font-body); font-size: var(--text-base); font-weight: 700; margin-bottom: var(--space-1); }
+    .dont p { color: var(--ink-muted); }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Langsung ke isi</a>
+  <p class="demo-note"><span class="container" style="display:block">Situs demo untuk menguji kit desain. Juru adalah contoh proyek AI; komponen dan angka di halaman ini hanya contoh.</span></p>
+
+  <header class="container top">
+    <a class="wordmark" href="./" aria-label="Juru, beranda">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="8" width="5" height="14" rx="2.5" fill="var(--spk-rina)"/><rect x="13.5" y="4" width="5" height="18" rx="2.5" fill="var(--spk-bayu)"/><rect x="23" y="10" width="5" height="12" rx="2.5" fill="var(--spk-dimas)"/><rect x="3" y="25" width="26" height="4" rx="2" fill="var(--accent)"/></svg>
+      juru
+    </a>
+    <nav aria-label="Utama">
+      <ul class="top__links">
+        <li><a href="cara-kerja.html" aria-current="page">Cara kerja</a></li>
+        <li><a href="privasi.html">Privasi</a></li>
+        <li><a href="./#harga">Harga</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--primary btn--sm" href="./#mulai">Coba di rapat berikutnya</a>
+  </header>
+
+  <main id="main" class="container">
+    <div class="intro">
+      <h1 class="page-title">Dari rekaman rapat ke notulen yang bisa diperiksa.</h1>
+      <p class="lead">Enam langkah, tiga model, dan satu aturan: Juru hanya boleh menulis hal yang benar-benar diucapkan, dan setiap poin menyimpan detik asalnya.</p>
+    </div>
+
+    <div class="doc">
+      <aside class="toc" aria-label="Isi halaman">
+        <h2>Di halaman ini</h2>
+        <ol>
+          <li><a href="#alur">Alur kerja</a></li>
+          <li><a href="#komponen">Komponen</a></li>
+          <li><a href="#evaluasi">Evaluasi</a></li>
+          <li><a href="#batasan">Batasan</a></li>
+          <li><a href="#jangan">Kapan tidak memakai Juru</a></li>
+        </ol>
+      </aside>
+
+      <div>
+        <section id="alur" aria-labelledby="alur-h">
+          <h2 id="alur-h">Alur kerja</h2>
+          <p>Rata-rata rapat satu jam selesai diproses dalam empat sampai enam menit. Langkah terakhir selalu manusia.</p>
+          <ol class="pipeline">
+            <li><div><h3>Rekam</h3><p>Dari Zoom, Google Meet, Microsoft Teams, atau rekaman HP. Peserta harus tahu rapat direkam.</p><span class="io">Masuk: audio. Keluar: audio 16 kHz yang sudah dibersihkan dari gema.</span></div></li>
+            <li><div><h3>Pisahkan pembicara</h3><p>Suara dikelompokkan per orang. Nama dicocokkan dari daftar peserta undangan rapat; kalau tidak ada, Juru menulis "Pembicara 1, 2, 3".</p><span class="io">Keluar: potongan audio dengan label pembicara dan waktu.</span></div></li>
+            <li><div><h3>Transkripsi</h3><p>Model pengenal suara yang dilatih ulang pada rapat berbahasa campur. Kata bahasa Inggris dibiarkan apa adanya, tidak diterjemahkan.</p><span class="io">Keluar: transkrip bertanda waktu per kata.</span></div></li>
+            <li><div><h3>Rapikan istilah</h3><p>Nama produk, singkatan dan nama orang dicocokkan dengan glosarium tim Anda. "Q-A" menjadi "QA", "kasirku" menjadi "Kasirku".</p><span class="io">Keluar: transkrip yang sudah dinormalkan.</span></div></li>
+            <li><div><h3>Tulis notulen</h3><p>Model bahasa mencari keputusan, tugas dan hal yang terlupa. Ia hanya boleh mengutip transkrip; poin tanpa kalimat sumber dibuang sebelum sampai ke Anda.</p><span class="io">Keluar: draf notulen, setiap poin menunjuk ke detik asalnya.</span></div></li>
+            <li><div><h3>Anda periksa, lalu kirim</h3><p>Tidak ada yang dikirim ke peserta atau ke Slack sebelum Anda menekan Kirim. Perbaikan Anda masuk ke glosarium, bukan ke data pelatihan.</p></div></li>
+          </ol>
+        </section>
+
+        <section id="komponen" aria-labelledby="komponen-h">
+          <h2 id="komponen-h">Komponen</h2>
+          <div class="table-wrap">
+            <table class="table">
+              <thead><tr><th scope="col">Komponen</th><th scope="col">Tugasnya</th><th scope="col">Catatan</th></tr></thead>
+              <tbody>
+                <tr><td>Pemisah pembicara</td><td>Siapa bicara, kapan</td><td>Maksimal 12 pembicara per rapat</td></tr>
+                <tr><td>Juru-ASR 2</td><td>Suara menjadi teks</td><td>Dilatih ulang pada 3.200 jam rapat berbahasa campur yang direkam dengan izin</td></tr>
+                <tr><td>Glosarium tim</td><td>Istilah dan nama</td><td>Aturan biasa, bukan model; bisa Anda ubah sendiri</td></tr>
+                <tr><td>Penyusun notulen</td><td>Keputusan, tugas, hal terlupa</td><td>Model bahasa dengan aturan kutip-wajib; tidak dilatih dengan rapat pelanggan</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="evaluasi" aria-labelledby="evaluasi-h">
+          <h2 id="evaluasi-h">Evaluasi</h2>
+          <p>Diuji pada 40 jam rapat yang tidak pernah dipakai untuk melatih, dari 23 tim di delapan kota. Angka contoh untuk demo ini.</p>
+          <div class="table-wrap" style="margin-top:var(--space-5)">
+            <table class="table bars">
+              <thead><tr><th scope="col">Yang diukur</th><th scope="col" class="num">Hasil</th><th scope="col"><span class="visually-hidden">Grafik</span></th></tr></thead>
+              <tbody>
+                <tr><td>Kata yang ditranskrip benar, rapat campur bahasa</td><td class="num">91%</td><td class="bar-cell"><span class="bar-track"><span class="bar-fill" style="--v:91%"></span></span></td></tr>
+                <tr><td>Keputusan yang tertangkap, dibanding notulen manusia</td><td class="num">88%</td><td class="bar-cell"><span class="bar-track"><span class="bar-fill" style="--v:88%"></span></span></td></tr>
+                <tr><td>Tugas dengan penanggung jawab yang benar</td><td class="num">84%</td><td class="bar-cell"><span class="bar-track"><span class="bar-fill" style="--v:84%"></span></span></td></tr>
+                <tr><td>Tenggat waktu yang benar</td><td class="num">71%</td><td class="bar-cell"><span class="bar-track"><span class="bar-fill bar-fill--weak" style="--v:71%"></span></span></td></tr>
+                <tr><td>Poin tanpa kalimat sumber yang lolos ke pengguna</td><td class="num">0,4%</td><td class="bar-cell"><span class="bar-track"><span class="bar-fill" style="--v:0.4%"></span></span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="batasan" aria-labelledby="batasan-h">
+          <h2 id="batasan-h">Batasan yang sudah kami ketahui</h2>
+          <ul class="limits">
+            <li><strong>Tenggat yang samar.</strong> "Minggu depan" atau "sebelum rapat berikutnya" sering salah dijadikan tanggal. Selalu periksa tenggat.</li>
+            <li><strong>Nama yang jarang.</strong> Nama orang dan merek yang belum ada di glosarium adalah kesalahan paling sering.</li>
+            <li><strong>Bahasa daerah penuh.</strong> Aksen daerah dipahami; percakapan penuh dalam bahasa Jawa, Sunda atau lainnya belum.</li>
+            <li><strong>Keputusan yang tidak diucapkan.</strong> Anggukan dan diam bukan persetujuan bagi Juru. Keputusan yang hanya tersirat bisa terlewat.</li>
+            <li><strong>Banyak orang bicara bersamaan.</strong> Di atas lima orang yang saling menyela, kesalahan naik dua kali lipat.</li>
+          </ul>
+        </section>
+
+        <section id="jangan" aria-labelledby="jangan-h">
+          <h2 id="jangan-h">Kapan sebaiknya tidak memakai Juru</h2>
+          <div class="dont">
+            <div><h3>Pemeriksaan hukum</h3><p>Sidang, penyidikan dan rapat yang notulennya menjadi bukti butuh notulis manusia bersertifikat.</p></div>
+            <div><h3>Percakapan medis</h3><p>Konsultasi pasien dan rapat klinis tidak didukung dan tidak boleh diunggah.</p></div>
+            <div><h3>Tanpa izin peserta</h3><p>Kalau ada peserta yang tidak tahu rapat direkam, jangan unggah rekamannya.</p></div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container"><span>© 2026 Juru (demo)</span><a href="./">Beranda</a><a href="privasi.html">Privasi</a><a href="#">Kontak</a></div>
+  </footer>
+</body>
+</html>

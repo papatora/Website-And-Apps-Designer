@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="id" data-skin="juru">
+<!-- Demo site built with Website-And-Apps-Designer. Juru is a sample AI
+     project; this is an example of how a data policy page can read, not a real policy. -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privasi Juru: apa yang disimpan, berapa lama, dan siapa yang bisa melihat</title>
+  <meta name="description" content="Contoh halaman kebijakan data: rekaman dihapus otomatis, tidak dipakai melatih model, dan Anda bisa mengekspor atau menghapus semuanya.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='8' width='5' height='14' rx='2.5' fill='%231d5fa8'/%3E%3Crect x='13.5' y='4' width='5' height='18' rx='2.5' fill='%23a8326a'/%3E%3Crect x='23' y='10' width='5' height='12' rx='2.5' fill='%232f7d32'/%3E%3Crect x='3' y='25' width='26' height='4' rx='2' fill='%23ffd84a'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..600&family=Schibsted+Grotesk:wght@400..700&family=JetBrains+Mono:wght@400&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/skin.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/site.css">
+  <style>
+    .promises { list-style: none; padding: 0; display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); }
+    .promises li { display: grid; gap: var(--space-2); }
+    .promises strong { font-family: var(--font-display); font-weight: 500; font-size: var(--text-2xl); line-height: 1.1; letter-spacing: -0.02em; }
+    .promises span { color: var(--ink-muted); font-size: var(--text-base); }
+    .data td:first-child { font-weight: 600; }
+    .retention { font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .steps-del { padding-left: 1.2em; display: grid; gap: var(--space-2); font-size: var(--text-base); max-width: var(--measure); }
+    .updated { font-size: var(--text-sm); color: var(--ink-muted); }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Langsung ke isi</a>
+  <p class="demo-note"><span class="container" style="display:block">Situs demo untuk menguji kit desain. Ini contoh bentuk halaman kebijakan data, bukan kebijakan yang berlaku.</span></p>
+
+  <header class="container top">
+    <a class="wordmark" href="./" aria-label="Juru, beranda">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="8" width="5" height="14" rx="2.5" fill="var(--spk-rina)"/><rect x="13.5" y="4" width="5" height="18" rx="2.5" fill="var(--spk-bayu)"/><rect x="23" y="10" width="5" height="12" rx="2.5" fill="var(--spk-dimas)"/><rect x="3" y="25" width="26" height="4" rx="2" fill="var(--accent)"/></svg>
+      juru
+    </a>
+    <nav aria-label="Utama">
+      <ul class="top__links">
+        <li><a href="cara-kerja.html">Cara kerja</a></li>
+        <li><a href="privasi.html" aria-current="page">Privasi</a></li>
+        <li><a href="./#harga">Harga</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--primary btn--sm" href="./#mulai">Coba di rapat berikutnya</a>
+  </header>
+
+  <main id="main">
+    <div class="container intro">
+      <h1 class="page-title">Rekaman rapat Anda, aturan Anda.</h1>
+      <p class="lead">Rapat berisi hal yang tidak diucapkan di luar ruangan. Halaman ini menjelaskan apa yang Juru simpan, berapa lama, dan siapa yang bisa melihatnya, tanpa bahasa hukum.</p>
+      <p class="updated">Terakhir diperbarui 24 September 2026</p>
+    </div>
+
+    <section class="section" aria-labelledby="janji-h">
+      <div class="container">
+        <h2 id="janji-h" class="visually-hidden">Tiga janji</h2>
+        <ul class="promises">
+          <li><strong>Tidak dipakai melatih model.</strong><span>Rekaman, transkrip dan notulen Anda tidak masuk ke data pelatihan, kecuali Anda sendiri mengaktifkannya.</span></li>
+          <li><strong>Audio tidak disimpan lama.</strong><span>Dihapus otomatis 30 hari setelah rapat. Paket mana pun bisa memilih hapus langsung setelah transkrip jadi.</span></li>
+          <li><strong>Tidak ada yang terkirim diam-diam.</strong><span>Notulen hanya sampai ke peserta atau Slack setelah Anda menekan Kirim.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="data-h">
+      <div class="container">
+        <h2 id="data-h">Apa yang disimpan, dan berapa lama</h2>
+        <div class="table-wrap">
+          <table class="table data">
+            <thead><tr><th scope="col">Data</th><th scope="col">Disimpan</th><th scope="col">Siapa bisa melihat</th></tr></thead>
+            <tbody>
+              <tr><td>Audio rapat</td><td class="retention">30 hari, atau 0 hari</td><td>Anda dan anggota ruang kerja yang Anda undang</td></tr>
+              <tr><td>Transkrip</td><td class="retention">Sampai Anda hapus</td><td>Sama dengan audio</td></tr>
+              <tr><td>Notulen dan tugas</td><td class="retention">Sampai Anda hapus</td><td>Sama, ditambah peserta yang Anda kirimi</td></tr>
+              <tr><td>Glosarium tim</td><td class="retention">Sampai Anda hapus</td><td>Anggota ruang kerja</td></tr>
+              <tr><td>Catatan teknis (log)</td><td class="retention">90 hari</td><td>Dua teknisi kami, hanya untuk memperbaiki gangguan, dan setiap akses dicatat</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="aman-h">
+      <div class="container">
+        <h2 id="aman-h">Bagaimana data dijaga</h2>
+        <ul class="rows">
+          <li><div><h3>Selama dikirim</h3></div><p>Semua koneksi memakai TLS 1.3. Rekaman diunggah langsung ke penyimpanan terenkripsi, bukan lewat email atau tautan publik.</p></li>
+          <li><div><h3>Saat disimpan</h3></div><p>Dienkripsi dengan AES-256. Kunci terpisah untuk setiap ruang kerja, sehingga satu kebocoran tidak membuka data tim lain.</p></li>
+          <li><div><h3>Saat diproses model</h3></div><p>Model bahasa yang menyusun notulen berjalan tanpa menyimpan isi percakapan setelah permintaan selesai.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="hapus-h">
+      <div class="container">
+        <h2 id="hapus-h">Mengekspor atau menghapus semuanya</h2>
+        <ol class="steps-del">
+          <li>Buka Pengaturan, lalu Ruang kerja.</li>
+          <li>Pilih Ekspor untuk mengunduh semua transkrip dan notulen dalam satu berkas ZIP.</li>
+          <li>Pilih Hapus ruang kerja. Semua data hilang dari sistem utama saat itu juga, dan dari cadangan dalam 14 hari.</li>
+        </ol>
+        <p style="margin-top:var(--space-5)" class="muted">Pertanyaan tentang data Anda: <a href="#">privasi@juru.example</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container"><span>© 2026 Juru (demo)</span><a href="./">Beranda</a><a href="cara-kerja.html">Cara kerja</a><a href="#">Kontak</a></div>
+  </footer>
+</body>
+</html>

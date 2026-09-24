@@ -29,6 +29,7 @@ jobs:
           mkdir -p _site
           cp -r index.html tokens skins components templates docs _site/
           mkdir -p _site/celengan && cp -r examples/celengan/public/. _site/celengan/
+          mkdir -p _site/juru && cp -r examples/juru/public/. _site/juru/
           touch _site/.nojekyll
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

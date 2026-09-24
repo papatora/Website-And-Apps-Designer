@@ -38,6 +38,13 @@ test("near-black is allowed inside skin files", () => {
 test("caps labels scoped to a skin are allowed", () => {
   assert.equal(lintText('[data-skin="brutalist"] .btn { text-transform: uppercase; letter-spacing: 0.04em; }', "a.css").length, 0);
 });
+test("claude-palette checks hue, not just distance", () => {
+  const hits = (hex) => lintText(`.x { background: ${hex}; }`, "a.css").some((f) => f.rule === "claude-palette");
+  assert.equal(hits("#f5f0e6"), true, "warm cream is flagged");
+  assert.equal(hits("#d97757"), true, "clay is flagged");
+  assert.equal(hits("#f6f7f4"), false, "green-tinted paper is not cream");
+  assert.equal(hits("#f7f7f7"), false, "neutral grey is not cream");
+});
 test("middot inside <title> is fine", () => {
   assert.equal(lintText("<title>Overview · Ledgerline</title>", "a.html").length, 0);
 });
@@ -63,6 +70,9 @@ test("parses the Fudge index and ranks by subject", () => {
   assert.equal(search(index, "bakery")[0].domain, "banjos.com.au");
   assert.equal(search(index, "bank developers")[0].domain, "column.com");
   assert.equal(search(index, "spaceship").length, 0);
+  // "bank magazine": no guide has both words, so it falls back to either word
+  assert.deepEqual(search(index, "bank magazine").map((e) => e.domain).sort(), ["aeon.co", "column.com"]);
+  assert.equal(search(index, "serious magazine")[0].matchedAll, true);
 });
 
 console.log("new-project");

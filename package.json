@@ -12,7 +12,7 @@
     "new": "node tools/new-project.mjs",
     "tokens": "node tools/export-tokens.mjs",
     "lint:slop": "node tools/slop-lint.mjs",
-    "lint": "node tools/slop-lint.mjs index.html templates components",
+    "lint": "node tools/slop-lint.mjs index.html templates components examples",
     "check:contrast": "node tools/contrast-check.mjs",
     "check:tokens": "node tools/export-tokens.mjs --check",
     "test": "node tests/run.mjs",

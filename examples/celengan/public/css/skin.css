@@ -1,0 +1,61 @@
+/* Celengan — a custom skin, planned with the kit's process (docs/anti-slop.md §1).
+
+   Subject: splitting irregular freelance income in Indonesia into pockets.
+   References (Fudge DESIGN.md):
+     mellow.io  — fintech for freelancers: flat colour blocks, no shadows,
+                  large readable body. (Its cream canvas is a default cluster,
+                  so we did not take that.)
+     wero-wallet.eu — bold heavy display, pill buttons, split hero.
+     lead.bank  — one strong brand colour on a white field, calm order.
+   Vernacular: pocket colours come from Rupiah banknotes (Rp100.000 red,
+   Rp50.000 blue, Rp20.000 green, Rp5.000 olive), so colour = pocket across
+   the whole page. Type: Plus Jakarta Sans, drawn by Tokotype (Indonesia)
+   for Jakarta's city identity.
+   Cluster review: not cream/terracotta, not near-black + acid accent, not a
+   broadsheet, no identical shadowed cards, no template chrome. */
+
+[data-skin="celengan"] {
+  color-scheme: light dark;
+
+  --font-display: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+  --font-body: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, monospace;
+  --display-weight: 800;
+  --display-tracking: -0.03em;
+  --display-transform: none;
+  --body-weight: 400;
+
+  --bg: light-dark(#f6f7f4, #0f1522);
+  --surface: light-dark(#ffffff, #151d2e);
+  --surface-2: light-dark(#eceee9, #1c2639);
+  --ink: light-dark(#121a2b, #eef1f6);
+  --ink-muted: light-dark(#4f5869, #a3adbf);
+  --line: light-dark(#d9ddd6, #2a3550);
+
+  --accent: light-dark(#0a6b44, #5fd49a);
+  --accent-ink: light-dark(#ffffff, #0f1522);
+
+  --field: light-dark(#121a2b, #1c2639);
+  --field-ink: light-dark(#f6f7f4, #eef1f6);
+
+  --focus: light-dark(#2b5ea8, #8fb6ff);
+  --success: light-dark(#1a7f37, #57d38c);
+  --warning: light-dark(#8a5a00, #e3b341);
+  --danger: light-dark(#b3261e, #ff8a80);
+
+  --radius: var(--radius-pill);
+  --radius-lg: var(--radius-4);
+  --border-w: 1px;
+  --shadow-1: none;
+  --shadow-2: 0 16px 40px -16px light-dark(#121a2b40, #000000cc);
+
+  /* Pockets, from Rupiah banknotes. Solid for bars and dots, tint for blocks. */
+  --pocket-pajak: light-dark(#b8323a, #f07a80);
+  --pocket-pajak-tint: light-dark(#f8dedb, #3a1d24);
+  --pocket-darurat: light-dark(#2b5ea8, #8fb6ff);
+  --pocket-darurat-tint: light-dark(#dbe6f7, #1b2a47);
+  --pocket-tabungan: light-dark(#2b7d50, #6fd49a);
+  --pocket-tabungan-tint: light-dark(#d8eee0, #17332a);
+  --pocket-bebas: light-dark(#7c6d24, #d8c46a);
+  --pocket-bebas-tint: light-dark(#eee8cc, #33301b);
+}

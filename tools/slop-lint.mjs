@@ -261,9 +261,24 @@ const FILE_RULES = [
 ];
 
 const rgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+const hue = ([r, g, b]) => {
+  const max = Math.max(r, g, b), min = Math.min(r, g, b), d = max - min;
+  if (!d) return null;
+  const h = max === r ? ((g - b) / d) % 6 : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
+  return (h * 60 + 360) % 360;
+};
+// Close in RGB *and* in hue: near-whites are all close in RGB, but a cool or
+// green-tinted paper is not cream.
 function nearAny(hex, targets, tolerance) {
   const a = rgb(hex.toLowerCase());
-  return targets.some((t) => Math.hypot(...rgb(t).map((v, i) => v - a[i])) <= tolerance);
+  return targets.some((t) => {
+    const b = rgb(t);
+    if (Math.hypot(...b.map((v, i) => v - a[i])) > tolerance) return false;
+    const ha = hue(a), hb = hue(b);
+    if (ha === null || hb === null) return false;
+    const dh = Math.abs(ha - hb);
+    return Math.min(dh, 360 - dh) <= 20;
+  });
 }
 
 function walk(p, exts, out = []) {

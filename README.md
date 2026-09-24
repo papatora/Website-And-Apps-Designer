@@ -72,6 +72,14 @@ tools/                     slop-lint · find-reference · contrast-check · expo
 .claude/skills/            anti-slop-design · design-review · scaffold-site
 ```
 
+## Example: a finance site built with the kit
+
+[`examples/celengan`](examples/celengan) is a finance landing page (in Indonesian) built by following
+the process end to end: a subject, real references found with `find-reference`, a written plan, a
+review against the default clusters, then lint, contrast and browser checks. It includes a
+Cloudflare Workers config, so `npx wrangler@latest deploy --temporary` puts it online for 60 minutes
+without an account.
+
 ## Using it in other stacks
 
 - **Tailwind**: see [`adapters/tailwind`](adapters/tailwind/README.md). You get classes like `bg-accent`, `text-ink-muted`, `font-heading` and `rounded-skin`, and the default rainbow palette is removed.

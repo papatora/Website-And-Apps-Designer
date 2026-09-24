@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="id" data-skin="celengan">
+<!-- Demo site built with Website-And-Apps-Designer. Celengan is not a real
+     product; every figure on this page is an example. -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Celengan: penghasilan freelance langsung terbagi ke kantong</title>
+  <meta name="description" content="Demo: setiap transfer klien langsung dibagi ke kantong pajak, dana darurat dan tabungan. Untuk freelancer dengan penghasilan tidak tetap.">
+  <meta name="theme-color" content="#f6f7f4">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='6' width='6' height='20' rx='3' fill='%23b8323a'/%3E%3Crect x='10' y='10' width='6' height='16' rx='3' fill='%232b5ea8'/%3E%3Crect x='17' y='4' width='6' height='22' rx='3' fill='%232b7d50'/%3E%3Crect x='24' y='13' width='6' height='13' rx='3' fill='%237c6d24'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400..800&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/skin.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    body { font-size: var(--text-lg); }
+    .demo-note { background: var(--surface-2); font-size: var(--text-sm); padding-block: var(--space-2); }
+
+    /* Header: links sit with the wordmark, actions on the right, no bar. */
+    .top { display: flex; align-items: center; gap: var(--space-5); min-height: 4.5rem; }
+    .wordmark { font-weight: 800; font-size: var(--text-xl); letter-spacing: -0.04em; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: var(--space-2); }
+    .wordmark svg { width: 1.4em; height: 1.4em; }
+    .top nav { margin-right: auto; }
+    .top__links { display: flex; gap: var(--space-5); list-style: none; padding: 0; font-size: var(--text-sm); }
+    .top__links a { color: var(--ink-muted); text-decoration: none; }
+    .top__links a:hover { color: var(--ink); }
+    .top__signin { font-size: var(--text-sm); font-weight: 600; color: var(--ink); text-decoration: none; }
+    @media (max-width: 52rem) { .top__links, .top__signin { display: none; } .top .btn { margin-left: auto; } }
+
+    /* Hero: headline left, the splitter right. Bottom padding outweighs top. */
+    .hero { display: grid; gap: var(--space-7); padding-block: var(--space-6) calc(var(--space-6) * 1.4); grid-template-columns: minmax(0, 1fr); align-items: start; }
+    @media (min-width: 62rem) { .hero { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); align-items: center; } }
+    .hero h1 { font-size: clamp(2.5rem, 1.4rem + 3.4vw, 4.25rem); line-height: 1.03; max-width: 15ch; }
+    .hero .lead { margin-top: var(--space-5); font-size: var(--text-xl); max-width: 34ch; }
+    .hero .cluster { margin-top: var(--space-6); }
+
+    /* The splitter */
+    .split { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: var(--space-5); display: grid; gap: var(--space-5); }
+    .split h2 { font-size: var(--text-xl); letter-spacing: -0.02em; }
+    .amount { display: grid; gap: var(--space-2); }
+    .amount label { font-size: var(--text-sm); font-weight: 600; }
+    .amount__field { display: flex; align-items: center; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--bg); padding-inline: var(--space-4); }
+    .amount__field:focus-within { outline: 2px solid var(--focus); outline-offset: 2px; }
+    .amount__field span { font-weight: 700; color: var(--ink-muted); }
+    .amount__field input { border: 0; background: none; outline: none; width: 100%; min-height: 3.5rem; padding-left: var(--space-2); font-size: var(--text-2xl); font-weight: 800; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+    .bar { display: flex; height: 1rem; border-radius: var(--radius-pill); overflow: hidden; gap: 3px; }
+    .bar i { display: block; height: 100%; min-width: 0; transition: flex-grow var(--dur-3) var(--ease-out); }
+    .pockets { list-style: none; padding: 0; display: grid; gap: var(--space-2); }
+    .pocket { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: var(--space-3); align-items: center; padding: var(--space-3) var(--space-4); border-radius: var(--radius-lg); background: var(--tint); }
+    .pocket__dot { width: 0.75rem; height: 0.75rem; border-radius: 50%; background: var(--solid); }
+    .pocket__name { font-size: var(--text-base); font-weight: 600; }
+    .pocket__pct { display: inline-flex; align-items: center; gap: 2px; font-size: var(--text-sm); color: var(--ink-muted); }
+    .pocket__pct input { width: 3.25rem; min-height: 2.25rem; text-align: right; border: 1px solid transparent; border-radius: var(--radius-pill); background: color-mix(in srgb, var(--bg) 70%, transparent); font-variant-numeric: tabular-nums; padding-inline: var(--space-2); }
+    .pocket__pct input:hover { border-color: var(--line); }
+    .pocket__pct input:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+    .pocket__rp { font-weight: 800; font-size: var(--text-lg); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+    .split__note { font-size: var(--text-sm); color: var(--ink-muted); min-height: 1lh; }
+    .split__note[data-state="over"] { color: var(--danger); font-weight: 600; }
+    [data-p="pajak"] { --solid: var(--pocket-pajak); --tint: var(--pocket-pajak-tint); }
+    [data-p="darurat"] { --solid: var(--pocket-darurat); --tint: var(--pocket-darurat-tint); }
+    [data-p="tabungan"] { --solid: var(--pocket-tabungan); --tint: var(--pocket-tabungan-tint); }
+    [data-p="bebas"] { --solid: var(--pocket-bebas); --tint: var(--pocket-bebas-tint); }
+    .bar i[data-p] { background: var(--solid); }
+
+    /* Steps: a real sequence, so plain numerals */
+    .steps { list-style: none; padding: 0; display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); counter-reset: s; }
+    .steps li { counter-increment: s; display: grid; gap: var(--space-2); padding-top: var(--space-4); border-top: 3px solid var(--ink); }
+    .steps li::before { content: counter(s); font-weight: 800; font-size: var(--text-2xl); line-height: 1; }
+    .steps h3 { font-size: var(--text-xl); letter-spacing: -0.02em; }
+    .steps p { color: var(--ink-muted); font-size: var(--text-base); }
+
+    .section h2 { font-size: var(--text-4xl); max-width: 18ch; margin-bottom: var(--space-6); }
+    .compare td:first-child { font-weight: 600; }
+    .compare td:last-child { font-weight: 600; }
+    .compare .dot { width: 0.6em; height: 0.6em; margin-right: var(--space-2); background: var(--solid); }
+    .table { font-size: var(--text-base); }
+
+    .plans th, .plans td { padding: var(--space-4); }
+    .plans thead th { font-size: var(--text-base); color: var(--ink); }
+    .plans .price { font-size: var(--text-3xl); font-weight: 800; letter-spacing: -0.03em; }
+    .plans .price small { font-size: var(--text-sm); font-weight: 400; color: var(--ink-muted); }
+
+    details { border-top: 1px solid var(--line); padding-block: var(--space-4); max-width: 46rem; }
+    details:last-of-type { border-bottom: 1px solid var(--line); }
+    summary { cursor: pointer; font-weight: 700; font-size: var(--text-lg); }
+    details p { margin-top: var(--space-3); color: var(--ink-muted); font-size: var(--text-base); max-width: var(--measure); }
+
+    .closing { display: grid; gap: var(--space-5); justify-items: start; }
+    .closing h2 { margin-bottom: 0; color: inherit; }
+    .footer .container { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-5); }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Langsung ke isi</a>
+  <p class="demo-note"><span class="container" style="display:block">Situs demo untuk menguji kit desain. Celengan bukan produk sungguhan, dan semua angka di halaman ini adalah contoh.</span></p>
+
+  <header class="container top">
+    <a class="wordmark" href="#" aria-label="Celengan, beranda">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="6" width="6" height="20" rx="3" fill="var(--pocket-pajak)"/><rect x="10" y="10" width="6" height="16" rx="3" fill="var(--pocket-darurat)"/><rect x="17" y="4" width="6" height="22" rx="3" fill="var(--pocket-tabungan)"/><rect x="24" y="13" width="6" height="13" rx="3" fill="var(--pocket-bebas)"/></svg>
+      celengan
+    </a>
+    <nav aria-label="Utama">
+      <ul class="top__links">
+        <li><a href="#cara-kerja">Cara kerja</a></li>
+        <li><a href="#harga">Harga</a></li>
+        <li><a href="#pertanyaan">Pertanyaan</a></li>
+      </ul>
+    </nav>
+    <a class="top__signin" href="#">Masuk</a>
+    <a class="btn btn--primary btn--sm" href="#mulai">Coba gratis</a>
+  </header>
+
+  <main id="main">
+    <section class="container hero">
+      <div>
+        <h1>Setiap uang masuk langsung dibagi, sebelum sempat habis.</h1>
+        <p class="lead">Untuk freelancer dengan penghasilan tidak tetap. Atur persennya sekali. Setiap transfer klien masuk, Celengan memindahkannya ke kantong pajak, dana darurat dan tabungan.</p>
+        <div class="cluster">
+          <a class="btn btn--primary btn--lg" href="#mulai">Buat kantong pertama</a>
+          <a class="btn btn--ghost btn--lg" href="#cara-kerja">Lihat cara kerjanya</a>
+        </div>
+      </div>
+
+      <form class="split" id="splitter" aria-labelledby="split-h" onsubmit="return false">
+        <h2 id="split-h">Coba dengan angka Anda</h2>
+        <div class="amount">
+          <label for="amount">Transfer masuk dari klien</label>
+          <div class="amount__field"><span aria-hidden="true">Rp</span><input id="amount" inputmode="numeric" autocomplete="off" value="8.500.000" aria-describedby="split-note"></div>
+        </div>
+        <div class="bar" aria-hidden="true">
+          <i data-p="pajak" style="flex-grow:10"></i><i data-p="darurat" style="flex-grow:15"></i><i data-p="tabungan" style="flex-grow:20"></i><i data-p="bebas" style="flex-grow:55"></i>
+        </div>
+        <ul class="pockets" aria-live="polite">
+          <li class="pocket" data-p="pajak"><span class="pocket__dot"></span><span><span class="pocket__name">Pajak</span><br><label class="pocket__pct"><input type="number" min="0" max="100" value="10" aria-label="Persen untuk kantong Pajak">%</label></span><span class="pocket__rp">Rp850.000</span></li>
+          <li class="pocket" data-p="darurat"><span class="pocket__dot"></span><span><span class="pocket__name">Dana darurat</span><br><label class="pocket__pct"><input type="number" min="0" max="100" value="15" aria-label="Persen untuk kantong Dana darurat">%</label></span><span class="pocket__rp">Rp1.275.000</span></li>
+          <li class="pocket" data-p="tabungan"><span class="pocket__dot"></span><span><span class="pocket__name">Tabungan</span><br><label class="pocket__pct"><input type="number" min="0" max="100" value="20" aria-label="Persen untuk kantong Tabungan">%</label></span><span class="pocket__rp">Rp1.700.000</span></li>
+          <li class="pocket" data-p="bebas"><span class="pocket__dot"></span><span><span class="pocket__name">Bebas dipakai</span><br><span class="pocket__pct"><span id="rest-pct">55</span>%, sisanya</span></span><span class="pocket__rp">Rp4.675.000</span></li>
+        </ul>
+        <p class="split__note" id="split-note">Persen pajak di sini hanya contoh. Tanyakan angka Anda ke konsultan pajak.</p>
+      </form>
+    </section>
+
+    <section class="section" id="cara-kerja">
+      <div class="container">
+        <h2>Tiga langkah, dan dua di antaranya berjalan sendiri.</h2>
+        <ol class="steps">
+          <li><h3>Hubungkan rekening penerima</h3><p>Rekening tempat klien mentransfer. Celengan hanya bisa memindahkan uang di antara kantong milik Anda sendiri.</p></li>
+          <li><h3>Atur persen per kantong</h3><p>Cukup sekali. Ubah kapan saja; aturan baru berlaku mulai transfer berikutnya.</p></li>
+          <li><h3>Transfer masuk, langsung terbagi</h3><p>Beberapa detik setelah dana masuk, Anda dapat satu notifikasi berisi rincian tiap kantong.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Akhir bulan, dengan dan tanpa kantong.</h2>
+        <div class="table-wrap">
+          <table class="table compare">
+            <thead><tr><th scope="col">Yang terjadi</th><th scope="col">Tanpa kantong</th><th scope="col">Dengan Celengan</th></tr></thead>
+            <tbody>
+              <tr><td>Tagihan pajak datang</td><td class="muted">Mencari-cari sisa uang</td><td data-p="pajak"><span class="dot"></span>Sudah menunggu di kantong Pajak</td></tr>
+              <tr><td>Klien telat bayar dua minggu</td><td class="muted">Menunda tagihan sendiri</td><td data-p="darurat"><span class="dot"></span>Ambil dari Dana darurat, isi lagi nanti</td></tr>
+              <tr><td>Ingin libur akhir tahun</td><td class="muted">Rencana tanpa angka</td><td data-p="tabungan"><span class="dot"></span>Saldo Tabungan terlihat, bulan demi bulan</td></tr>
+              <tr><td>Belanja harian</td><td class="muted">Takut memakai uang yang ternyata untuk pajak</td><td data-p="bebas"><span class="dot"></span>Kantong Bebas dipakai, tanpa rasa bersalah</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="harga">
+      <div class="container">
+        <h2>Dua paket. Tanpa biaya per transfer.</h2>
+        <div class="table-wrap">
+          <table class="table plans">
+            <thead><tr><th scope="col"><span class="visually-hidden">Fitur</span></th><th scope="col">Gratis</th><th scope="col">Plus</th></tr></thead>
+            <tbody>
+              <tr><td>Harga</td><td><span class="price">Rp0</span></td><td><span class="price">Rp29.000 <small>per bulan</small></span></td></tr>
+              <tr><td>Kantong</td><td>2</td><td>Tanpa batas</td></tr>
+              <tr><td>Rekening penerima</td><td>1</td><td>3</td></tr>
+              <tr><td>Aturan berbeda per klien</td><td class="muted">Tidak</td><td>Ya</td></tr>
+              <tr><td>Ekspor CSV untuk laporan tahunan</td><td class="muted">Tidak</td><td>Ya</td></tr>
+              <tr><td></td><td><a class="btn" href="#mulai">Mulai gratis</a></td><td><a class="btn btn--primary" href="#mulai">Coba Plus 30 hari</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pertanyaan">
+      <div class="container">
+        <h2>Pertanyaan sebelum mencoba.</h2>
+        <details><summary>Apakah Celengan menyimpan uang saya?</summary><p>Tidak. Kantong adalah sub-rekening di bank Anda sendiri. Celengan hanya mengirim perintah pemindahan sesuai persen yang Anda atur.</p></details>
+        <details><summary>Bagaimana kalau saya butuh uang dari kantong Pajak?</summary><p>Pindahkan kembali kapan saja, tanpa penalti. Celengan mencatat alasannya supaya laporan akhir tahun tetap rapi.</p></details>
+        <details><summary>Apakah ini saran pajak atau investasi?</summary><p>Bukan. Persentase sepenuhnya keputusan Anda. Untuk angka pajak yang tepat, tanyakan ke konsultan pajak.</p></details>
+        <details><summary>Bagaimana kalau transfer masuk dalam mata uang asing?</summary><p>Pembagian dihitung dari jumlah Rupiah yang benar-benar masuk ke rekening setelah konversi oleh bank Anda.</p></details>
+      </div>
+    </section>
+
+    <section class="section section--field" id="mulai">
+      <div class="container closing">
+        <h2>Transfer berikutnya dari klien, biarkan terbagi sendiri.</h2>
+        <a class="btn btn--lg" href="#">Buat kantong pertama</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container"><span>© 2026 Celengan (demo)</span><a href="#">Privasi</a><a href="#">Syarat</a><a href="#">Kontak</a></div>
+  </footer>
+
+  <script>
+    // The splitter: type an amount or change a percentage and every pocket updates.
+    const form = document.getElementById("splitter");
+    const amountInput = document.getElementById("amount");
+    const note = document.getElementById("split-note");
+    const fmt = new Intl.NumberFormat("id-ID");
+    const rp = (n) => "Rp" + fmt.format(Math.round(n));
+    const defaultNote = note.textContent;
+
+    function amount() {
+      return Number(amountInput.value.replace(/\D/g, "")) || 0;
+    }
+    function render() {
+      const total = amount();
+      const pcts = {};
+      form.querySelectorAll(".pocket input").forEach((i) => {
+        const v = Math.min(100, Math.max(0, Math.round(Number(i.value) || 0)));
+        pcts[i.closest(".pocket").dataset.p] = v;
+      });
+      const used = Object.values(pcts).reduce((a, b) => a + b, 0);
+      const over = used > 100;
+      pcts.bebas = Math.max(0, 100 - used);
+      document.getElementById("rest-pct").textContent = pcts.bebas;
+      for (const [p, v] of Object.entries(pcts)) {
+        form.querySelector(`.pocket[data-p="${p}"] .pocket__rp`).textContent = rp((total * v) / 100);
+        form.querySelector(`.bar [data-p="${p}"]`).style.flexGrow = v;
+      }
+      note.dataset.state = over ? "over" : "";
+      note.textContent = over ? `Total ${used}%. Kurangi ${used - 100}% supaya tidak melebihi uang yang masuk.` : defaultNote;
+    }
+    amountInput.addEventListener("input", () => {
+      const digits = amountInput.value.replace(/\D/g, "").slice(0, 12);
+      amountInput.value = digits ? fmt.format(Number(digits)) : "";
+      render();
+    });
+    form.querySelectorAll(".pocket input").forEach((i) => i.addEventListener("input", render));
+    render();
+  </script>
+</body>
+</html>

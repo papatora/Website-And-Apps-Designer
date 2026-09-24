@@ -11,7 +11,7 @@
  */
 import { createServer } from "node:http";
 import { readFile, stat } from "node:fs/promises";
-import { readdirSync, readFileSync } from "node:fs";
+import { readdirSync, readFileSync, existsSync } from "node:fs";
 import { join, extname, normalize, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
@@ -46,6 +46,9 @@ const sandbox = {};
 new Function("window", readFileSync(join(root, "skins/registry.js"), "utf8"))(sandbox);
 const skins = sandbox.DESIGN_SKINS.map((s) => s.id);
 const templates = readdirSync(join(root, "templates")).filter((d) => !d.startsWith("_"));
+const examples = existsSync(join(root, "examples"))
+  ? readdirSync(join(root, "examples")).filter((d) => existsSync(join(root, "examples", d, "public", "index.html"))).map((d) => `examples/${d}/public/`)
+  : [];
 
 const { chromium } = await loadPlaywright();
 const browser = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {});
@@ -56,8 +59,8 @@ for (const width of [390, 1440]) {
   await page.route(/fonts\.(googleapis|gstatic)\.com/, (r) => r.abort());
   let current = "";
   page.on("pageerror", (e) => problems.push(`${current}: ${e.message}`));
-  for (const t of ["", ...templates.map((t) => `templates/${t}/`)]) {
-    for (const s of t ? skins : [null]) {
+  for (const t of ["", ...examples, ...templates.map((t) => `templates/${t}/`)]) {
+    for (const s of t.startsWith("templates/") ? skins : [null]) {
       current = `/${t}${s ? `?skin=${s}` : ""} @${width}px`;
       await page.goto(origin + current.split(" ")[0], { waitUntil: "load" });
       if (await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)) problems.push(`${current}: page scrolls sideways`);
@@ -74,4 +77,4 @@ if (problems.length) {
   console.error(problems.map((p) => `✗ ${p}`).join("\n") + `\n\n${problems.length} problem(s) in ${checked} pages`);
   process.exit(1);
 }
-console.log(`✓ ${checked} pages (${templates.length} templates × ${skins.length} skins × 2 widths + gallery): no errors, no sideways scroll`);
+console.log(`✓ ${checked} pages (${templates.length} templates × ${skins.length} skins × 2 widths, gallery, ${examples.length} example(s)): no errors, no sideways scroll`);

@@ -54,18 +54,17 @@ async function loadIndex() {
   return index;
 }
 
+// Guides that contain every term come first; if none do, fall back to any term.
 export function search(index, query, limit = 8) {
   const terms = query.toLowerCase().split(/\s+/).filter(Boolean);
-  return index
-    .map((e) => {
-      const hay = `${e.domain} ${e.summary}`.toLowerCase();
-      const score = terms.reduce((n, t) => n + (hay.split(t).length - 1) + (e.domain.includes(t) ? 3 : 0), 0);
-      const all = terms.every((t) => hay.includes(t));
-      return { ...e, score: score + (all ? 5 : 0) };
-    })
-    .filter((e) => e.score > 0)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, limit);
+  const scored = index.map((e) => {
+    const hay = `${e.domain} ${e.summary}`.toLowerCase();
+    const score = terms.reduce((n, t) => n + (hay.split(t).length - 1) + (e.domain.includes(t) ? 3 : 0), 0);
+    return { ...e, score, all: terms.every((t) => hay.includes(t)) };
+  });
+  const all = scored.filter((e) => e.all);
+  const pool = all.length ? all : scored.filter((e) => e.score > 0);
+  return pool.sort((a, b) => b.score - a.score).slice(0, limit).map(({ all: _, ...e }) => ({ ...e, matchedAll: all.length > 0 }));
 }
 
 function section(md, name) {
@@ -102,7 +101,8 @@ async function main() {
   const index = await loadIndex();
   const hits = search(index, query, Number(opt("limit")) || 8);
   if (!hits.length) return console.log(`No guides match "${query}". Try a broader word (e.g. "food", "finance", "magazine").`);
-  console.log(`${hits.length} of ${index.length} real-site guides matching "${query}":\n`);
+  const how = hits[0].matchedAll ? "matching" : "matching some words of";
+  console.log(`${hits.length} of ${index.length} real-site guides ${how} "${query}":\n`);
   for (const h of hits) {
     const first = h.summary.split(/(?<=\.)\s/)[0];
     console.log(`${h.domain}\n  ${first}\n  ${BLOB}/${h.path}\n`);

@@ -1,0 +1,14 @@
+// Cloudflare Workers, static assets only (no server code).
+// Deploy without an account (live 60 minutes, claimable via the link Wrangler prints):
+//   npx wrangler@latest deploy --temporary
+// Or with your own account:
+//   npx wrangler@latest login && npx wrangler@latest deploy
+{
+  "$schema": "https://unpkg.com/wrangler/config-schema.json",
+  "name": "celengan-demo",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  }
+}

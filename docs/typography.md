@@ -6,35 +6,54 @@ are most visible.
 ## Pick a pairing with a reason
 
 A pairing = one **display** face (headlines, numbers, brand) + one **text**
-face (body, UI). Sometimes they're the same family. Pick for the *voice*
-you need, then check it has the weights and language support you need.
+face (body, UI). One family is fine when the family has range; if two, make
+them clearly distinct (A). Pick for the *voice* of the subject: look at what
+real sites in that field use (`node tools/find-reference.mjs "<subject>" --show <domain>`),
+then choose a free face with the same character.
 
-| Voice | Display | Text | Used in skin |
-|---|---|---|---|
-| Literary, trustworthy | Fraunces | Source Serif 4 | editorial |
-| Authoritative, neutral | Archivo (800) | Archivo | swiss |
-| Loud, structural | Anton (caps) | IBM Plex Sans | brutalist |
-| Technical, dense | JetBrains Mono | JetBrains Mono | terminal |
-| Warm, crafted | Bricolage Grotesque | Figtree | studio |
-| Premium, quiet | Cormorant Garamond | Manrope | noir |
-| Calm, precise | Public Sans | Public Sans | clarity |
-| Playful, printed | Syne | Work Sans | riso |
+| Skin | Display | Text | Mono (code only) | Grounded in |
+|---|---|---|---|---|
+| editorial | Fraunces | Instrument Sans | JetBrains Mono | aeon.co (serif essay voice over a sober grotesk) |
+| swiss | Archivo | Archivo | JetBrains Mono | asml.com (one Neue-Haas-style grotesk, bold and big) |
+| brutalist | Anton (caps) | IBM Plex Sans | IBM Plex Mono | almost-pearfect.com (oversized poster display) |
+| terminal | Chivo | Chivo | Chivo Mono | ampcode.com (mono only for code; prose in a sans) |
+| studio | Bricolage Grotesque | Figtree | JetBrains Mono | bugster.dev (Figtree interface, playful display) |
+| noir | Cormorant Garamond | Manrope | IBM Plex Mono | closdessens.com (large display serif, light sans labels) |
+| clarity | Public Sans | Public Sans | IBM Plex Mono | column.com (one Swiss-leaning grotesk) |
+| riso | Syne | Hanken Grotesk | Space Mono | 247artists.com (tight poster headlines) |
 
-More pairings that work (all free):
+### On-distribution defaults
 
-- **Instrument Serif** + **Instrument Sans** — contemporary editorial
-- **Newsreader** + **Inter Tight** — news product
-- **Space Grotesk** + **Space Mono** — technical but friendly (overused in 2024; use sparingly)
-- **Syne** + **DM Sans** — art/culture
-- **Playfair Display** + **Lato** — classic, safe (often *too* safe)
-- **Geist** + **Geist Mono** — developer product
-- **General Sans** / **Satoshi** / **Cabinet Grotesk** (Fontshare) — characterful grotesks
+Every model reaches for these first. Don't use one as the voice of a page
+unless the brief asks for it (A, H). `slop-lint` warns on them as the first
+family in a `font-family`:
+
+- **Sans:** Inter, Roboto, Open Sans, Lato, Poppins, Montserrat, Nunito, Raleway, DM Sans, Work Sans, Source Sans, Arial, Helvetica, system-ui
+- **Serif:** Merriweather, Lora, Source Serif, Playfair Display as body, Georgia as a default
+- **Mono:** Courier New, Consolas as a default
+
+Sources disagree at the edges. The Anthropic blog recommends IBM Plex, Source
+Sans 3 and Space Grotesk, while Hallmark bans Source Sans. Treat the list as
+"needs a reason", not "forbidden".
+
+Free faces with character that the sources recommend: Fraunces, Newsreader,
+Instrument Serif/Sans, Bricolage Grotesque, Geist, Syne, IBM Plex, JetBrains
+Mono, Chivo, Public Sans, Hanken Grotesk. On Fontshare: Cabinet Grotesk,
+General Sans, Satoshi, Sentient.
+
+### Typographic tells (A, H)
+
+- Accenting a single word in a headline (italic, bold, or a colour).
+- Italic display headings.
+- All-caps labels, and labels above content that doesn't need them.
+- Monospace for small labels to look "technical".
+- More than three families on a page. Mono counts if used outside code.
 
 ## Rules that fix most problems
 
-1. **Size contrast.** h1 should be ≥ 2.5× body on desktop. Timid scales look generated.
+1. **Size contrast.** h1 should be ≥ 2.5× body on desktop; the Anthropic blog suggests jumps of 3× and weights at the extremes (200 vs 800, not 400 vs 600). Cap display around 5.5rem (H).
 2. **Tighten big type.** Display sizes need negative tracking (−0.02 to −0.04em) and tight leading (1.0–1.1). Body stays at 0 tracking, 1.5–1.65 leading.
-3. **Loosen small caps.** Uppercase labels need +0.06 to +0.12em tracking.
+3. **If you do set capitals** (a skin built on them), give them +0.04 to +0.1em tracking and a line-height of at least 1.0.
 4. **Measure.** Body text 45–75 characters per line. `max-width: var(--measure)`.
 5. **Two weights for body.** Regular and one bold (600 or 700). Not five.
 6. **`text-wrap: balance`** on headings, **`text-wrap: pretty`** on paragraphs (already in components.css).

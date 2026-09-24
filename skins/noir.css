@@ -1,28 +1,33 @@
-/* Noir — dark-first luxury. High-contrast serif caps display, quiet
-   sans body, brass accent, generous negative space, no radius.
-   Good for: fashion, hospitality, architecture, premium portfolios. */
+/* Noir — after-dark hospitality. A forest-black ground (hued, not neutral),
+   a large high-contrast serif, a quiet sans, and an ochre accent; sections
+   can take their own deep color panel.
+   DNA from closdessens.com (via Fudge DESIGN.md): split typographic panels,
+   one colour identity per section, restraint everywhere else.
+   Good for: restaurants, hotels, fashion, premium portfolios. */
 
 [data-skin="noir"] {
   color-scheme: dark;
 
   --font-display: "Cormorant Garamond", "Didot", Georgia, serif;
-  --font-body: "Manrope", "Helvetica Neue", system-ui, sans-serif;
+  --font-body: "Manrope", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
   --display-weight: 500;
-  --display-tracking: 0.01em;
+  --display-tracking: 0;
   --display-transform: none;
   --body-weight: 400;
-  --eyebrow-tracking: 0.28em;
 
-  --bg: light-dark(#f4f1ec, #0c0b0a);
-  --surface: light-dark(#fbf9f6, #141311);
-  --surface-2: light-dark(#e8e3da, #1c1a17);
-  --ink: light-dark(#151311, #ebe5da);
-  --ink-muted: light-dark(#5c554d, #9b9388);
-  --line: light-dark(#d6cfc3, #2a2723);
+  --bg: light-dark(#f2f2ee, #111a14);
+  --surface: light-dark(#fafaf7, #17221a);
+  --surface-2: light-dark(#e6e7e0, #1f2c22);
+  --ink: light-dark(#17261b, #efe9dc);
+  --ink-muted: light-dark(#51604f, #a7ad9f);
+  --line: light-dark(#d2d6cc, #2d3b30);
 
-  --accent: light-dark(#7d5f26, #cdac6c);
-  --accent-ink: light-dark(#fbf9f6, #0c0b0a);
+  --accent: light-dark(#7d4f0c, #d9a24a);
+  --accent-ink: light-dark(#ffffff, #111a14);
+
+  --field: light-dark(#2d4a1e, #2d4a1e);
+  --field-ink: light-dark(#f4efe4, #f4efe4);
 
   --focus: light-dark(#1f56b3, #9dbbff);
   --success: light-dark(#2d6a39, #8ccf98);
@@ -33,5 +38,5 @@
   --radius-lg: var(--radius-0);
   --border-w: 1px;
   --shadow-1: none;
-  --shadow-2: none;
+  --shadow-2: 0 16px 40px -16px #000000cc;
 }

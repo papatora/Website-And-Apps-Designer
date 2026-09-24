@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en" data-skin="editorial">
+<!-- Sample content: Margins, the author and the audit figures are fictional. -->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,13 +14,15 @@
   <script src="../../skins/registry.js"></script>
   <script src="../_shared/skin-switcher.js"></script>
   <style>
-    .masthead { border-bottom: var(--border-w) solid var(--ink); }
-    .masthead .nav__inner { justify-content: space-between; }
-    .masthead .nav__brand { font-size: var(--text-2xl); }
+    .masthead { position: static; background: none; backdrop-filter: none; border-bottom: 0; }
+    .masthead .nav__inner { flex-direction: column; align-items: flex-start; gap: var(--space-3); padding-block: var(--space-5) 0; }
+    .masthead .nav__brand { font-size: var(--text-4xl); line-height: 1; }
+    .masthead .nav__links { margin-left: 0; width: 100%; padding-block: var(--space-2); border-block: var(--border-w) solid var(--ink); }
+    @media (max-width: 48rem) { .masthead .nav__links { display: flex; overflow-x: auto; } }
 
     .article-head { padding-block: var(--space-8) var(--space-7); display: grid; gap: var(--space-5); }
     .article-head h1 { font-size: var(--text-5xl); max-width: 18ch; }
-    .dek { font-size: var(--text-xl); line-height: var(--leading-snug); color: var(--ink-muted); max-width: 36ch; font-family: var(--font-display); font-style: italic; }
+    .dek { font-size: var(--text-xl); line-height: var(--leading-snug); color: var(--ink-muted); max-width: 36ch; font-family: var(--font-display); }
     .byline { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); font-size: var(--text-sm); color: var(--ink-muted); padding-top: var(--space-4); border-top: var(--border-w) solid var(--line); }
     .byline strong { color: var(--ink); }
 
@@ -49,7 +52,7 @@
   <header class="nav masthead">
     <nav class="container nav__inner" aria-label="Primary">
       <a class="nav__brand" href="#">Margins</a>
-      <ul class="nav__links" style="margin-left:0">
+      <ul class="nav__links">
         <li><a href="#">Essays</a></li><li><a href="#">Notes</a></li><li><a href="#">Archive</a></li><li><a href="#">Subscribe</a></li>
       </ul>
     </nav>
@@ -57,15 +60,14 @@
 
   <main id="main" class="container">
     <header class="article-head">
-      <a class="eyebrow" href="#" style="text-decoration:none">Essay · Color</a>
       <h1>The case for fewer colors</h1>
       <p class="dek">Most interfaces don't have a color problem. They have a too-many-colors problem.</p>
-      <div class="byline"><span>By <strong>Ines Takahashi</strong></span><time datetime="2026-09-18">18 September 2026</time><span>11 min read</span></div>
+      <div class="byline"><span>By <strong>Ines Takahashi</strong></span><time datetime="2026-09-18">18 September 2026</time><span>11 minute read</span><a href="#">More essays on color</a></div>
     </header>
 
     <div class="body">
       <aside class="toc" aria-label="Contents">
-        <span class="eyebrow">Contents</span>
+        <h2 class="h4">Contents</h2>
         <ol>
           <li><a href="#s1">Where the extra colors come from</a></li>
           <li><a href="#s2">A method: one accent, earned</a></li>

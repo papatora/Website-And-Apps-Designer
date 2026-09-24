@@ -1,46 +1,54 @@
 {
-  "$description": "riso skin — generated from skins/riso.css by tools/export-tokens.mjs. Do not edit by hand.",
+  "$description": "riso skin, generated from skins/riso.css by tools/export-tokens.mjs. Do not edit by hand.",
   "color": {
     "light": {
       "bg": {
         "$type": "color",
-        "$value": "#f4efe6"
+        "$value": "#fbfaf7"
       },
       "surface": {
         "$type": "color",
-        "$value": "#fbf8f2"
+        "$value": "#ffffff"
       },
       "surface-2": {
         "$type": "color",
-        "$value": "#ebe3d6"
+        "$value": "#eeeef2"
       },
       "ink": {
         "$type": "color",
-        "$value": "#1b1a3a"
+        "$value": "#26335c"
       },
       "ink-muted": {
         "$type": "color",
-        "$value": "#55526b"
+        "$value": "#56607e"
       },
       "line": {
         "$type": "color",
-        "$value": "#d4c9b8"
+        "$value": "#d7d9e2"
       },
       "accent": {
         "$type": "color",
-        "$value": "#ff4f9a"
+        "$value": "#ff48b0"
       },
       "accent-ink": {
         "$type": "color",
-        "$value": "#1b1a3a"
+        "$value": "#1b2033"
       },
       "link": {
         "$type": "color",
-        "$value": "#2a3bb8"
+        "$value": "#0064a3"
+      },
+      "field": {
+        "$type": "color",
+        "$value": "#ffe800"
+      },
+      "field-ink": {
+        "$type": "color",
+        "$value": "#26335c"
       },
       "focus": {
         "$type": "color",
-        "$value": "#2a3bb8"
+        "$value": "#0064a3"
       },
       "success": {
         "$type": "color",
@@ -58,43 +66,51 @@
     "dark": {
       "bg": {
         "$type": "color",
-        "$value": "#16141a"
+        "$value": "#1b2033"
       },
       "surface": {
         "$type": "color",
-        "$value": "#1e1b23"
+        "$value": "#222840"
       },
       "surface-2": {
         "$type": "color",
-        "$value": "#28242e"
+        "$value": "#2b3250"
       },
       "ink": {
         "$type": "color",
-        "$value": "#efe9df"
+        "$value": "#f3f1ec"
       },
       "ink-muted": {
         "$type": "color",
-        "$value": "#aaa4b6"
+        "$value": "#b4b9cc"
       },
       "line": {
         "$type": "color",
-        "$value": "#3a3542"
+        "$value": "#3a4263"
       },
       "accent": {
         "$type": "color",
-        "$value": "#ff7fb5"
+        "$value": "#ff7cc6"
       },
       "accent-ink": {
         "$type": "color",
-        "$value": "#16141a"
+        "$value": "#1b2033"
       },
       "link": {
         "$type": "color",
-        "$value": "#ff7fb5"
+        "$value": "#7cc4ff"
+      },
+      "field": {
+        "$type": "color",
+        "$value": "#ffe800"
+      },
+      "field-ink": {
+        "$type": "color",
+        "$value": "#1b2033"
       },
       "focus": {
         "$type": "color",
-        "$value": "#9aa6ff"
+        "$value": "#7cc4ff"
       },
       "success": {
         "$type": "color",
@@ -117,7 +133,7 @@
     },
     "body": {
       "$type": "fontFamily",
-      "$value": "Work Sans"
+      "$value": "Hanken Grotesk"
     },
     "mono": {
       "$type": "fontFamily",

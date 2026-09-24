@@ -1,37 +1,42 @@
-/* Terminal — dark-first, monospace everywhere, phosphor green accent.
-   Density over decoration. Good for: dev tools, CLIs, infra dashboards,
-   changelogs, API docs. */
+/* Terminal — an editor-like stage for people who live in terminals.
+   A teal-tinted dark (not neutral near-black), charcoal panels, an amber
+   action, mint reserved for status. Monospace is for code and data only;
+   headings and prose use a grotesk from the same family.
+   DNA from ampcode.com (via Fudge DESIGN.md).
+   Good for: dev tools, infra dashboards, APIs, changelogs. */
 
 [data-skin="terminal"] {
   color-scheme: dark;
 
-  --font-display: "JetBrains Mono", ui-monospace, monospace;
-  --font-body: "JetBrains Mono", ui-monospace, monospace;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-display: "Chivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Chivo", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Chivo Mono", ui-monospace, monospace;
   --display-weight: 700;
-  --display-tracking: -0.03em;
+  --display-tracking: -0.025em;
   --display-transform: none;
   --body-weight: 400;
-  --eyebrow-tracking: 0.04em;
 
-  --bg: light-dark(#f2f3ec, #0b0d0a);
-  --surface: light-dark(#fbfbf6, #11140f);
-  --surface-2: light-dark(#e4e6da, #192016);
-  --ink: light-dark(#171c13, #d2e3c7);
-  --ink-muted: light-dark(#535c4a, #869a7b);
-  --line: light-dark(#c9cdbb, #253020);
+  --bg: light-dark(#eef3f1, #09191a);
+  --surface: light-dark(#ffffff, #0f2223);
+  --surface-2: light-dark(#e1e9e6, #16302f);
+  --ink: light-dark(#09191a, #e4ece6);
+  --ink-muted: light-dark(#4b5e59, #94a79e);
+  --line: light-dark(#c9d6d1, #24403f);
 
-  --accent: light-dark(#1d6f1d, #7dff6a);
-  --accent-ink: light-dark(#fbfbf6, #0b0d0a);
+  --accent: light-dark(#9a4a00, #ffb020);
+  --accent-ink: light-dark(#ffffff, #09191a);
 
-  --focus: light-dark(#0b57d0, #6ee7ff);
-  --success: light-dark(#1d6f1d, #7dff6a);
-  --warning: light-dark(#7d5a00, #ffd166);
+  --field: light-dark(#09191a, #0f2223);
+  --field-ink: light-dark(#e4ece6, #e4ece6);
+
+  --focus: light-dark(#0b57d0, #7cc4ff);
+  --success: light-dark(#0c6b45, #5cf2a6);
+  --warning: light-dark(#8a5300, #ffb020);
   --danger: light-dark(#b3261e, #ff7b72);
 
-  --radius: var(--radius-1);
-  --radius-lg: var(--radius-1);
+  --radius: var(--radius-2);
+  --radius-lg: var(--radius-2);
   --border-w: 1px;
   --shadow-1: none;
-  --shadow-2: 0 0 0 1px var(--line);
+  --shadow-2: 0 12px 32px -12px #000000cc;
 }

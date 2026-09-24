@@ -1,6 +1,9 @@
-/* Studio — warm, approachable, crafted. Characterful grotesk display,
-   cream paper, terracotta accent, soft radius and restrained shadows.
-   Good for: consumer apps, small businesses, SaaS that wants to feel human. */
+/* Studio — lively and approachable without cream-and-clay. Cool paper,
+   a navy-tinted ink, an electric blue action and a lime highlight used for
+   small fills (chips, selected states). Friendly grotesk display.
+   DNA from bugster.dev (via Fudge DESIGN.md): developer credibility with
+   playfulness — blue anchor, lime CTA fill, one sans family.
+   Good for: consumer apps, creator tools, small businesses. */
 
 [data-skin="studio"] {
   color-scheme: light dark;
@@ -9,22 +12,24 @@
   --font-body: "Figtree", "Avenir Next", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
   --display-weight: 700;
-  --display-tracking: -0.035em;
+  --display-tracking: -0.03em;
   --display-transform: none;
   --body-weight: 400;
-  --eyebrow-tracking: 0.06em;
 
-  --bg: light-dark(#fbf6ef, #191613);
-  --surface: light-dark(#ffffff, #221e1a);
-  --surface-2: light-dark(#f2e8db, #2c2621);
-  --ink: light-dark(#231c15, #f3ebe1);
-  --ink-muted: light-dark(#675a4c, #b3a696);
-  --line: light-dark(#e6d9c6, #3b332b);
+  --bg: light-dark(#f4f6fb, #10132a);
+  --surface: light-dark(#ffffff, #171b38);
+  --surface-2: light-dark(#e8ecf6, #20264a);
+  --ink: light-dark(#151a33, #eef0ff);
+  --ink-muted: light-dark(#4f5673, #a9b0d4);
+  --line: light-dark(#d5dbea, #2f3663);
 
-  --accent: light-dark(#b2431d, #f28c5e);
-  --accent-ink: light-dark(#ffffff, #191613);
+  --accent: light-dark(#2a4dff, #8aa0ff);
+  --accent-ink: light-dark(#ffffff, #10132a);
 
-  --focus: light-dark(#2156c4, #8fb3ff);
+  --field: light-dark(#d9f99d, #d9f99d);
+  --field-ink: light-dark(#151a33, #10132a);
+
+  --focus: light-dark(#151a33, #d9f99d);
   --success: light-dark(#2f6b3b, #86cf95);
   --warning: light-dark(#8a5a00, #f0bb5a);
   --danger: light-dark(#b3261e, #ff8b80);
@@ -32,6 +37,6 @@
   --radius: var(--radius-3);
   --radius-lg: var(--radius-4);
   --border-w: 1px;
-  --shadow-1: 0 1px 2px light-dark(#231c1512, #00000066);
-  --shadow-2: 0 1px 2px light-dark(#231c1510, #00000066), 0 12px 32px -16px light-dark(#231c1538, #000000aa);
+  --shadow-1: none;
+  --shadow-2: 0 16px 40px -16px light-dark(#151a3340, #000000cc);
 }

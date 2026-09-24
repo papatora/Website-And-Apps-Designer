@@ -1,10 +1,10 @@
 {
-  "$description": "brutalist skin — generated from skins/brutalist.css by tools/export-tokens.mjs. Do not edit by hand.",
+  "$description": "brutalist skin, generated from skins/brutalist.css by tools/export-tokens.mjs. Do not edit by hand.",
   "color": {
     "light": {
       "bg": {
         "$type": "color",
-        "$value": "#f1eee4"
+        "$value": "#ffffff"
       },
       "surface": {
         "$type": "color",
@@ -12,35 +12,43 @@
       },
       "surface-2": {
         "$type": "color",
-        "$value": "#e3dfd1"
+        "$value": "#f0f0f0"
       },
       "ink": {
         "$type": "color",
-        "$value": "#0a0a0a"
+        "$value": "#000000"
       },
       "ink-muted": {
         "$type": "color",
-        "$value": "#454545"
+        "$value": "#3d3d3d"
       },
       "line": {
         "$type": "color",
-        "$value": "#0a0a0a"
+        "$value": "#000000"
       },
       "accent": {
         "$type": "color",
-        "$value": "#ffd400"
+        "$value": "#ff2a1a"
       },
       "accent-ink": {
         "$type": "color",
-        "$value": "#0a0a0a"
+        "$value": "#000000"
       },
       "link": {
         "$type": "color",
-        "$value": "#0a0a0a"
+        "$value": "#0000ee"
+      },
+      "field": {
+        "$type": "color",
+        "$value": "#ff2a1a"
+      },
+      "field-ink": {
+        "$type": "color",
+        "$value": "#000000"
       },
       "focus": {
         "$type": "color",
-        "$value": "#2340ff"
+        "$value": "#0000ee"
       },
       "success": {
         "$type": "color",
@@ -52,49 +60,57 @@
       },
       "danger": {
         "$type": "color",
-        "$value": "#c0170f"
+        "$value": "#b0120a"
       }
     },
     "dark": {
       "bg": {
         "$type": "color",
-        "$value": "#111111"
+        "$value": "#1a0a08"
       },
       "surface": {
         "$type": "color",
-        "$value": "#1b1b1b"
+        "$value": "#241210"
       },
       "surface-2": {
         "$type": "color",
-        "$value": "#262626"
+        "$value": "#331a17"
       },
       "ink": {
         "$type": "color",
-        "$value": "#f4f1e8"
+        "$value": "#ffffff"
       },
       "ink-muted": {
         "$type": "color",
-        "$value": "#b5b1a5"
+        "$value": "#d6c4c1"
       },
       "line": {
         "$type": "color",
-        "$value": "#f4f1e8"
+        "$value": "#ffffff"
       },
       "accent": {
         "$type": "color",
-        "$value": "#ffd400"
+        "$value": "#ff4a3a"
       },
       "accent-ink": {
         "$type": "color",
-        "$value": "#0a0a0a"
+        "$value": "#000000"
       },
       "link": {
         "$type": "color",
-        "$value": "#ffd400"
+        "$value": "#9db4ff"
+      },
+      "field": {
+        "$type": "color",
+        "$value": "#ff2a1a"
+      },
+      "field-ink": {
+        "$type": "color",
+        "$value": "#000000"
       },
       "focus": {
         "$type": "color",
-        "$value": "#8c9bff"
+        "$value": "#9db4ff"
       },
       "success": {
         "$type": "color",
@@ -106,7 +122,7 @@
       },
       "danger": {
         "$type": "color",
-        "$value": "#ff6b5e"
+        "$value": "#ff8a80"
       }
     }
   },

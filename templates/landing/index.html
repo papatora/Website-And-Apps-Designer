@@ -1,5 +1,7 @@
 <!doctype html>
 <html lang="en" data-skin="studio">
+<!-- Sample content: Ledgerline and every name, figure and quote on this page are
+     fictional. Replace each one with real, sourced content before shipping. -->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,9 +15,13 @@
   <script src="../../skins/registry.js"></script>
   <script src="../_shared/skin-switcher.js"></script>
   <style>
-    .hero { padding-block: var(--space-9) var(--section-y); }
-    .hero h1 { max-width: 14ch; }
+    .hero { padding-block: var(--space-7) calc(var(--space-7) * 1.5); }
+    .hero h1 { max-width: 14ch; font-size: clamp(2.75rem, 1.6rem + 4.4vw, 5.25rem); }
     .hero .lead { margin-top: var(--space-5); }
+    .nav--open { position: static; background: transparent; backdrop-filter: none; border-bottom: 0; }
+    .nav__links--start { margin-left: var(--space-5); margin-right: auto; }
+    .nav__signin { color: var(--ink); text-decoration: none; font-size: var(--text-sm); font-weight: 600; }
+    @media (max-width: 48rem) { .nav__signin { display: none; } .nav--open .btn { margin-left: auto; } }
     .hero .cluster { margin-top: var(--space-6); }
     .hero__note { margin-top: var(--space-4); font-size: var(--text-sm); color: var(--ink-muted); }
 
@@ -32,7 +38,7 @@
 
     .steps { list-style: none; padding: 0; display: grid; gap: 0; counter-reset: step; }
     .steps li { display: grid; grid-template-columns: 4rem 1fr; gap: var(--space-4); padding-block: var(--space-5); border-top: var(--border-w) solid var(--line); counter-increment: step; }
-    .steps li::before { content: counter(step, decimal-leading-zero); font-family: var(--font-mono); font-size: var(--text-sm); color: var(--ink-muted); padding-top: 0.35em; }
+    .steps li::before { content: counter(step); font-family: var(--font-mono); font-size: var(--text-sm); color: var(--ink-muted); padding-top: 0.35em; }
     .steps h3 { margin-bottom: var(--space-2); }
 
     .compare th:first-child, .compare td:first-child { width: 34%; }
@@ -54,15 +60,15 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="nav">
+  <header class="nav nav--open">
     <nav class="container nav__inner" aria-label="Primary">
       <a class="nav__brand" href="#">Ledgerline</a>
-      <ul class="nav__links">
+      <ul class="nav__links nav__links--start">
         <li><a href="#how">How it works</a></li>
         <li><a href="#pricing">Pricing</a></li>
         <li><a href="#faq">Questions</a></li>
-        <li><a href="#">Sign in</a></li>
       </ul>
+      <a class="nav__signin" href="#">Sign in</a>
       <a class="btn btn--primary btn--sm" href="#pricing">Start trial</a>
     </nav>
   </header>
@@ -71,9 +77,8 @@
     <section class="hero">
       <div class="container sidebar-layout sidebar-layout--reverse" style="align-items:center">
         <div>
-          <span class="eyebrow">Bookkeeping for studios of 1–30 people</span>
-          <h1 style="margin-top:var(--space-4)">Close the month in an afternoon, not a weekend.</h1>
-          <p class="lead">Ledgerline reads the receipts already sitting in your inbox, matches them to bank transactions, and hands your accountant a month-end they won't email you about.</p>
+          <h1>Close the month in an afternoon, not a weekend.</h1>
+          <p class="lead">Bookkeeping for studios of 1 to 30 people. Ledgerline reads the receipts already in your inbox, matches them to bank transactions, and hands your accountant a month-end they won't email you about.</p>
           <div class="cluster">
             <a class="btn btn--primary btn--lg" href="#pricing">Start a 30-day trial</a>
             <a class="btn btn--ghost btn--lg" href="#how">See a sample month-end</a>
@@ -83,7 +88,7 @@
 
         <figure class="card mock" aria-label="Ledgerline reconciliation screen, September">
           <div class="mock__bar">
-            <strong>September · Studio account</strong>
+            <strong>September, studio account</strong>
             <span class="badge badge--success"><span class="dot"></span>38 of 41 matched</span>
           </div>
           <div class="mock__row">
@@ -92,7 +97,7 @@
             <span class="badge badge--success">Matched</span>
           </div>
           <div class="mock__row">
-            <div><div>Hollis &amp; Oke — Invoice 0142</div><div class="muted">Payment received</div></div>
+            <div><div>Invoice 0142, Hollis &amp; Oke</div><div class="muted">Payment received</div></div>
             <span class="tabular">+€6,400.00</span>
             <span class="badge badge--success">Matched</span>
           </div>
@@ -123,7 +128,6 @@
     <section class="section" id="how">
       <div class="container sidebar-layout">
         <div class="stack">
-          <span class="eyebrow">How it works</span>
           <h2>Three steps, and two of them happen without you.</h2>
           <p class="muted">Most studios spend 6–9 hours a month chasing receipts. Our customers report a median of 47 minutes after their second month.</p>
         </div>
@@ -138,7 +142,6 @@
     <section class="section">
       <div class="container stack" style="--stack:var(--space-6)">
         <div class="stack" style="max-width:var(--measure-narrow)">
-          <span class="eyebrow">Before and after</span>
           <h2>What actually changes at month-end</h2>
         </div>
         <div class="table-wrap">
@@ -171,7 +174,6 @@
     <section class="section" id="pricing">
       <div class="container stack" style="--stack:var(--space-6)">
         <div class="stack" style="max-width:var(--measure-narrow)">
-          <span class="eyebrow">Pricing</span>
           <h2>Two plans. Priced per studio, not per seat.</h2>
         </div>
         <div class="grid" style="--grid-min:18rem">
@@ -195,7 +197,7 @@
 
     <section class="section" id="faq">
       <div class="container sidebar-layout">
-        <div class="stack"><span class="eyebrow">Questions</span><h2>Things people ask before signing up</h2></div>
+        <h2>Things people ask before signing up</h2>
         <div>
           <details><summary>Does Ledgerline replace my accountant?</summary><p>No. It replaces the part of their invoice that's spent chasing you. They still do your filings; they just start from clean data.</p></details>
           <details><summary>Which banks are supported?</summary><p>Any bank on the EU/UK open-banking networks — around 2,400 institutions. If yours isn't, you can upload a CSV or MT940 statement instead.</p></details>
@@ -205,17 +207,17 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section section--field">
       <div class="container split">
         <h2 style="max-width:18ch">Try it on last month. You'll know by Friday.</h2>
-        <a class="btn btn--primary btn--lg" href="#pricing">Start a 30-day trial</a>
+        <a class="btn btn--lg" href="#pricing">Start a 30-day trial</a>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="container split">
-      <span>© 2026 Ledgerline B.V. · Amsterdam</span>
+      <span>© 2026 Ledgerline B.V., Amsterdam</span>
       <span class="cluster"><a href="#">Security</a><a href="#">Privacy</a><a href="#">Status</a><a href="#">Changelog</a></span>
     </div>
   </footer>

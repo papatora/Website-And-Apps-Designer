@@ -9,7 +9,10 @@
  * warnings.
  *
  * Silence a line with a trailing comment containing `slop-ok`, or a whole file
- * with `slop-lint-disable-file`. Every rule is explained in docs/anti-slop.md.
+ * with `slop-lint-disable-file`. Every rule is explained in docs/anti-slop.md,
+ * and its sources are in docs/research.md. Source keys in `src`:
+ *   A = Anthropic frontend-design skill   I = Impeccable (pbakaus/impeccable)
+ *   H = Hallmark (nutlope/hallmark)        W = Adam Wathan / Tailwind indigo-500
  */
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join, extname, relative, basename } from "node:path";
@@ -105,9 +108,90 @@ const LINE_RULES = [
     msg: "Clickable div/span. Use <button> (keyboard, focus and screen readers come free).",
   },
   {
-    id: "overused-font", severity: "warn", files: STYLE,
-    re: /font-family:\s*["']?(?:Inter|Poppins|Montserrat|Roboto|Open Sans)\b|fonts\.googleapis\.com\/css2?\?family=(?:Inter|Poppins|Montserrat)\b/i,
-    msg: "Default-of-the-decade typeface as the lead face. Fine for UI text, but pair it with something with a point of view.",
+    id: "overused-font", severity: "warn", files: STYLE, src: "A H",
+    re: /font-family:\s*["']?(?:Inter|Poppins|Montserrat|Roboto|Open Sans|Lato|Nunito|Raleway|DM Sans|Work Sans|Source Sans(?: 3| Pro)?|Merriweather|Lora|Arial|Helvetica)\b|fonts\.googleapis\.com\/css2?\?family=(?:Inter|Poppins|Montserrat|Roboto|Open\+Sans|Lato|Nunito|Raleway|DM\+Sans|Work\+Sans)\b/i,
+    msg: "An on-distribution default as the lead face (Anthropic and Hallmark both list it). Pick a face for this brief: node tools/find-reference.mjs \"<subject>\" shows what real sites use.",
+  },
+  {
+    id: "eyebrow-label", severity: "warn", files: MARKUP, src: "A I H",
+    re: /class="[^"]*\b(?:eyebrow|kicker|overline|pretitle|supertitle)\b|class="[^"]*\buppercase\b[^"]*\btracking-(?:wide|wider|widest|\[)/,
+    msg: "Small caps label above a heading. All three sources flag it as the commonest generated-page tell; Impeccable bans it outright. Let the heading speak.",
+  },
+  {
+    id: "middot-meta", severity: "warn", files: MARKUP, src: "A",
+    test: (line) => !/<title/.test(line) && />[^<]*\s·\s[^<]*</.test(line),
+    msg: "Meta string joined with middle dots (\"A · B · C\"). Anthropic lists it as template chrome. Write it as a phrase, or lay the items out.",
+  },
+  {
+    id: "em-dash-label", severity: "warn", files: MARKUP, src: "A",
+    re: /<(?:strong|span|a|h[1-6]|dt|th|button|label|small|b|figcaption)\b[^>]*>[^<]{1,30}\s—\s[^<]{1,40}<\//,
+    msg: "Label built as \"WORD — fragment\" with a spaced em dash. Anthropic lists it as template chrome. Use a colon, a comma, or two elements.",
+  },
+  {
+    id: "arrow-suffix", severity: "warn", files: MARKUP, src: "A",
+    re: /(?:→|&rarr;|->)\s*<\/(?:a|button)>/,
+    msg: "An arrow appended to link or button text. Anthropic lists it as template chrome. The label should say where it goes.",
+  },
+  {
+    id: "glyph-icon", severity: "warn", files: MARKUP, src: "I H",
+    re: /[★☆▲▼►◄●✓✔✗✘⭐]/u,
+    msg: "A Unicode glyph standing in for an icon. Use one drawn icon set (Lucide, Phosphor, Tabler) or authored SVG at one stroke weight.",
+  },
+  {
+    id: "numbered-markers", severity: "warn", files: MARKUP, src: "A I",
+    re: />\s*0[1-9]\s*(?:<|\/|\.|—)/,
+    msg: "01 / 02 / 03 markers. Only use numbering when the content really is a sequence, and then plain numerals are enough.",
+  },
+  {
+    id: "accent-word-headline", severity: "warn", files: MARKUP, src: "A H",
+    re: /<h[1-6][^>]*>[^<]*<(?:em|i|span)\b[^>]*>[^<]{1,24}<\/(?:em|i|span)>[^<]*<\/h[1-6]>/,
+    msg: "One word in a headline set in italic, bold or a different color. Anthropic and Hallmark both call it a top tell. Let the whole line carry the weight.",
+  },
+  {
+    id: "fake-chrome", severity: "warn", files: MARKUP, src: "H",
+    re: /class="[^"]*\b(?:traffic-lights?|window-dots|mac-dots|browser-(?:bar|chrome|frame)|phone-frame|device-frame|notch|status-?bar)\b/,
+    msg: "Hand-drawn device or browser chrome. Hallmark calls re-drawn chrome one of the strongest tells. Show the screen itself, or a real screenshot.",
+  },
+  {
+    id: "side-stripe", severity: "warn", files: STYLE, src: "I H",
+    re: /border-(?:left|right)(?:-width)?:\s*(?:[2-9]|\d{2,})px|\bborder-[lr]-(?:[2-8]|\[)/,
+    msg: "Thick colored stripe on one side of a card, callout or list item. Use a full hairline or a tinted background.",
+  },
+  {
+    id: "hard-offset-shadow", severity: "warn", files: STYLE, src: "I",
+    re: /box-shadow:\s*-?\d+px\s+-?\d+px\s+0(?:px)?\s|\bshadow-\[-?\d+px_-?\d+px_0/,
+    msg: "Zero-blur block shadow. Only earned in a world that is actually neobrutalist; elsewhere it's a costume.",
+  },
+  {
+    id: "bouncy-ease", severity: "warn", files: STYLE, src: "H",
+    // x values must sit in 0..1, so any value above 1 or below 0 is an overshoot on y.
+    re: /cubic-bezier\([^)]*(?:\b1\.[1-9]|-\s*\d)/,
+    msg: "Overshoot easing. Keep it for physical interactions (drag, throw), not buttons, menus or dialogs.",
+  },
+  {
+    id: "near-black", severity: "warn", files: STYLE, src: "A H",
+    test: (line, ext, file) => !/(?:^|[\\/])skins[\\/]|tokens?|theme/i.test(file) && /(?:color|background(?:-color)?|fill|stroke|border(?:-color)?)\s*:[^;]*#(?:000|000000|0a0a0a|0b0b0b|111|111111|121212)\b/i.test(line),
+    msg: "An unconsidered black: Hallmark flags pure #000, Anthropic flags #0B0B0B/#111 standing in for it. Choose black on purpose or a clearly hued dark from your palette, as a token.",
+  },
+  {
+    id: "claude-palette", severity: "warn", files: STYLE, src: "A",
+    test: (line) => (line.match(/#[0-9a-f]{6}\b/gi) || []).some((h) => nearAny(h, ["#d97757", "#f4f1ea"], 24)),
+    msg: "Cream near #F4F1EA or clay near #D97757: Anthropic's own accent palette, which it lists as the #1 generated-design cluster.",
+  },
+  {
+    id: "ellipsis-dots", severity: "warn", files: MARKUP, src: "H",
+    test: (line) => !/^\s*(?:import|export|const|let|var|return|\{|\/\/)/.test(line) && /[A-Za-z]\.\.\.(?:\s|<|"|$)/.test(line),
+    msg: "Three periods. Use the ellipsis character (…).",
+  },
+  {
+    id: "z-index-9999", severity: "warn", files: STYLE, src: "H",
+    re: /z-index:\s*9{3,}/,
+    msg: "z-index: 9999. Use a named layer scale (see --z-* in tokens/base.css).",
+  },
+  {
+    id: "width-100vw", severity: "warn", files: STYLE, src: "H",
+    re: /\bwidth:\s*100vw|\bw-screen\b/,
+    msg: "100vw includes the scrollbar and causes sideways scroll on desktop. Use 100% or a container.",
   },
   {
     id: "stock-illustration", severity: "warn", files: MARKUP,
@@ -153,12 +237,34 @@ const FILE_RULES = [
     msg: "5+ hue families in one file. One accent plus neutrals; status colors only for status.",
   },
   {
+    id: "caps-tracked-labels", severity: "warn", files: STYLE, src: "A I H",
+    // Rules scoped to a skin ([data-skin="…"]) are that world's deliberate choice.
+    test: (t) => [...t.matchAll(/([^{}]*)\{([^}]*)\}/g)].some(([, sel, b]) => !/data-skin/.test(sel) && /text-transform:\s*uppercase/.test(b) && /letter-spacing:\s*0?\.\d*[1-9]/.test(b)),
+    msg: "A CSS rule sets text in tracked-out capitals — the eyebrow/label style every source flags. Use sentence case (or scope it to a skin that is built on caps).",
+  },
+  {
+    id: "fade-up-everywhere", severity: "warn", files: MARKUP, src: "A I H",
+    test: (t) => (t.match(/fade-?up|fadeInUp|data-aos=|whileInView|animate-on-scroll|reveal-on-scroll/gi) || []).length >= 3,
+    msg: "Scroll-triggered fade-up on several sections. One orchestrated moment lands better than an entrance on everything.",
+  },
+  {
+    id: "hover-scale", severity: "warn", files: STYLE, src: "H",
+    test: (t) => (t.match(/hover:scale-1\d\d|:hover[^{]*\{[^}]*scale\(1\.0[2-9]/g) || []).length >= 2,
+    msg: "The same hover-scale on several unrelated elements. Give each control the feedback that fits it.",
+  },
+  {
     id: "hex-sprawl", severity: "warn", files: STYLE,
-    skip: (file) => /(?:skin|token|theme|palette|colors?)[^/]*$/i.test(file) || /\/skins\//.test(file),
+    skip: (file) => /(?:skin|token|theme|palette|colors?)[^/]*$/i.test(file) || /(?:^|[\\/])skins[\\/]/.test(file),
     test: (t) => new Set((t.match(/#[0-9a-f]{6}\b|#[0-9a-f]{3}\b/gi) || []).map((h) => h.toLowerCase())).size >= 12,
     msg: "12+ raw hex colors in one file. Move colors to tokens so the palette stays small and intentional.",
   },
 ];
+
+const rgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+function nearAny(hex, targets, tolerance) {
+  const a = rgb(hex.toLowerCase());
+  return targets.some((t) => Math.hypot(...rgb(t).map((v, i) => v - a[i])) <= tolerance);
+}
 
 function walk(p, exts, out = []) {
   const st = statSync(p);
@@ -179,7 +285,7 @@ export function lintText(text, file) {
     if (line.includes("slop-ok")) return;
     for (const r of LINE_RULES) {
       if (!r.files.test(file)) continue;
-      const hit = r.test ? r.test(line, ext) : r.re.test(line);
+      const hit = r.test ? r.test(line, ext, file) : r.re.test(line);
       if (hit) {
         const detail = r.detail ? ` ${r.detail(line)}` : "";
         findings.push({ file, line: i + 1, rule: r.id, severity: r.severity, message: r.msg + detail });
@@ -196,7 +302,7 @@ export function lintText(text, file) {
 function main() {
   const argv = process.argv.slice(2);
   if (argv.includes("--rules")) {
-    for (const r of [...LINE_RULES, ...FILE_RULES]) console.log(`${r.severity.padEnd(5)} ${r.id.padEnd(20)} ${r.msg}`);
+    for (const r of [...LINE_RULES, ...FILE_RULES]) console.log(`${r.severity.padEnd(5)} ${r.id.padEnd(22)} [${r.src || "-"}] ${r.msg}`);
     return;
   }
   const json = argv.includes("--json");

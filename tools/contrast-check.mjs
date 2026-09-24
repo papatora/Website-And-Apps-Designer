@@ -32,6 +32,7 @@ const PAIRS = [
   ["--danger", "--surface", 4.5, "error", "error messages on cards"],
   ["--success", "--bg", 4.5, "warn", "success text"],
   ["--warning", "--bg", 4.5, "warn", "warning text"],
+  ["--field-ink", "--field", 4.5, "error", "text on a brand field section"],
 ];
 
 const hexToRgb = (hex) => {

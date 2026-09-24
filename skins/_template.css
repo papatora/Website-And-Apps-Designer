@@ -1,36 +1,50 @@
 /* ==========================================================================
    SKIN TEMPLATE — copy to skins/<your-skin>.css and rename the selector.
-   Every variable below is part of the skin contract; components rely on all
-   of them. Colors must be hex inside light-dark(LIGHT, DARK) so
-   `npm run check:contrast` can verify them.
+
+   Before filling this in, study 2–3 real references for your subject:
+     node tools/find-reference.mjs "<industry or mood>"
+   Take their DNA (how color is used, type roles, layout idea), not their hexes.
+
+   Then check your plan against the defaults generated UI clusters around
+   (docs/research.md): cream + serif + terracotta; near-black + one acid
+   green/vermilion; hairline broadsheet with zero radius; identical rounded
+   cards with a grey shadow; ALL-CAPS eyebrows and "A · B · C" meta strings.
+   If your skin lands on one of those, it needs a reason from the brief.
+
+   Colors are hex inside light-dark(LIGHT, DARK) so
+   `npm run check:contrast` and `npm run tokens` can read them.
    ========================================================================== */
 
 [data-skin="your-skin"] {
-  color-scheme: light dark; /* use `dark` alone for a dark-first skin */
+  color-scheme: light dark; /* use `dark` alone only if the use scene is dark */
 
-  /* Type — pick ONE deliberate pairing. Never ship the default stack. */
+  /* Type — one or two families, clearly distinct. Mono is for code and data only. */
   --font-display: "Your Display", Georgia, serif;
   --font-body: "Your Text", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
   --display-weight: 600;
-  --display-tracking: -0.02em;
-  --display-transform: none;   /* or uppercase */
+  --display-tracking: -0.02em;   /* floor: -0.04em */
+  --display-transform: none;     /* uppercase only if line-height >= 1.0 */
   --body-weight: 400;
-  --eyebrow-tracking: 0.08em;
 
-  /* Surfaces & ink */
+  /* Surfaces & ink. Either pure black on purpose, or a clearly hued dark —
+     never an unconsidered #0b0b0b / #111. */
   --bg: light-dark(#ffffff, #000000);
-  --surface: light-dark(#ffffff, #000000);   /* cards, inputs */
+  --surface: light-dark(#ffffff, #000000);   /* inputs, cards */
   --surface-2: light-dark(#ffffff, #000000); /* wells, hovers, code */
   --ink: light-dark(#000000, #ffffff);       /* >= 7:1 on --bg */
   --ink-muted: light-dark(#000000, #ffffff); /* >= 4.5:1 on --bg and --surface */
-  --line: light-dark(#000000, #ffffff);      /* hairlines, borders */
+  --line: light-dark(#000000, #ffffff);
 
-  /* One accent. Not two. Not a gradient. */
-  --accent: light-dark(#000000, #ffffff);    /* >= 3:1 on --bg (UI), used for links too */
+  /* One accent for the primary action. Keep it to ~5% of any screen. */
+  --accent: light-dark(#000000, #ffffff);
   --accent-ink: light-dark(#ffffff, #000000);/* text on --accent, >= 4.5:1 */
-  /* Optional: --link (defaults to --accent). Set it when the accent is a
-     fill color that can't carry text, e.g. yellow on cream. */
+  /* Optional: --link (defaults to --accent) when the accent can't carry text. */
+
+  /* Optional brand field: a dominant color for whole sections (a hero stage,
+     a closing band). This is where "dominant color" lives — not the accent. */
+  --field: light-dark(#000000, #ffffff);
+  --field-ink: light-dark(#ffffff, #000000); /* >= 4.5:1 on --field */
 
   /* Status */
   --focus: light-dark(#000000, #ffffff);
@@ -38,10 +52,11 @@
   --warning: light-dark(#000000, #ffffff);
   --danger: light-dark(#000000, #ffffff);
 
-  /* Shape & depth */
-  --radius: var(--radius-2);
-  --radius-lg: var(--radius-3);
+  /* Shape & depth. Elevation is declared once: a border OR a shadow. */
+  --radius: var(--radius-2);     /* controls */
+  --radius-lg: var(--radius-3);  /* larger surfaces */
   --border-w: 1px;
-  --shadow-1: none;
-  --shadow-2: none;
+  --shadow-1: none;              /* controls (neobrutalist worlds only) */
+  --shadow-2: none;              /* floating layers: menus, popovers */
+  /* --card-shadow: optional, only when the world is built on it */
 }

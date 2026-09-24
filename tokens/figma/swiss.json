@@ -1,10 +1,10 @@
 {
-  "$description": "swiss skin — generated from skins/swiss.css by tools/export-tokens.mjs. Do not edit by hand.",
+  "$description": "swiss skin, generated from skins/swiss.css by tools/export-tokens.mjs. Do not edit by hand.",
   "color": {
     "light": {
       "bg": {
         "$type": "color",
-        "$value": "#f7f7f5"
+        "$value": "#ffffff"
       },
       "surface": {
         "$type": "color",
@@ -12,23 +12,23 @@
       },
       "surface-2": {
         "$type": "color",
-        "$value": "#ebebe8"
+        "$value": "#f0f0f0"
       },
       "ink": {
         "$type": "color",
-        "$value": "#0b0b0b"
+        "$value": "#000000"
       },
       "ink-muted": {
         "$type": "color",
-        "$value": "#545454"
+        "$value": "#555555"
       },
       "line": {
         "$type": "color",
-        "$value": "#cfcfca"
+        "$value": "#dddddd"
       },
       "accent": {
         "$type": "color",
-        "$value": "#c8241a"
+        "$value": "#0a2bb8"
       },
       "accent-ink": {
         "$type": "color",
@@ -36,11 +36,19 @@
       },
       "link": {
         "$type": "color",
-        "$value": "#c8241a"
+        "$value": "#0a2bb8"
+      },
+      "field": {
+        "$type": "color",
+        "$value": "#0a2bb8"
+      },
+      "field-ink": {
+        "$type": "color",
+        "$value": "#ffffff"
       },
       "focus": {
         "$type": "color",
-        "$value": "#0b57d0"
+        "$value": "#0a2bb8"
       },
       "success": {
         "$type": "color",
@@ -58,55 +66,63 @@
     "dark": {
       "bg": {
         "$type": "color",
-        "$value": "#0e0e0e"
+        "$value": "#0b1a6b"
       },
       "surface": {
         "$type": "color",
-        "$value": "#171717"
+        "$value": "#102283"
       },
       "surface-2": {
         "$type": "color",
-        "$value": "#222222"
+        "$value": "#16298f"
       },
       "ink": {
         "$type": "color",
-        "$value": "#f2f2f0"
+        "$value": "#ffffff"
       },
       "ink-muted": {
         "$type": "color",
-        "$value": "#a6a6a6"
+        "$value": "#c3cbf2"
       },
       "line": {
         "$type": "color",
-        "$value": "#343434"
+        "$value": "#3446a8"
       },
       "accent": {
         "$type": "color",
-        "$value": "#ff5b4c"
+        "$value": "#ffd400"
       },
       "accent-ink": {
         "$type": "color",
-        "$value": "#0e0e0e"
+        "$value": "#0b1a6b"
       },
       "link": {
         "$type": "color",
-        "$value": "#ff5b4c"
+        "$value": "#ffffff"
+      },
+      "field": {
+        "$type": "color",
+        "$value": "#ffd400"
+      },
+      "field-ink": {
+        "$type": "color",
+        "$value": "#0b1a6b"
       },
       "focus": {
         "$type": "color",
-        "$value": "#8ab4ff"
+        "$value": "#ffd400"
       },
       "success": {
         "$type": "color",
-        "$value": "#6fd08f"
+        "$value": "#8ff0b0"
       },
       "warning": {
         "$type": "color",
-        "$value": "#f0b43c"
+        "$value": "#ffd400"
       },
       "danger": {
         "$type": "color",
-        "$value": "#ff5b4c"
+        "$value": "#ffb0a8"
       }
     }
   },
@@ -125,11 +141,11 @@
     },
     "display-weight": {
       "$type": "fontWeight",
-      "$value": 800
+      "$value": 700
     },
     "display-tracking": {
       "$type": "dimension",
-      "$value": "-0.04em"
+      "$value": "-0.03em"
     }
   },
   "radius": {

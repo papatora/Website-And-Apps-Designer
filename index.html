@@ -36,7 +36,7 @@
     .specimen {
       background: var(--bg); color: var(--ink);
       border: var(--border-w) solid var(--line); border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-2);
+      box-shadow: var(--card-shadow, none);
       padding: var(--space-5); display: grid; gap: var(--space-4); align-content: start;
     }
     .specimen__type { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); text-transform: var(--display-transform); font-size: var(--text-4xl); line-height: 1; }
@@ -47,9 +47,11 @@
     .specimen__modes > div { padding: var(--space-3); border: var(--border-w) solid var(--line); border-radius: var(--radius); background: var(--bg); color: var(--ink); font-size: var(--text-sm); }
     .specimen__links { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); font-size: var(--text-sm); border-top: var(--border-w) solid var(--line); padding-top: var(--space-4); }
 
-    .templates { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr)); gap: var(--space-4); }
-    .templates a.card { display: grid; gap: var(--space-2); }
-    .templates .h3 { font-size: var(--text-lg); }
+    .tpl { list-style: none; padding: 0; border-top: var(--border-w) solid var(--line); }
+    .tpl li { display: grid; grid-template-columns: minmax(0, 12rem) minmax(0, 1fr) 7rem; gap: var(--space-2) var(--space-5); padding-block: var(--space-4); border-bottom: var(--border-w) solid var(--line); align-items: baseline; }
+    .tpl a { font-weight: 600; }
+    .tpl .mode { color: var(--ink-muted); font-size: var(--text-sm); text-align: right; }
+    @media (max-width: 40rem) { .tpl li { grid-template-columns: minmax(0, 1fr) auto; } .tpl .desc { grid-column: 1 / -1; grid-row: 2; } }
 
     .kit { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: var(--space-5); }
     .kit h3 { font-size: var(--text-base); font-family: var(--font-body); letter-spacing: 0; }
@@ -60,9 +62,8 @@
 <body>
   <main id="main">
     <section class="container hero">
-      <span class="eyebrow">Website &amp; Apps Designer</span>
-      <h1 style="margin-top:var(--space-4)">Skins, templates and tools for interfaces that look designed.</h1>
-      <p class="lead">Eight skins with real typographic opinions, eight templates written with real copy, and a linter that flags the patterns that make a site look machine-made. Plain HTML and CSS — no build step, no framework lock-in.</p>
+      <h1>Skins, templates and tools for interfaces that look designed.</h1>
+      <p class="lead">Eight skins, each built on the design of a real website. Eight templates. A linter for the patterns that make a page look machine-made, taken from published research rather than guesswork. Plain HTML and CSS, no build step.</p>
     </section>
 
     <section class="container section" style="padding-top:0" aria-labelledby="skins-h">
@@ -72,28 +73,29 @@
 
     <section class="container section" aria-labelledby="tpl-h">
       <h2 id="tpl-h" class="h3" style="margin-bottom:var(--space-5)">Templates</h2>
-      <div class="templates">
-        <a class="card" href="templates/landing/"><span class="eyebrow">Marketing</span><span class="h3">Landing page</span><span class="small muted">Product mock in the hero, steps, comparison table, pricing, FAQ.</span></a>
-        <a class="card" href="templates/dashboard/"><span class="eyebrow">App</span><span class="h3">Dashboard</span><span class="small muted">Sidebar shell, KPI strip, SVG chart, activity feed, data table.</span></a>
-        <a class="card" href="templates/mobile-app/"><span class="eyebrow">Mobile</span><span class="h3">Mobile app screens</span><span class="small muted">Three annotated phone screens with tab bar and thumb-zone actions.</span></a>
-        <a class="card" href="templates/portfolio/"><span class="eyebrow">Studio</span><span class="h3">Portfolio</span><span class="small muted">Work index as a list, feature case, team, oversized contact.</span></a>
-        <a class="card" href="templates/article/"><span class="eyebrow">Editorial</span><span class="h3">Long-form article</span><span class="small muted">Drop cap, pull quote, sticky contents, footnotes.</span></a>
-        <a class="card" href="templates/docs/"><span class="eyebrow">Developer</span><span class="h3">Docs site</span><span class="small muted">API reference: sidebar nav, parameter table, code with copy button, errors.</span></a>
-        <a class="card" href="templates/shop/"><span class="eyebrow">E-commerce</span><span class="h3">Product page</span><span class="small muted">Glaze picker, quantity, honest delivery facts, reviews with a breakdown.</span></a>
-        <a class="card" href="templates/auth/"><span class="eyebrow">App</span><span class="h3">Sign in</span><span class="small muted">SSO, email + password, inline errors, show/hide password.</span></a>
-      </div>
+      <ul class="tpl">
+        <li><a href="templates/landing/">Landing page</a><span class="desc muted">Real product UI in the hero, steps, before/after table, two plans, FAQ.</span><span class="mode">Persuade</span></li>
+        <li><a href="templates/shop/">Product page</a><span class="desc muted">Glaze picker, quantity, delivery facts, reviews with a breakdown.</span><span class="mode">Persuade</span></li>
+        <li><a href="templates/dashboard/">Dashboard</a><span class="desc muted">Sidebar shell, figures with comparisons, SVG chart, activity, invoices.</span><span class="mode">Operate</span></li>
+        <li><a href="templates/mobile-app/">Mobile app</a><span class="desc muted">Three screens for one-handed use, with the reasoning under each.</span><span class="mode">Operate</span></li>
+        <li><a href="templates/auth/">Sign in</a><span class="desc muted">Single sign-on, email and password, inline errors that don't shift the page.</span><span class="mode">Operate</span></li>
+        <li><a href="templates/docs/">API docs</a><span class="desc muted">Docs navigation, parameter table, copyable examples, errors.</span><span class="mode">Read</span></li>
+        <li><a href="templates/article/">Long-form article</a><span class="desc muted">Two-tier masthead, drop cap, pull quote, contents, footnotes.</span><span class="mode">Read</span></li>
+        <li><a href="templates/portfolio/">Portfolio</a><span class="desc muted">Work as an index, one project in depth, the team, a contact band.</span><span class="mode">Experience</span></li>
+      </ul>
     </section>
 
     <section class="container section" aria-labelledby="kit-h">
       <h2 id="kit-h" class="h3" style="margin-bottom:var(--space-5)">In the kit</h2>
       <div class="kit">
-        <div><h3>docs/anti-slop.md</h3><p>The tells that make a UI look generated, and what to do instead.</p></div>
+        <div><h3>docs/research.md</h3><p>What Anthropic, Impeccable, Hallmark and 1,160 real-site guides say, and where they disagree.</p></div>
         <div><h3>tools/slop-lint.mjs</h3><p>Scans HTML, CSS, JSX and more for those tells. Runs in CI.</p></div>
         <div><h3>tools/contrast-check.mjs</h3><p>Verifies every skin's color pairs in both modes.</p></div>
         <div><h3>.claude/skills</h3><p>Claude Code skills for designing, reviewing and scaffolding.</p></div>
         <div><h3>adapters/</h3><p>Use any skin in Tailwind (v3/v4), React, or Figma via design tokens.</p></div>
       </div>
-      <pre class="cmd" style="margin-top:var(--space-6)"><code>node tools/new-project.mjs --template landing --skin editorial --out ../my-site
+      <pre class="cmd" style="margin-top:var(--space-6)"><code>node tools/find-reference.mjs "bakery"
+node tools/new-project.mjs --template landing --skin editorial --out ../my-site
 npm run lint:slop -- ../my-site</code></pre>
     </section>
   </main>
@@ -105,7 +107,7 @@ npm run lint:slop -- ../my-site</code></pre>
     const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
     document.getElementById("skins").innerHTML = window.DESIGN_SKINS.map((s) => `
       <article class="specimen" data-skin="${s.id}" aria-labelledby="sk-${s.id}">
-        <div class="split"><span class="eyebrow" id="sk-${s.id}">${esc(s.label)}</span><code class="small muted">skins/${s.id}.css</code></div>
+        <div class="split"><h3 class="h4" id="sk-${s.id}">${esc(s.label)}</h3><code class="small muted">skins/${s.id}.css</code></div>
         <div class="specimen__type" aria-hidden="true">Aa Gg 24</div>
         <p class="small">${esc(s.mood)}</p>
         <div class="specimen__chips" aria-hidden="true">
@@ -121,7 +123,7 @@ npm run lint:slop -- ../my-site</code></pre>
           <div data-skin="${s.id}" data-mode="light">Light mode</div>
           <div data-skin="${s.id}" data-mode="dark">Dark mode</div>
         </div>
-        <p class="small muted">Good for: ${esc(s.goodFor)}</p>
+        <p class="small muted">Good for: ${esc(s.goodFor)}. Built on the design of <a href="${s.reference.guide}">${esc(s.reference.site)}</a>.</p>
         <div class="specimen__links">${tpl.map((t) => `<a href="templates/${t}/?skin=${s.id}">${t}</a>`).join("")}</div>
       </article>`).join("");
   </script>

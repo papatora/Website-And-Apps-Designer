@@ -38,6 +38,14 @@ Generated layouts are almost always one centered column. Designed layouts use:
 These are intrinsic: they respond to their container, not just the viewport,
 so they need very few media queries. Background: [every-layout.dev](https://every-layout.dev).
 
+## Structure that reads as generated (H, A)
+
+- **The AI nav:** logo left, 4–5 links right, a button, a hairline under a white bar. Try links grouped with the logo (`templates/landing`), a two-tier masthead (`templates/article`), or no bar (`templates/portfolio`).
+- **The AI footer:** four link columns, a social row and a tiny copyright. Most sites need one line.
+- **Equal rhythm:** every section padded the same with nothing between them. Vary it: a rule, a colour shift, a `.section--field`.
+- **Hero fit:** bottom padding ≥ 1.3× top, and headline, lede and primary action visible at 1280×800 without scrolling.
+- **Card grids as structure:** cards are the lazy container, and cards inside cards are always wrong (I).
+
 ## Responsive checklist
 
 - Test at **390px**, 768px, 1280px, 1920px.
@@ -45,3 +53,8 @@ so they need very few media queries. Background: [every-layout.dev](https://ever
 - Touch targets ≥ 44×44px.
 - Nav collapses without hiding the primary action.
 - Tables scroll inside `.table-wrap` rather than breaking the page.
+- Grid tracks that hold tables, code, images or `nowrap` text use `minmax(0, 1fr)`, not `1fr` (H).
+- Mobile media queries come *after* the rules they override, or out-specify them. Both mistakes caused real overflow bugs in this repo.
+- A second sticky element sits below the sticky header (`top: calc(header + gap)`), not at `top: 0` (H).
+- Buttons and nav links never wrap to two lines; shorten the label instead (H).
+- `npm run check:layout` opens every template in every skin at 390px and 1440px.

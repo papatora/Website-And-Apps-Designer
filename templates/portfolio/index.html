@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en" data-skin="noir">
+<!-- Sample content: Hollis & Oke, its clients and people are fictional. -->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +16,7 @@
   <style>
     .intro { padding-block: var(--space-10) var(--space-9); }
     .intro h1 { font-size: clamp(2.75rem, 1.5rem + 5.5vw, 7rem); max-width: 16ch; }
-    .intro p:not(.eyebrow) { margin-top: var(--space-6); max-width: 44ch; color: var(--ink-muted); font-size: var(--text-lg); }
+    .intro p { margin-top: var(--space-6); max-width: 44ch; color: var(--ink-muted); font-size: var(--text-lg); }
 
     /* Work index: a list, not a card grid. Hover reveals the image. */
     .index { list-style: none; padding: 0; border-top: var(--border-w) solid var(--line); }
@@ -24,10 +25,9 @@
       gap: var(--space-4); align-items: baseline;
       padding-block: var(--space-5); border-bottom: var(--border-w) solid var(--line);
       color: var(--ink); text-decoration: none;
-      transition: padding var(--dur-2) var(--ease-out), color var(--dur-1) var(--ease-out);
     }
-    .index a:hover { padding-left: var(--space-3); color: var(--accent); }
-    .index .yr, .index .cat { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--ink-muted); letter-spacing: 0.04em; }
+    .index a:hover .name { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.12em; }
+    .index .yr, .index .cat { font-size: var(--text-sm); color: var(--ink-muted); font-variant-numeric: tabular-nums; }
     .index .name { font-family: var(--font-display); font-size: var(--text-2xl); letter-spacing: var(--display-tracking); line-height: 1.1; }
     .index .cat { text-align: right; }
     @media (max-width: 48rem) {
@@ -48,7 +48,7 @@
     .people dd { color: var(--ink-muted); font-size: var(--text-sm); }
 
     .contact { font-family: var(--font-display); font-size: clamp(2rem, 1rem + 4vw, 4.5rem); line-height: 1; letter-spacing: var(--display-tracking); }
-    .contact a { color: var(--ink); text-decoration-thickness: 1px; }
+    .contact a { color: inherit; text-decoration-thickness: 1px; }
   </style>
 </head>
 <body>
@@ -66,13 +66,12 @@
 
   <main id="main">
     <section class="container intro">
-      <p class="eyebrow">Identity &amp; type · Rotterdam · since 2014</p>
-      <h1 style="margin-top:var(--space-5)">We draw letters for institutions that intend to stay.</h1>
-      <p>Twelve people making identities, custom typefaces and the systems that keep them intact after we leave — mostly for museums, publishers and a few stubborn manufacturers.</p>
+      <h1>We draw letters for institutions that intend to stay.</h1>
+      <p>Twelve people in Rotterdam, since 2014, making identities, custom typefaces and the systems that keep them intact after we leave. Mostly for museums, publishers and a few stubborn manufacturers.</p>
     </section>
 
     <section class="container section" id="work" style="padding-top:0">
-      <div class="split" style="margin-bottom:var(--space-5)"><h2 class="eyebrow">Selected work</h2><span class="eyebrow">2019–2026</span></div>
+      <h2 class="h3" style="margin-bottom:var(--space-5)">Selected work, 2019 to 2026</h2>
       <ol class="index">
         <li><a href="#"><span class="yr">2026</span><span class="name">Kunsthal Zuid</span><span class="desc muted small">Identity and a variable display face with 1,400 glyphs</span><span class="cat">Identity</span></a></li>
         <li><a href="#"><span class="yr">2025</span><span class="name">Van Heusden Ceramics</span><span class="desc muted small">Kiln stamps, packaging, and a 110-year archive digitised</span><span class="cat">Packaging</span></a></li>
@@ -86,8 +85,7 @@
       <div class="feature">
         <figure class="plate" aria-label="Specimen of the Kunsthal Zuid display typeface"><span>Aa&nbsp;Zz</span></figure>
         <div class="stack">
-          <p class="eyebrow">In focus · Kunsthal Zuid</p>
-          <h2 class="h3">A typeface that gets wider as the building gets taller.</h2>
+          <h2 class="h3">Kunsthal Zuid: a typeface that gets wider as the building gets taller.</h2>
           <p class="muted">The museum's three wings are different heights. The display face has a width axis mapped to each wing, so signage on the tallest floor sets in the widest cut. Visitors don't notice. Staff did, and started using it for their own posters.</p>
           <a href="#">Read the case study</a>
         </div>
@@ -106,10 +104,11 @@
       </div>
     </section>
 
-    <section class="container section" id="contact">
-      <p class="eyebrow" style="margin-bottom:var(--space-5)">New projects from spring 2027</p>
-      <p class="contact"><a href="mailto:studio@example.com">studio@example.com</a></p>
-      <p class="muted" style="margin-top:var(--space-5)">Schiedamsedijk 44, Rotterdam · +31 10 000 0000</p>
+    <section class="section section--field" id="contact">
+      <div class="container">
+        <p class="contact"><a href="mailto:studio@example.com">studio@example.com</a></p>
+        <p style="margin-top:var(--space-5)">Taking on new projects from spring 2027.<br>Schiedamsedijk 44, Rotterdam<br>+31 10 000 0000</p>
+      </div>
     </section>
   </main>
 

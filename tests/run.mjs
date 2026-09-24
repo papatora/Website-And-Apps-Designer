@@ -8,6 +8,7 @@ import { fileURLToPath } from "node:url";
 import assert from "node:assert/strict";
 import { lintText } from "../tools/slop-lint.mjs";
 import { contrast, parseSkin } from "../tools/contrast-check.mjs";
+import { parseIndex, search } from "../tools/find-reference.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const fixture = (n) => join(here, "fixtures", n);
@@ -18,7 +19,10 @@ console.log("slop-lint");
 test("flags every tell in the sloppy fixture", () => {
   const ids = new Set(lintText(readFileSync(fixture("sloppy.html"), "utf8"), "sloppy.html").map((f) => f.rule));
   for (const id of ["purple-gradient", "gradient-text", "buzzword", "emoji-heading", "lorem-ipsum", "emoji-bullets",
-    "img-no-alt", "generic-cta", "div-button", "placeholder-names", "vague-proof", "transition-all", "overused-font", "outline-removed"]) {
+    "img-no-alt", "generic-cta", "div-button", "placeholder-names", "vague-proof", "transition-all", "overused-font", "outline-removed",
+    "eyebrow-label", "middot-meta", "em-dash-label", "arrow-suffix", "glyph-icon", "numbered-markers", "accent-word-headline",
+    "fake-chrome", "side-stripe", "hard-offset-shadow", "bouncy-ease", "near-black", "claude-palette", "ellipsis-dots",
+    "z-index-9999", "width-100vw", "caps-tracked-labels", "fade-up-everywhere", "hover-scale"]) {
     assert.ok(ids.has(id), `expected rule ${id}`);
   }
 });
@@ -27,6 +31,15 @@ test("clean fixture has no findings", () => {
 });
 test("slop-ok silences a line", () => {
   assert.equal(lintText("<p>Unlock it <!-- slop-ok --></p>", "a.html").length, 0);
+});
+test("near-black is allowed inside skin files", () => {
+  assert.equal(lintText(".x { color: #000000; }", "skins/editorial.css").filter((f) => f.rule === "near-black").length, 0);
+});
+test("caps labels scoped to a skin are allowed", () => {
+  assert.equal(lintText('[data-skin="brutalist"] .btn { text-transform: uppercase; letter-spacing: 0.04em; }', "a.css").length, 0);
+});
+test("middot inside <title> is fine", () => {
+  assert.equal(lintText("<title>Overview · Ledgerline</title>", "a.html").length, 0);
 });
 test("buzzwords ignored in code identifiers", () => {
   assert.equal(lintText("const elevate = 1;", "a.js").length, 0);
@@ -40,6 +53,16 @@ test("parses light-dark() and var() references", () => {
   assert.equal(s.vars.dark["--bg"], "#000000");
   assert.equal(s.vars.dark["--focus"], "#123456");
   assert.equal(s.vars.light["--link"], "#123456");
+});
+
+console.log("find-reference");
+test("parses the Fudge index and ranks by subject", () => {
+  const index = parseIndex(readFileSync(fixture("fudge-readme-sample.md"), "utf8"));
+  assert.equal(index.length, 3);
+  assert.equal(index[0].path, "design-md/aeon.co.md");
+  assert.equal(search(index, "bakery")[0].domain, "banjos.com.au");
+  assert.equal(search(index, "bank developers")[0].domain, "column.com");
+  assert.equal(search(index, "spaceship").length, 0);
 });
 
 console.log("new-project");

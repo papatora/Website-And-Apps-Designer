@@ -1,6 +1,8 @@
-/* Swiss — International Typographic Style. One grotesk, strong grid,
-   flush-left rag, black/white with a single signal red. Zero radius.
-   Good for: agencies, architecture, product sites that want authority. */
+/* Swiss — engineering precision. One grotesk set big and bold, white
+   canvas, a deep saturated blue used as whole surfaces, a yellow mark for
+   active states. Dark mode is the blue field, not near-black.
+   DNA from asml.com (via Fudge DESIGN.md).
+   Good for: engineering, architecture, B2B with real authority. */
 
 [data-skin="swiss"] {
   color-scheme: light dark;
@@ -8,30 +10,33 @@
   --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --display-weight: 800;
-  --display-tracking: -0.04em;
+  --display-weight: 700;
+  --display-tracking: -0.03em;
   --display-transform: none;
   --body-weight: 400;
-  --eyebrow-tracking: 0.02em;
 
-  --bg: light-dark(#f7f7f5, #0e0e0e);
-  --surface: light-dark(#ffffff, #171717);
-  --surface-2: light-dark(#ebebe8, #222222);
-  --ink: light-dark(#0b0b0b, #f2f2f0);
-  --ink-muted: light-dark(#545454, #a6a6a6);
-  --line: light-dark(#cfcfca, #343434);
+  --bg: light-dark(#ffffff, #0b1a6b);
+  --surface: light-dark(#ffffff, #102283);
+  --surface-2: light-dark(#f0f0f0, #16298f);
+  --ink: light-dark(#000000, #ffffff);
+  --ink-muted: light-dark(#555555, #c3cbf2);
+  --line: light-dark(#dddddd, #3446a8);
 
-  --accent: light-dark(#c8241a, #ff5b4c);
-  --accent-ink: light-dark(#ffffff, #0e0e0e);
+  --accent: light-dark(#0a2bb8, #ffd400);
+  --accent-ink: light-dark(#ffffff, #0b1a6b);
+  --link: light-dark(#0a2bb8, #ffffff);
 
-  --focus: light-dark(#0b57d0, #8ab4ff);
-  --success: light-dark(#1f6f3a, #6fd08f);
-  --warning: light-dark(#8a5b00, #f0b43c);
-  --danger: light-dark(#c8241a, #ff5b4c);
+  --field: light-dark(#0a2bb8, #ffd400);
+  --field-ink: light-dark(#ffffff, #0b1a6b);
+
+  --focus: light-dark(#0a2bb8, #ffd400);
+  --success: light-dark(#1f6f3a, #8ff0b0);
+  --warning: light-dark(#8a5b00, #ffd400);
+  --danger: light-dark(#c8241a, #ffb0a8);
 
   --radius: var(--radius-0);
   --radius-lg: var(--radius-0);
   --border-w: 1px;
   --shadow-1: none;
-  --shadow-2: none;
+  --shadow-2: 0 12px 32px -12px light-dark(#0a2bb840, #00000099);
 }

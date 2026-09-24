@@ -1,40 +1,44 @@
-/* Brutalist — honest, loud, structural. Thick ink borders, hard offset
-   shadows, condensed caps display, one hazard-yellow accent.
-   Good for: indie tools, zines, events, dev products with attitude. */
+/* Brutalist — a pasted poster wall. White sheets, one saturated red field,
+   oversized condensed caps, thick ink borders and block shadows (this is a
+   neobrutalist world, so the hard shadow is earned here and nowhere else).
+   Links use the raw browser blue on purpose.
+   DNA from almost-pearfect.com (via Fudge DESIGN.md).
+   Good for: indie brands, events, record labels, loud product drops. */
 
 [data-skin="brutalist"] {
   color-scheme: light dark;
 
-  --font-display: "Anton", "Impact", "Arial Narrow", sans-serif;
-  --font-body: "IBM Plex Sans", system-ui, sans-serif;
+  --font-display: "Anton", "Arial Narrow", sans-serif;
+  --font-body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
   --display-weight: 400; /* Anton is single-weight and already heavy */
   --display-tracking: 0.005em;
   --display-transform: uppercase;
   --body-weight: 400;
-  --eyebrow-tracking: 0.06em;
 
-  --bg: light-dark(#f1eee4, #111111);
-  --surface: light-dark(#ffffff, #1b1b1b);
-  --surface-2: light-dark(#e3dfd1, #262626);
-  --ink: light-dark(#0a0a0a, #f4f1e8);
-  --ink-muted: light-dark(#454545, #b5b1a5);
-  --line: light-dark(#0a0a0a, #f4f1e8);
+  --bg: light-dark(#ffffff, #1a0a08);
+  --surface: light-dark(#ffffff, #241210);
+  --surface-2: light-dark(#f0f0f0, #331a17);
+  --ink: light-dark(#000000, #ffffff);
+  --ink-muted: light-dark(#3d3d3d, #d6c4c1);
+  --line: light-dark(#000000, #ffffff);
 
-  --accent: light-dark(#ffd400, #ffd400);
-  --accent-ink: light-dark(#0a0a0a, #0a0a0a);
-  /* Yellow is a fill color, never a text color on cream. Links stay ink and
-     get a yellow highlight underline instead (see components.css). */
-  --link: light-dark(#0a0a0a, #ffd400);
+  --accent: light-dark(#ff2a1a, #ff4a3a);
+  --accent-ink: light-dark(#000000, #000000);
+  --link: light-dark(#0000ee, #9db4ff);
 
-  --focus: light-dark(#2340ff, #8c9bff);
+  --field: light-dark(#ff2a1a, #ff2a1a);
+  --field-ink: light-dark(#000000, #000000);
+
+  --focus: light-dark(#0000ee, #9db4ff);
   --success: light-dark(#0f6b2f, #5fe08a);
   --warning: light-dark(#8a4b00, #ffb347);
-  --danger: light-dark(#c0170f, #ff6b5e);
+  --danger: light-dark(#b0120a, #ff8a80);
 
   --radius: var(--radius-0);
   --radius-lg: var(--radius-0);
   --border-w: 3px;
   --shadow-1: 4px 4px 0 var(--ink);
   --shadow-2: 8px 8px 0 var(--ink);
+  --card-shadow: 8px 8px 0 var(--ink);
 }

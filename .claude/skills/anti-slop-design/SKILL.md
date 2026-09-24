@@ -1,56 +1,76 @@
 ---
 name: anti-slop-design
-description: Design and build a website, landing page, dashboard or app screen that looks deliberately designed rather than AI-generated. Use whenever creating or restyling UI (HTML/CSS, React, Vue, Svelte, Tailwind) — pick a skin, write real copy, apply tokens, then lint for slop.
+description: Design and build a website, landing page, dashboard or app screen that looks deliberately designed rather than AI-generated. Use whenever creating or restyling UI (HTML/CSS, React, Vue, Svelte, Tailwind). Grounds the design in real reference sites, plans before building, checks the plan against the known default clusters, then lints and screenshots.
 ---
 
 # Anti-slop design
 
-You are building UI with the Website-And-Apps-Designer kit. The goal is an
-interface where every visible choice was made on purpose.
+Generated UI looks generated because every choice is the statistical default
+of its training data (docs/research.md). The fix is a process: ground the
+design in the subject, study real references, plan, review the plan against
+the defaults, then build and verify. Sources: Anthropic `frontend-design`,
+Impeccable, Hallmark, Fudge DESIGN.md.
 
-## 1. Brief first (do not skip)
+**The brief wins.** If the user pins a look, font or palette, follow it
+exactly, even when it matches a default cluster.
 
-Before writing markup, state in 3–5 lines:
-- **Who** it's for and **what they must do** on this screen.
-- The **one primary action**.
-- The **voice** (e.g. literary, technical, warm, premium, loud).
-- **Real content**: product name, concrete claims, numbers, people. If the user
-  gave none, invent specific and plausible ones — never Lorem ipsum, John Doe or Acme.
+## 1. Subject and mode
 
-## 2. Choose a skin
+State in a few lines:
+- the **subject** (industry, materials, vernacular), the **audience**, and the page's **one job**;
+- the **visitor mode**: Persuade (landing, pricing), Operate (app, dashboard, settings), Read (docs, articles) or Experience (portfolio, gallery);
+- the **real content**: names, claims, numbers. If the user gave none, invent plausible ones and mark them as samples. Never Lorem ipsum, John Doe or Acme, and never invented metrics presented as real.
 
-Read `skins/registry.js`. Match the voice to a skin (editorial, swiss,
-brutalist, terminal, studio, noir, clarity, riso). If none fits, copy `skins/_template.css`
-and fill every variable; then run `node tools/contrast-check.mjs`.
-
-## 3. Build on the system
-
-- Load order: `tokens/base.css` → `skins/<skin>.css` → `components/components.css`.
-- Use only tokens for color, space, radius, type size and motion. No raw hex in components.
-- Start from the closest template in `templates/` rather than a blank file.
-- Tailwind projects: use `adapters/tailwind` (v4 `theme.css` or v3 `preset.cjs`) and its classes
-  (`bg-accent`, `text-ink-muted`, `font-heading`, `rounded-skin`) — never palette utilities like `bg-purple-500`.
-- React projects: use the components in `adapters/react/index.jsx`.
-
-## 4. Hard rules
-
-Follow `docs/anti-slop.md`. In short:
-- No gradients (especially purple→pink), no gradient text, no glassmorphism stacks.
-- No emoji in headings, bullets or buttons.
-- No centered-everything; use asymmetric layouts (`.sidebar-layout`) and a shared left edge.
-- No 3-icon-card feature grid by default — prefer numbered steps, tables, or a real UI mock.
-- Button labels are verb + object. Headlines name a concrete outcome.
-- One accent color. Status colors only for status.
-- Every interactive element has hover, focus-visible and disabled states.
-- Real UI in the hero (built in HTML) instead of illustrations.
-
-## 5. Verify before you say it's done
+## 2. Study real references (don't design from memory)
 
 ```bash
-node tools/slop-lint.mjs <changed files or folder>     # must be 0 errors
-node tools/contrast-check.mjs                          # if you touched a skin
+node tools/find-reference.mjs "<subject or mood>"      # real sites in this space
+node tools/find-reference.mjs --show <domain>          # their palette, type, avoid-list
 ```
 
-Then view it at 390px and 1440px (use the `run` skill or Playwright if available)
-and fix anything that overflows, wraps badly, or loses hierarchy.
-Report what you checked and the lint result.
+Pick 2–3. Note their DNA: how they use colour (a reading key? section
+panels? one field colour?), their type roles, and their layout idea. Don't
+copy hex values or clone a site. If the network is unavailable, say so and
+reason from the skins' documented references in `skins/registry.js`.
+
+## 3. Plan
+
+- **Colour:** 4–6 named hex values, each with a job. Say whether there's a dominant `--field` colour.
+- **Type:** one or two families with distinct roles. Mono only for code and data.
+- **Layout:** one sentence plus an ASCII sketch; alignment (default flush-left).
+- **Principle:** one sentence on what makes this page unlike others in its category. Spend boldness in one place.
+
+Map it to the closest skin in `skins/registry.js`, or copy `skins/_template.css` for a custom one.
+
+## 4. Review the plan before building
+
+Check it against the default clusters (docs/anti-slop.md §2):
+1. cream + serif + terracotta;
+2. near-black + one acid green or vermilion;
+3. hairline broadsheet, zero radius, dense columns;
+4. identical rounded cards + grey shadow + gradient washes;
+5. template chrome: caps eyebrows, `A · B · C`, `WORD — fragment`, `#0B0B0B`, mono labels, `→` on links.
+
+If any part lands on a cluster without a reason from the brief, revise it and
+say what you changed and why.
+
+## 5. Build on the system
+
+- Load order: `tokens/base.css` → `skins/<skin>.css` → `components/components.css`. Start from the closest template in `templates/`.
+- Only tokens for colour, space, radius, type and motion. No mid-build hex values.
+- **Tailwind:** `adapters/tailwind` (`bg-accent`, `text-ink-muted`, `font-heading`, `rounded-skin`), never palette utilities. **React:** `adapters/react/index.jsx`.
+- No eyebrow above headings. No emoji or ★▲ glyph icons. No fake device or browser chrome. No gradient text. No side-stripe callouts. Elevation is declared once (border *or* shadow).
+- One orchestrated motion moment at most; no fade-up on every section; no toast for an effect that's already visible.
+- Real UI or real imagery in the hero, never a stock illustration or a stat block by default.
+
+## 6. Verify, fix once, stop
+
+```bash
+node tools/slop-lint.mjs <changed files or folder>   # 0 errors; justify any warning you keep
+node tools/contrast-check.mjs                        # if you touched a skin
+npm run check:layout                                 # templates in this repo (needs Playwright)
+```
+
+Screenshot at 390px and 1440px if a browser is available. Fix everything the
+screenshots show in one batch, confirm once, and stop polishing (I). Report
+what you checked, the lint result, and which references you drew on.

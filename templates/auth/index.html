@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en" data-skin="brutalist">
+<!-- Sample content: Pressroom and its newsletter figures are fictional. -->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,7 +20,7 @@
     .auth__form .inner { width: min(100%, 24rem); margin-block: auto; display: grid; gap: var(--space-5); padding-block: var(--space-7); }
     .auth__form h1 { font-size: var(--text-4xl); }
     .brand { font-family: var(--font-display); font-weight: var(--display-weight); text-transform: var(--display-transform); letter-spacing: var(--display-tracking); font-size: var(--text-xl); color: var(--ink); text-decoration: none; }
-    .divider { display: grid; grid-template-columns: 1fr auto 1fr; gap: var(--space-3); align-items: center; font-size: var(--text-xs); color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .divider { display: grid; grid-template-columns: 1fr auto 1fr; gap: var(--space-3); align-items: center; font-size: var(--text-sm); color: var(--ink-muted); }
     .divider::before, .divider::after { content: ""; border-top: var(--border-w) solid var(--line); }
     .pw { position: relative; }
     .pw .input { padding-right: 4.5rem; }
@@ -29,10 +30,9 @@
     .w-full { width: 100%; }
     .fine { font-size: var(--text-sm); color: var(--ink-muted); }
 
-    .auth__aside { background: var(--accent); color: var(--accent-ink); padding: var(--space-8) var(--gutter); display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-7); border-left: var(--border-w) solid var(--line); }
+    .auth__aside { background: var(--surface-2); color: var(--ink); padding: var(--space-8) var(--gutter); display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-7); border-left: var(--border-w) solid var(--line); }
     @media (max-width: 60rem) { .auth__aside { border-left: 0; border-top: var(--border-w) solid var(--line); } }
     .auth__aside h2 { font-size: var(--text-4xl); max-width: 14ch; }
-    .auth__aside .eyebrow { color: inherit; opacity: 0.8; }
     .issue { background: var(--surface); color: var(--ink); border: var(--border-w) solid var(--line); box-shadow: var(--shadow-2); border-radius: var(--radius-lg); padding: var(--space-5); display: grid; gap: var(--space-3); max-width: 30rem; }
     .issue__row { display: flex; justify-content: space-between; gap: var(--space-4); font-size: var(--text-sm); }
     .issue__row + .issue__row { border-top: var(--border-w) solid var(--line); padding-top: var(--space-3); }
@@ -59,7 +59,7 @@
           <div class="field">
             <label for="email">Email</label>
             <input class="input" id="email" name="email" type="email" autocomplete="email" placeholder="you@yournewsletter.com" aria-describedby="email-error">
-            <p class="error" id="email-error" hidden></p>
+            <p class="error" id="email-error"></p>
           </div>
           <div class="field">
             <div class="label-row"><label for="password">Password</label><a href="#">Forgot it?</a></div>
@@ -67,7 +67,7 @@
               <input class="input" id="password" name="password" type="password" autocomplete="current-password" aria-describedby="pw-error">
               <button class="btn btn--ghost btn--sm" type="button" id="toggle-pw" aria-controls="password" aria-pressed="false">Show</button>
             </div>
-            <p class="error" id="pw-error" hidden></p>
+            <p class="error" id="pw-error"></p>
           </div>
           <label class="check"><input type="checkbox" name="remember" checked> Keep me signed in on this device for 30 days</label>
           <button class="btn btn--primary btn--lg w-full" type="submit">Sign in to Pressroom</button>
@@ -75,19 +75,16 @@
 
         <p class="fine">Prefer no password? <a href="#">Email me a sign-in link</a>.</p>
       </div>
-      <p class="fine">© 2026 Pressroom · <a href="#">Privacy</a> · <a href="#">Status</a></p>
+      <p class="fine cluster" style="--cluster:var(--space-4)"><span>© 2026 Pressroom</span><a href="#">Privacy</a><a href="#">Status</a></p>
     </section>
 
     <aside class="auth__aside" aria-label="What's scheduled">
-      <div class="stack">
-        <span class="eyebrow">Your desk this week</span>
-        <h2>Three issues queued. One still needs a subject line.</h2>
-      </div>
+      <h2>This week: three issues queued, one still needs a subject line.</h2>
       <div class="issue">
-        <div class="issue__row"><strong>No. 118 — The rent issue</strong><span class="badge badge--success">Tue 07:00</span></div>
-        <div class="issue__row"><span>No. 119 — Reader mailbag</span><span class="badge">Thu 07:00</span></div>
-        <div class="issue__row"><span>No. 120 — <em>untitled</em></span><span class="badge badge--danger">Needs subject</span></div>
-        <p class="fine">4,812 subscribers · 61% average open rate over 12 issues</p>
+        <div class="issue__row"><strong>No. 118: The rent issue</strong><span class="badge badge--success">Tue 07:00</span></div>
+        <div class="issue__row"><span>No. 119: Reader mailbag</span><span class="badge">Thu 07:00</span></div>
+        <div class="issue__row"><span>No. 120: <em>untitled</em></span><span class="badge badge--danger">Needs subject</span></div>
+        <p class="fine">4,812 subscribers. Average open rate over the last 12 issues: 61%.</p>
       </div>
     </aside>
   </main>
@@ -104,7 +101,6 @@
     });
     const setError = (input, el, msg) => {
       input.setAttribute("aria-invalid", msg ? "true" : "false");
-      el.hidden = !msg;
       el.textContent = msg || "";
     };
     const submit = form.querySelector('[type="submit"]');

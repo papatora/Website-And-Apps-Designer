@@ -1,5 +1,8 @@
 <!doctype html>
 <html lang="en" data-skin="editorial">
+<!-- Sample content: Van Heusden Ceramics, its prices, stock and reviews are fictional.
+     The bowl is drawn in CSS so the template ships without images: replace the
+     .stage with real product photography. -->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +32,7 @@
     .thumbs .mini { width: 50%; aspect-ratio: 1; border-radius: 50%; background: var(--glaze); }
     .thumbs .side { width: 60%; height: 34%; border-radius: 0 0 50% 50% / 0 0 100% 100%; background: var(--glaze); }
 
-    .buy { display: grid; gap: var(--space-5); position: sticky; top: var(--space-5); }
+    .buy { display: grid; gap: var(--space-5); position: sticky; top: calc(4rem + var(--space-5)); }
     .buy h1 { font-size: var(--text-4xl); }
     .price { font-family: var(--font-display); font-size: var(--text-2xl); font-variant-numeric: tabular-nums; }
     .rating { font-size: var(--text-sm); color: var(--ink-muted); }
@@ -45,9 +48,9 @@
     .swatch input:focus-visible + span { outline: 2px solid var(--focus); outline-offset: 4px; }
 
     .qty-row { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-3); }
-    .qty-row .btn { white-space: normal; padding-inline: var(--space-4); text-align: center; }
+    .qty-row .btn { padding-inline: var(--space-4); }
     .qty { display: inline-flex; border: var(--border-w) solid var(--line); border-radius: var(--radius); background: var(--surface); }
-    .qty button { width: 2.75rem; border: 0; background: none; cursor: pointer; font-size: var(--text-lg); }
+    .qty button { width: 2.75rem; border: 0; background: none; cursor: pointer; display: grid; place-items: center; }
     .qty input { width: 2.75rem; text-align: center; border: 0; background: none; font-variant-numeric: tabular-nums; -moz-appearance: textfield; }
     .qty input::-webkit-inner-spin-button { -webkit-appearance: none; }
     .facts { list-style: none; padding: 0; display: grid; gap: var(--space-2); font-size: var(--text-sm); border-top: var(--border-w) solid var(--line); padding-top: var(--space-4); }
@@ -62,13 +65,11 @@
     .reviews { display: grid; gap: var(--space-6); }
     @media (min-width: 60rem) { .reviews { grid-template-columns: 4fr 8fr; } }
     .review { border-top: var(--border-w) solid var(--line); padding-top: var(--space-4); display: grid; gap: var(--space-2); }
-    .stars { letter-spacing: 0.1em; color: var(--accent); }
-    .bar { display: grid; grid-template-columns: 2rem 1fr 2.5rem; gap: var(--space-2); align-items: center; font-size: var(--text-sm); font-variant-numeric: tabular-nums; }
+    .stars { display: inline-flex; gap: 2px; color: var(--ink); vertical-align: -0.1em; }
+    .bar { display: grid; grid-template-columns: 3.5rem minmax(0, 1fr) 2.5rem; gap: var(--space-2); align-items: center; font-size: var(--text-sm); font-variant-numeric: tabular-nums; }
     .bar span:nth-child(2) { height: 6px; background: var(--surface-2); border-radius: var(--radius-pill); overflow: hidden; }
     .bar i { display: block; height: 100%; background: var(--ink); }
 
-    .toast { position: fixed; left: 50%; bottom: var(--space-5); translate: -50% calc(100% + var(--space-6)); visibility: hidden; background: var(--ink); color: var(--bg); padding: var(--space-3) var(--space-5); border-radius: var(--radius); font-size: var(--text-sm); transition: translate var(--dur-3) var(--ease-out), visibility 0s linear var(--dur-3); z-index: var(--z-toast); }
-    .toast[data-show] { translate: -50% 0; visibility: visible; transition-delay: 0s; }
   </style>
 </head>
 <body>
@@ -95,19 +96,18 @@
         <div class="thumbs" aria-label="More views">
           <button type="button" aria-pressed="true" aria-label="Top view"><span class="mini"></span></button>
           <button type="button" aria-pressed="false" aria-label="Side view"><span class="side"></span></button>
-          <button type="button" aria-pressed="false" aria-label="Stack of four"><span class="mini" style="box-shadow:6px 6px 0 var(--line)"></span></button>
+          <button type="button" aria-pressed="false" aria-label="Stack of four"><span class="mini" style="outline:2px solid var(--glaze);outline-offset:4px"></span></button>
           <button type="button" aria-pressed="false" aria-label="Foot ring with maker's stamp"><span class="mini" style="width:30%"></span></button>
         </div>
       </div>
 
       <form class="buy" id="buy">
         <div class="stack" style="--stack:var(--space-2)">
-          <p class="eyebrow">Stoneware · made in Delft</p>
           <h1>Kiln bowl, 16 cm</h1>
-          <p class="rating"><span class="stars" aria-hidden="true">★★★★★</span> 4.8 from 312 reviews</p>
+          <p class="rating"><span class="stars" role="img" aria-label="5 out of 5 stars"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5-4.9-4.6 6.6-.8z"/></svg><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5-4.9-4.6 6.6-.8z"/></svg><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5-4.9-4.6 6.6-.8z"/></svg><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5-4.9-4.6 6.6-.8z"/></svg><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5-4.9-4.6 6.6-.8z"/></svg></span> 4.8 from 312 reviews</p>
         </div>
         <p class="price">€34.00</p>
-        <p class="muted">Thrown by hand in batches of 40 and fired at 1,280 °C, so it's heavier than it looks and won't chip on the dishwasher rack. Sized for soup, ramen or a salad for one.</p>
+        <p class="muted">Stoneware, thrown by hand in Delft in batches of 40 and fired at 1,280 °C, so it's heavier than it looks and won't chip on the dishwasher rack. Sized for soup, ramen or a salad for one.</p>
 
         <fieldset>
           <legend>Glaze: <span id="glaze-name">Ash</span></legend>
@@ -120,12 +120,12 @@
 
         <div class="qty-row">
           <div class="qty">
-            <button type="button" data-step="-1" aria-label="One fewer">−</button>
+            <button type="button" data-step="-1" aria-label="One fewer"><svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10"/></svg></button>
             <label class="visually-hidden" for="qty">Quantity</label>
             <input id="qty" name="qty" type="number" min="1" max="12" value="1" inputmode="numeric">
-            <button type="button" data-step="1" aria-label="One more">+</button>
+            <button type="button" data-step="1" aria-label="One more"><svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M8 3v10"/></svg></button>
           </div>
-          <button class="btn btn--primary btn--lg" type="submit"><span>Add to bag · <span id="total">€34.00</span></span></button>
+          <button class="btn btn--primary btn--lg" type="submit" id="add">Add to bag</button>
         </div>
 
         <ul class="facts">
@@ -148,32 +148,30 @@
           <h2 id="rev-h" class="h3">What owners say</h2>
           <p class="muted small">312 reviews from verified orders.</p>
           <div class="stack" style="--stack:var(--space-2)">
-            <div class="bar"><span>5★</span><span><i style="width:84%"></i></span><span>262</span></div>
-            <div class="bar"><span>4★</span><span><i style="width:11%"></i></span><span>34</span></div>
-            <div class="bar"><span>3★</span><span><i style="width:3%"></i></span><span>10</span></div>
-            <div class="bar"><span>2★</span><span><i style="width:1%"></i></span><span>4</span></div>
-            <div class="bar"><span>1★</span><span><i style="width:1%"></i></span><span>2</span></div>
+            <div class="bar"><span>5 stars</span><span><i style="width:84%"></i></span><span>262</span></div>
+            <div class="bar"><span>4 stars</span><span><i style="width:11%"></i></span><span>34</span></div>
+            <div class="bar"><span>3 stars</span><span><i style="width:3%"></i></span><span>10</span></div>
+            <div class="bar"><span>2 stars</span><span><i style="width:1%"></i></span><span>4</span></div>
+            <div class="bar"><span>1 star</span><span><i style="width:1%"></i></span><span>2</span></div>
           </div>
         </div>
         <div class="stack" style="--stack:var(--space-5)">
-          <article class="review"><span class="stars" aria-label="5 out of 5">★★★★★</span><h3 class="h4">Survived two years and a toddler</h3><p class="small">Bought four in Oxblood in 2024. One has been dropped on tiles twice. Still no chips.</p><p class="small muted">Femke, Utrecht · Oxblood</p></article>
-          <article class="review"><span class="stars" aria-label="4 out of 5">★★★★☆</span><h3 class="h4">Smaller than I pictured</h3><p class="small">Perfect for soup, a bit tight for a big salad. Check the 650 ml before ordering. The glaze is beautiful in daylight.</p><p class="small muted">Tom, Ghent · Celadon</p></article>
-          <article class="review"><span class="stars" aria-label="5 out of 5">★★★★★</span><h3 class="h4">Each one is slightly different</h3><p class="small">My set of six has visible throwing lines that vary bowl to bowl. That's why I bought handmade.</p><p class="small muted">Jana, Berlin · Ash</p></article>
+          <article class="review"><span class="stars" role="img" aria-label="5 out of 5 stars"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5-4.9-4.6 6.6-.8z"/></svg><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5-4.9-4.6 6.6-.8z"/></svg><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5-4.9-4.6 6.6-.8z"/></svg><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5-4.9-4.6 6.6-.8z"/></svg><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5-4.9-4.6 6.6-.8z"/></svg></span><h3 class="h4">Survived two years and a toddler</h3><p class="small">Bought four in Oxblood in 2024. One has been dropped on tiles twice. Still no chips.</p><p class="small muted">Femke in Utrecht, bought Oxblood</p></article>
+          <article class="review"><span class="stars" role="img" aria-label="4 out of 5 stars"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5-4.9-4.6 6.6-.8z"/></svg><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5-4.9-4.6 6.6-.8z"/></svg><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5-4.9-4.6 6.6-.8z"/></svg><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5-4.9-4.6 6.6-.8z"/></svg><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5-4.9-4.6 6.6-.8z"/></svg></span><h3 class="h4">Smaller than I pictured</h3><p class="small">Perfect for soup, a bit tight for a big salad. Check the 650 ml before ordering. The glaze is beautiful in daylight.</p><p class="small muted">Tom in Ghent, bought Celadon</p></article>
+          <article class="review"><span class="stars" role="img" aria-label="5 out of 5 stars"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5-4.9-4.6 6.6-.8z"/></svg><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5-4.9-4.6 6.6-.8z"/></svg><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5-4.9-4.6 6.6-.8z"/></svg><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5-4.9-4.6 6.6-.8z"/></svg><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5-4.9-4.6 6.6-.8z"/></svg></span><h3 class="h4">Each one is slightly different</h3><p class="small">My set of six has visible throwing lines that vary bowl to bowl. That's why I bought handmade.</p><p class="small muted">Jana in Berlin, bought Ash</p></article>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer"><div class="container split"><span>Van Heusden Ceramics · Delft since 1914</span><span class="cluster"><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Wholesale</a></span></div></footer>
+  <footer class="footer"><div class="container split"><span>Van Heusden Ceramics, Delft, since 1914</span><span class="cluster"><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Wholesale</a></span></div></footer>
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <p class="visually-hidden" id="bag-status" role="status" aria-live="polite"></p>
 
   <script>
     const form = document.getElementById("buy");
     const qty = document.getElementById("qty");
     const stage = document.getElementById("stage");
-    const price = 34;
-    const eur = (n) => "€" + n.toFixed(2);
     const setGlaze = (input) => {
       stage.style.setProperty("--glaze", input.dataset.color);
       document.querySelectorAll(".thumbs").forEach((t) => t.style.setProperty("--glaze", input.dataset.color));
@@ -182,7 +180,6 @@
     };
     const update = () => {
       qty.value = Math.min(12, Math.max(1, parseInt(qty.value, 10) || 1));
-      document.getElementById("total").textContent = eur(price * qty.value);
     };
     form.querySelectorAll("[name=glaze]").forEach((r) => r.addEventListener("change", () => setGlaze(r)));
     setGlaze(form.querySelector("[name=glaze]:checked"));
@@ -193,12 +190,13 @@
     }));
     form.addEventListener("submit", (e) => {
       e.preventDefault();
+      // The bag count in the header is the confirmation; no celebratory toast.
       const count = document.getElementById("bag-count");
       count.textContent = +count.textContent + +qty.value;
-      const toast = document.getElementById("toast");
-      toast.textContent = `Added ${qty.value} × Kiln bowl (${form.glaze.value}) to your bag`;
-      toast.setAttribute("data-show", "");
-      setTimeout(() => toast.removeAttribute("data-show"), 2600);
+      document.getElementById("bag-status").textContent = `Added ${qty.value} × Kiln bowl (${form.glaze.value}) to your bag`;
+      const add = document.getElementById("add");
+      add.textContent = "Added to bag";
+      setTimeout(() => (add.textContent = "Add to bag"), 1800);
     });
   </script>
 </body>

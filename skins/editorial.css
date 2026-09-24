@@ -1,37 +1,43 @@
-/* Editorial — newspaper & long-form magazine. Serif-led, paper tones,
-   oxblood accent, hairline rules instead of boxes and shadows.
-   Good for: publications, blogs, essays, law/finance firms, bookish brands. */
+/* Editorial — a serious magazine that knows when to step back.
+   DNA from aeon.co (via Fudge DESIGN.md): black-and-white reading base, a
+   serif display voice over a sober sans, color used as a reading key, one
+   deep red for the action. Not cream, not a broadsheet.
+   Good for: publications, essays, research, cultural institutions. */
 
 [data-skin="editorial"] {
   color-scheme: light dark;
 
   --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
-  --font-body: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+  --font-body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --display-weight: 560;
-  --display-tracking: -0.022em;
+  --display-weight: 600;
+  --display-tracking: -0.02em;
   --display-transform: none;
   --body-weight: 400;
-  --eyebrow-tracking: 0.12em;
 
-  --bg: light-dark(#f5f0e6, #15120e);
-  --surface: light-dark(#fbf8f2, #1d1914);
-  --surface-2: light-dark(#ece5d7, #27221b);
-  --ink: light-dark(#1c1915, #ece5d8);
-  --ink-muted: light-dark(#5a5247, #a79d8e);
-  --line: light-dark(#d6ccba, #3a3329);
+  /* Pure black on white on purpose — the reference does the same. */
+  --bg: light-dark(#ffffff, #000000);
+  --surface: light-dark(#ffffff, #121212);
+  --surface-2: light-dark(#f1f1ef, #1f1f1f);
+  --ink: light-dark(#000000, #ffffff);
+  --ink-muted: light-dark(#5f5f5f, #a8a8a8);
+  --line: light-dark(#dadad6, #333333);
 
-  --accent: light-dark(#8c2f1e, #e58a72);
-  --accent-ink: light-dark(#fbf8f2, #15120e);
+  --accent: light-dark(#a3170f, #ff7a6b);
+  --accent-ink: light-dark(#ffffff, #000000);
+
+  /* The essay stage: a black field inside a light page. */
+  --field: light-dark(#000000, #1c1c1c);
+  --field-ink: light-dark(#ffffff, #ffffff);
 
   --focus: light-dark(#1f56b3, #8db4ff);
-  --success: light-dark(#2d6a39, #82c48e);
-  --warning: light-dark(#8a5a00, #e6b457);
-  --danger: light-dark(#a3261b, #ff8b7c);
+  --success: light-dark(#0c6b5f, #6fd3c3);
+  --warning: light-dark(#8a5300, #e8b25e);
+  --danger: light-dark(#a3170f, #ff8b7c);
 
   --radius: var(--radius-1);
   --radius-lg: var(--radius-2);
   --border-w: 1px;
   --shadow-1: none;
-  --shadow-2: 0 1px 0 var(--line);
+  --shadow-2: 0 8px 24px -8px light-dark(#00000033, #000000cc);
 }

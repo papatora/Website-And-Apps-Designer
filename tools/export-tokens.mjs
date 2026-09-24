@@ -27,7 +27,7 @@ const resolve = (v) => {
   return ref ? baseVar(ref[1]) : v;
 };
 
-const COLOR_ROLES = ["bg", "surface", "surface-2", "ink", "ink-muted", "line", "accent", "accent-ink", "link", "focus", "success", "warning", "danger"];
+const COLOR_ROLES = ["bg", "surface", "surface-2", "ink", "ink-muted", "line", "accent", "accent-ink", "link", "field", "field-ink", "focus", "success", "warning", "danger"];
 
 function build(file) {
   const css = readFileSync(file, "utf8");
@@ -40,7 +40,7 @@ function build(file) {
   for (const m of base.matchAll(/--space-(\d+):\s*([^;]+);/g)) space[m[1]] = { $type: "dimension", $value: toPx(m[2].trim()) };
 
   return {
-    $description: `${skin} skin — generated from skins/${skin}.css by tools/export-tokens.mjs. Do not edit by hand.`,
+    $description: `${skin} skin, generated from skins/${skin}.css by tools/export-tokens.mjs. Do not edit by hand.`,
     color: { light: color("light"), dark: color("dark") },
     font: {
       display: { $type: "fontFamily", $value: family("--font-display") },

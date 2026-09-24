@@ -4,14 +4,16 @@ Skins, templates, references and tools for building websites and apps that
 **look designed, not generated**.
 
 Most "AI slop" isn't caused by AI. It comes from decisions nobody made: the
-default font, the default gradient, the default three-card section, the
-default copy. This kit makes those decisions for you, explains why, and gives
-you a linter that catches them when they creep back in.
+statistical defaults of the training data. This kit is built on published
+research into those defaults (Anthropic's `frontend-design` skill, Impeccable,
+Hallmark) and on 1,160 design guides of real websites (Fudge DESIGN.md). See
+[`docs/research.md`](docs/research.md) for the sources and where they disagree.
 
-- **8 skins**: complete visual identities (type pairing, palette, shape, depth) in light and dark, all passing WCAG AA
+- **8 skins**, each built on the design DNA of a real website, in light and dark, all passing WCAG AA
 - **8 templates** (landing, dashboard, mobile app, portfolio, article, docs, product page, sign-in), written with real copy
 - **1 component layer** that restyles itself to any skin
-- **`slop-lint`**: flags the patterns that make a UI look machine-made
+- **`slop-lint`**: 41 rules for the patterns that make a UI look machine-made, each tagged with its source
+- **`find-reference`**: searches 1,160 real-site design guides by subject, so a design starts from real references instead of memory
 - **`contrast-check`**: verifies every skin's color pairs in both modes
 - **Adapters** for Tailwind (v3 and v4), React, and Figma (design tokens JSON)
 - **Claude Code skills**, prompts and checklists so AI tools follow the same rules
@@ -22,6 +24,7 @@ Plain HTML and CSS. No build step, no runtime dependencies.
 
 ```bash
 npm run dev                  # gallery at http://localhost:4321
+node tools/find-reference.mjs "bakery"      # real sites to learn from
 npm run new -- --list        # see templates and skins
 npm run new -- --template landing --skin editorial --out ../my-site
 npm run lint:slop -- ../my-site
@@ -32,16 +35,20 @@ Open any template with `?skin=<id>` to preview it in another skin, e.g.
 
 ## Skins
 
-| Skin | Voice | Type | Good for |
+| Skin | Built on | Type | Good for |
 |---|---|---|---|
-| `editorial` | Literary, trustworthy | Fraunces + Source Serif 4 | Publications, essays, law & finance |
-| `swiss` | Authoritative, neutral | Archivo | Agencies, architecture, serious products |
-| `brutalist` | Loud, structural | Anton + IBM Plex Sans | Indie tools, zines, events |
-| `terminal` | Technical, dense (dark-first) | JetBrains Mono | Dev tools, infra dashboards, docs |
-| `studio` | Warm, crafted | Bricolage Grotesque + Figtree | Consumer apps, small businesses |
-| `noir` | Premium, quiet (dark-first) | Cormorant Garamond + Manrope | Fashion, hospitality, portfolios |
-| `clarity` | Calm, precise | Public Sans | Fintech, healthcare, B2B, public services |
-| `riso` | Playful, printed | Syne + Work Sans | Creative events, community, education |
+| `editorial` | aeon.co: black on white, serif essay voice, one deep red | Fraunces + Instrument Sans | Publications, essays, research |
+| `swiss` | asml.com: deep blue fields, bold grotesk, yellow marks | Archivo | Engineering, architecture, B2B |
+| `brutalist` | almost-pearfect.com: poster wall, red field, caps | Anton + IBM Plex Sans | Indie brands, events, labels |
+| `terminal` | ampcode.com: teal-tinted dark, amber action, mono for code | Chivo + Chivo Mono | Dev tools, infra, APIs |
+| `studio` | bugster.dev: cool paper, electric blue, lime highlights | Bricolage Grotesque + Figtree | Consumer apps, creator tools |
+| `noir` | closdessens.com: forest-black, ochre, section panels | Cormorant Garamond + Manrope | Restaurants, hotels, fashion |
+| `clarity` | column.com: grey canvas, navy ink, deep teal | Public Sans | Fintech, banking, healthcare |
+| `riso` | 247artists.com + real Riso inks | Syne + Hanken Grotesk | Events, print fairs, education |
+
+Each skin takes a reference's *logic* (how it uses colour, type roles, layout
+idea), never its exact values. The links to each reference's guide are in
+`skins/registry.js` and on the gallery page.
 
 Every skin implements the same contract (`skins/_template.css`), so any
 template or component works with any skin. Colors are written once as
@@ -58,10 +65,10 @@ templates/*/index.html     landing · dashboard · mobile-app · portfolio · ar
 tokens/figma/*.json        every skin as W3C design tokens (generated)
 adapters/tailwind/         Tailwind v4 theme.css + v3 preset.cjs
 adapters/react/            SkinProvider, Button, Badge, Card, Field, Stat, Callout, Eyebrow
-docs/                      anti-slop guide, typography, color, layout, motion, copy, a11y, components, references
+docs/                      research (sources), anti-slop guide, typography, color, layout, motion, copy, a11y, components, references
 checklists/                design review + ship checklists
 prompts/                   system prompt, design brief, section recipes for any AI tool
-tools/                     slop-lint · contrast-check · export-tokens · new-project · serve
+tools/                     slop-lint · find-reference · contrast-check · export-tokens · new-project · layout-check · serve
 .claude/skills/            anti-slop-design · design-review · scaffold-site
 ```
 

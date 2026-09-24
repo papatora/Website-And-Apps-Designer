@@ -20,7 +20,11 @@ animation communicates, remove it.
 - **Animate `transform` and `opacity`.** Not `width`, `height`, `top`, or `all`.
 - **Exit faster than enter** (~70% of the duration).
 - **Distance small.** 4–12px slide-ins, not 100px.
-- **No scroll-triggered fade-up on every section.** It's the motion equivalent of the purple gradient. Reveal only what benefits from sequencing.
+- **One orchestrated moment.** A single page-load sequence or one reveal lands better than scattered effects. A fade-and-slide-up on every section, and hover transitions on every card, read as generated (A, I, H).
+- **Motion that answers an action is welcome** (opening, expanding, confirming) when it shows what changed (A).
+- **No overshoot on UI state.** Keep bouncy easing (`--ease-spring`) for physical interactions like drag and throw (H).
+- **Focus rings appear instantly.** Never transition them in (H).
+- **Silent success.** If the result is already visible (a count goes up, a row appears), don't add a celebratory toast (H). If you confirm, reuse the action's name: Publish → "Published" (A).
 - **Respect `prefers-reduced-motion`.** The tokens drop to 0ms automatically; don't hardcode durations.
 - **Loading:** skeletons for layout-shaped content (`.skeleton`), spinners only for short, unknown waits.
 

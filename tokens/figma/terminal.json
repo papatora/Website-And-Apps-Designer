@@ -1,42 +1,50 @@
 {
-  "$description": "terminal skin — generated from skins/terminal.css by tools/export-tokens.mjs. Do not edit by hand.",
+  "$description": "terminal skin, generated from skins/terminal.css by tools/export-tokens.mjs. Do not edit by hand.",
   "color": {
     "light": {
       "bg": {
         "$type": "color",
-        "$value": "#f2f3ec"
+        "$value": "#eef3f1"
       },
       "surface": {
         "$type": "color",
-        "$value": "#fbfbf6"
+        "$value": "#ffffff"
       },
       "surface-2": {
         "$type": "color",
-        "$value": "#e4e6da"
+        "$value": "#e1e9e6"
       },
       "ink": {
         "$type": "color",
-        "$value": "#171c13"
+        "$value": "#09191a"
       },
       "ink-muted": {
         "$type": "color",
-        "$value": "#535c4a"
+        "$value": "#4b5e59"
       },
       "line": {
         "$type": "color",
-        "$value": "#c9cdbb"
+        "$value": "#c9d6d1"
       },
       "accent": {
         "$type": "color",
-        "$value": "#1d6f1d"
+        "$value": "#9a4a00"
       },
       "accent-ink": {
         "$type": "color",
-        "$value": "#fbfbf6"
+        "$value": "#ffffff"
       },
       "link": {
         "$type": "color",
-        "$value": "#1d6f1d"
+        "$value": "#9a4a00"
+      },
+      "field": {
+        "$type": "color",
+        "$value": "#09191a"
+      },
+      "field-ink": {
+        "$type": "color",
+        "$value": "#e4ece6"
       },
       "focus": {
         "$type": "color",
@@ -44,11 +52,11 @@
       },
       "success": {
         "$type": "color",
-        "$value": "#1d6f1d"
+        "$value": "#0c6b45"
       },
       "warning": {
         "$type": "color",
-        "$value": "#7d5a00"
+        "$value": "#8a5300"
       },
       "danger": {
         "$type": "color",
@@ -58,51 +66,59 @@
     "dark": {
       "bg": {
         "$type": "color",
-        "$value": "#0b0d0a"
+        "$value": "#09191a"
       },
       "surface": {
         "$type": "color",
-        "$value": "#11140f"
+        "$value": "#0f2223"
       },
       "surface-2": {
         "$type": "color",
-        "$value": "#192016"
+        "$value": "#16302f"
       },
       "ink": {
         "$type": "color",
-        "$value": "#d2e3c7"
+        "$value": "#e4ece6"
       },
       "ink-muted": {
         "$type": "color",
-        "$value": "#869a7b"
+        "$value": "#94a79e"
       },
       "line": {
         "$type": "color",
-        "$value": "#253020"
+        "$value": "#24403f"
       },
       "accent": {
         "$type": "color",
-        "$value": "#7dff6a"
+        "$value": "#ffb020"
       },
       "accent-ink": {
         "$type": "color",
-        "$value": "#0b0d0a"
+        "$value": "#09191a"
       },
       "link": {
         "$type": "color",
-        "$value": "#7dff6a"
+        "$value": "#ffb020"
+      },
+      "field": {
+        "$type": "color",
+        "$value": "#0f2223"
+      },
+      "field-ink": {
+        "$type": "color",
+        "$value": "#e4ece6"
       },
       "focus": {
         "$type": "color",
-        "$value": "#6ee7ff"
+        "$value": "#7cc4ff"
       },
       "success": {
         "$type": "color",
-        "$value": "#7dff6a"
+        "$value": "#5cf2a6"
       },
       "warning": {
         "$type": "color",
-        "$value": "#ffd166"
+        "$value": "#ffb020"
       },
       "danger": {
         "$type": "color",
@@ -113,15 +129,15 @@
   "font": {
     "display": {
       "$type": "fontFamily",
-      "$value": "JetBrains Mono"
+      "$value": "Chivo"
     },
     "body": {
       "$type": "fontFamily",
-      "$value": "JetBrains Mono"
+      "$value": "Chivo"
     },
     "mono": {
       "$type": "fontFamily",
-      "$value": "JetBrains Mono"
+      "$value": "Chivo Mono"
     },
     "display-weight": {
       "$type": "fontWeight",
@@ -129,17 +145,17 @@
     },
     "display-tracking": {
       "$type": "dimension",
-      "$value": "-0.03em"
+      "$value": "-0.025em"
     }
   },
   "radius": {
     "default": {
       "$type": "dimension",
-      "$value": "2px"
+      "$value": "6px"
     },
     "large": {
       "$type": "dimension",
-      "$value": "2px"
+      "$value": "6px"
     }
   },
   "border": {

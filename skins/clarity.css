@@ -1,28 +1,32 @@
-/* Clarity — calm, precise, trustworthy. One neutral grotesk, cool greys,
-   a confident blue, small radius, quiet elevation.
-   Good for: fintech, healthcare, B2B SaaS, government and public services. */
+/* Clarity — institutional credibility with engineering precision. Light
+   grey canvas, white surfaces, navy ink, a deep teal action, and navy
+   feature sections for contrast.
+   DNA from column.com (via Fudge DESIGN.md).
+   Good for: fintech, banking, healthcare, B2B, public services. */
 
 [data-skin="clarity"] {
   color-scheme: light dark;
 
-  --font-display: "Public Sans", "Segoe UI", system-ui, sans-serif;
-  --font-body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Public Sans", "Segoe UI", Arial, sans-serif;
+  --font-body: "Public Sans", "Segoe UI", Arial, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
-  --display-weight: 700;
+  --display-weight: 650;
   --display-tracking: -0.025em;
   --display-transform: none;
   --body-weight: 400;
-  --eyebrow-tracking: 0.08em;
 
-  --bg: light-dark(#f6f8fa, #0e1116);
-  --surface: light-dark(#ffffff, #151a21);
-  --surface-2: light-dark(#eef1f5, #1c232c);
-  --ink: light-dark(#0f1720, #e6edf3);
-  --ink-muted: light-dark(#4f5b67, #9aa7b4);
-  --line: light-dark(#d5dce4, #2a333e);
+  --bg: light-dark(#f5f5f7, #0b1627);
+  --surface: light-dark(#ffffff, #111e30);
+  --surface-2: light-dark(#ececf0, #1a2a42);
+  --ink: light-dark(#0b1627, #e8edf5);
+  --ink-muted: light-dark(#566074, #9dabc2);
+  --line: light-dark(#dcdee5, #26374f);
 
-  --accent: light-dark(#1f5fd1, #6ea8ff);
-  --accent-ink: light-dark(#ffffff, #0e1116);
+  --accent: light-dark(#0b6f57, #2dd4a8);
+  --accent-ink: light-dark(#ffffff, #0b1627);
+
+  --field: light-dark(#0b1627, #111e30);
+  --field-ink: light-dark(#e8edf5, #e8edf5);
 
   --focus: light-dark(#0b57d0, #9cc2ff);
   --success: light-dark(#1a7f37, #57d38c);
@@ -33,5 +37,5 @@
   --radius-lg: var(--radius-3);
   --border-w: 1px;
   --shadow-1: none;
-  --shadow-2: 0 1px 2px light-dark(#0f172014, #00000066);
+  --shadow-2: 0 12px 32px -12px light-dark(#0b162733, #000000cc);
 }

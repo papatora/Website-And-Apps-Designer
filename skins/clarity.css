@@ -1,0 +1,37 @@
+/* Clarity — calm, precise, trustworthy. One neutral grotesk, cool greys,
+   a confident blue, small radius, quiet elevation.
+   Good for: fintech, healthcare, B2B SaaS, government and public services. */
+
+[data-skin="clarity"] {
+  color-scheme: light dark;
+
+  --font-display: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --display-weight: 700;
+  --display-tracking: -0.025em;
+  --display-transform: none;
+  --body-weight: 400;
+  --eyebrow-tracking: 0.08em;
+
+  --bg: light-dark(#f6f8fa, #0e1116);
+  --surface: light-dark(#ffffff, #151a21);
+  --surface-2: light-dark(#eef1f5, #1c232c);
+  --ink: light-dark(#0f1720, #e6edf3);
+  --ink-muted: light-dark(#4f5b67, #9aa7b4);
+  --line: light-dark(#d5dce4, #2a333e);
+
+  --accent: light-dark(#1f5fd1, #6ea8ff);
+  --accent-ink: light-dark(#ffffff, #0e1116);
+
+  --focus: light-dark(#0b57d0, #9cc2ff);
+  --success: light-dark(#1a7f37, #57d38c);
+  --warning: light-dark(#8a5a00, #e3b341);
+  --danger: light-dark(#c62828, #ff8a80);
+
+  --radius: var(--radius-2);
+  --radius-lg: var(--radius-3);
+  --border-w: 1px;
+  --shadow-1: none;
+  --shadow-2: 0 1px 2px light-dark(#0f172014, #00000066);
+}

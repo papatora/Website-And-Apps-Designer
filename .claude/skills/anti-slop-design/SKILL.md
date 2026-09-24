@@ -20,7 +20,7 @@ Before writing markup, state in 3–5 lines:
 ## 2. Choose a skin
 
 Read `skins/registry.js`. Match the voice to a skin (editorial, swiss,
-brutalist, terminal, studio, noir). If none fits, copy `skins/_template.css`
+brutalist, terminal, studio, noir, clarity, riso). If none fits, copy `skins/_template.css`
 and fill every variable; then run `node tools/contrast-check.mjs`.
 
 ## 3. Build on the system
@@ -28,8 +28,9 @@ and fill every variable; then run `node tools/contrast-check.mjs`.
 - Load order: `tokens/base.css` → `skins/<skin>.css` → `components/components.css`.
 - Use only tokens for color, space, radius, type size and motion. No raw hex in components.
 - Start from the closest template in `templates/` rather than a blank file.
-- For React/Tailwind projects: map the skin variables into the theme
-  (`colors: { bg: 'var(--bg)', ink: 'var(--ink)', accent: 'var(--accent)' … }`) instead of using palette utilities.
+- Tailwind projects: use `adapters/tailwind` (v4 `theme.css` or v3 `preset.cjs`) and its classes
+  (`bg-accent`, `text-ink-muted`, `font-heading`, `rounded-skin`) — never palette utilities like `bg-purple-500`.
+- React projects: use the components in `adapters/react/index.jsx`.
 
 ## 4. Hard rules
 

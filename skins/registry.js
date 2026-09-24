@@ -46,5 +46,19 @@
       goodFor: "Fashion, hospitality, premium portfolios",
       fonts: gf("family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400..700&family=IBM+Plex+Mono:wght@400;600"),
     },
+    {
+      id: "clarity",
+      label: "Clarity",
+      mood: "Calm cool greys, one confident blue, quiet precision.",
+      goodFor: "Fintech, healthcare, B2B SaaS, public services",
+      fonts: gf("family=Public+Sans:wght@400..800&family=IBM+Plex+Mono:wght@400;600"),
+    },
+    {
+      id: "riso",
+      label: "Riso",
+      mood: "Risograph print: blue-black ink, fluoro pink, offset shadows.",
+      goodFor: "Creative events, community projects, education, zines",
+      fonts: gf("family=Syne:wght@600..800&family=Work+Sans:wght@400..700&family=Space+Mono:wght@400;700"),
+    },
   ];
 })(typeof window !== "undefined" ? window : globalThis);

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Website &amp; Apps Designer — Skin gallery</title>
-  <meta name="description" content="Six production-ready skins, five templates, and the tools to keep your interface from looking machine-made.">
+  <meta name="description" content="Eight production-ready skins, eight templates, and the tools to keep your interface from looking machine-made.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="tokens/base.css">
@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="skins/terminal.css">
   <link rel="stylesheet" href="skins/studio.css">
   <link rel="stylesheet" href="skins/noir.css">
+  <link rel="stylesheet" href="skins/clarity.css">
+  <link rel="stylesheet" href="skins/riso.css">
   <link rel="stylesheet" href="components/components.css">
   <script src="skins/registry.js"></script>
   <script>
@@ -60,7 +62,7 @@
     <section class="container hero">
       <span class="eyebrow">Website &amp; Apps Designer</span>
       <h1 style="margin-top:var(--space-4)">Skins, templates and tools for interfaces that look designed.</h1>
-      <p class="lead">Six skins with real typographic opinions, five templates written with real copy, and a linter that flags the patterns that make a site look machine-made. Plain HTML and CSS — no build step, no framework lock-in.</p>
+      <p class="lead">Eight skins with real typographic opinions, eight templates written with real copy, and a linter that flags the patterns that make a site look machine-made. Plain HTML and CSS — no build step, no framework lock-in.</p>
     </section>
 
     <section class="container section" style="padding-top:0" aria-labelledby="skins-h">
@@ -76,6 +78,9 @@
         <a class="card" href="templates/mobile-app/"><span class="eyebrow">Mobile</span><span class="h3">Mobile app screens</span><span class="small muted">Three annotated phone screens with tab bar and thumb-zone actions.</span></a>
         <a class="card" href="templates/portfolio/"><span class="eyebrow">Studio</span><span class="h3">Portfolio</span><span class="small muted">Work index as a list, feature case, team, oversized contact.</span></a>
         <a class="card" href="templates/article/"><span class="eyebrow">Editorial</span><span class="h3">Long-form article</span><span class="small muted">Drop cap, pull quote, sticky contents, footnotes.</span></a>
+        <a class="card" href="templates/docs/"><span class="eyebrow">Developer</span><span class="h3">Docs site</span><span class="small muted">API reference: sidebar nav, parameter table, code with copy button, errors.</span></a>
+        <a class="card" href="templates/shop/"><span class="eyebrow">E-commerce</span><span class="h3">Product page</span><span class="small muted">Glaze picker, quantity, honest delivery facts, reviews with a breakdown.</span></a>
+        <a class="card" href="templates/auth/"><span class="eyebrow">App</span><span class="h3">Sign in</span><span class="small muted">SSO, email + password, inline errors, show/hide password.</span></a>
       </div>
     </section>
 
@@ -86,6 +91,7 @@
         <div><h3>tools/slop-lint.mjs</h3><p>Scans HTML, CSS, JSX and more for those tells. Runs in CI.</p></div>
         <div><h3>tools/contrast-check.mjs</h3><p>Verifies every skin's color pairs in both modes.</p></div>
         <div><h3>.claude/skills</h3><p>Claude Code skills for designing, reviewing and scaffolding.</p></div>
+        <div><h3>adapters/</h3><p>Use any skin in Tailwind (v3/v4), React, or Figma via design tokens.</p></div>
       </div>
       <pre class="cmd" style="margin-top:var(--space-6)"><code>node tools/new-project.mjs --template landing --skin editorial --out ../my-site
 npm run lint:slop -- ../my-site</code></pre>
@@ -95,7 +101,7 @@ npm run lint:slop -- ../my-site</code></pre>
   <footer class="footer"><div class="container split"><span>Website &amp; Apps Designer</span><a href="docs/anti-slop.md">Read the anti-slop guide</a></div></footer>
 
   <script>
-    const tpl = ["landing", "dashboard", "mobile-app", "portfolio", "article"];
+    const tpl = ["landing", "dashboard", "mobile-app", "portfolio", "article", "docs", "shop", "auth"];
     const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
     document.getElementById("skins").innerHTML = window.DESIGN_SKINS.map((s) => `
       <article class="specimen" data-skin="${s.id}" aria-labelledby="sk-${s.id}">

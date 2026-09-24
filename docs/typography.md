@@ -17,6 +17,8 @@ you need, then check it has the weights and language support you need.
 | Technical, dense | JetBrains Mono | JetBrains Mono | terminal |
 | Warm, crafted | Bricolage Grotesque | Figtree | studio |
 | Premium, quiet | Cormorant Garamond | Manrope | noir |
+| Calm, precise | Public Sans | Public Sans | clarity |
+| Playful, printed | Syne | Work Sans | riso |
 
 More pairings that work (all free):
 

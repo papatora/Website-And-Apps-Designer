@@ -191,6 +191,8 @@ hr, .rule { border: 0; border-top: var(--border-w) solid var(--line); }
 .btn[disabled], .btn[aria-disabled="true"] { opacity: 0.5; cursor: not-allowed; transform: none; }
 [data-skin="brutalist"] .btn { --btn-border: var(--ink); text-transform: uppercase; letter-spacing: 0.04em; }
 [data-skin="brutalist"] .btn:active { transform: translate(4px, 4px); box-shadow: none; }
+[data-skin="riso"] .btn { --btn-border: var(--ink); }
+[data-skin="riso"] .btn:active { transform: translate(3px, 3px); box-shadow: none; }
 [data-skin="noir"] .btn { text-transform: uppercase; letter-spacing: 0.18em; font-size: var(--text-xs); font-weight: 500; }
 
 /* ---------- Forms ---------- */

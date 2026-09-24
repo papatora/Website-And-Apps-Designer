@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en" data-skin="editorial">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kiln bowl, 16 cm — Van Heusden Ceramics</title>
+  <meta name="description" content="A hand-thrown stoneware bowl from Delft, fired at 1,280 °C. Dishwasher safe. Three glazes. Ships in 2–4 working days.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../../tokens/base.css">
+  <link rel="stylesheet" id="skin-css" href="../../skins/editorial.css">
+  <link rel="stylesheet" href="../../components/components.css">
+  <script src="../../skins/registry.js"></script>
+  <script src="../_shared/skin-switcher.js"></script>
+  <style>
+    .crumbs { display: flex; flex-wrap: wrap; gap: var(--space-2); list-style: none; padding: var(--space-5) 0 0; font-size: var(--text-sm); color: var(--ink-muted); }
+    .crumbs li + li::before { content: "/"; margin-right: var(--space-2); }
+    .crumbs a { color: inherit; }
+
+    .product { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-7); padding-block: var(--space-6) var(--section-y); }
+    @media (min-width: 60rem) { .product { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: start; } }
+
+    /* Product "photo": a top-down bowl drawn in CSS so the template needs no images. */
+    .stage { aspect-ratio: 1; background: var(--surface-2); border-radius: var(--radius-lg); display: grid; place-items: center; }
+    .bowl { width: 62%; aspect-ratio: 1; border-radius: 50%; background: var(--glaze, #8f8a80); box-shadow: inset 0 0 0 1.4rem color-mix(in srgb, var(--glaze, #8f8a80) 78%, #000), inset 0 0 0 1.55rem color-mix(in srgb, var(--glaze, #8f8a80) 60%, #fff); transition: background-color var(--dur-3) var(--ease-out), box-shadow var(--dur-3) var(--ease-out); }
+    .thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); margin-top: var(--space-3); }
+    .thumbs button { aspect-ratio: 1; border: var(--border-w) solid var(--line); background: var(--surface-2); border-radius: var(--radius); cursor: pointer; display: grid; place-items: center; padding: 0; }
+    .thumbs button[aria-pressed="true"] { border-color: var(--ink); }
+    .thumbs .mini { width: 50%; aspect-ratio: 1; border-radius: 50%; background: var(--glaze); }
+    .thumbs .side { width: 60%; height: 34%; border-radius: 0 0 50% 50% / 0 0 100% 100%; background: var(--glaze); }
+
+    .buy { display: grid; gap: var(--space-5); position: sticky; top: var(--space-5); }
+    .buy h1 { font-size: var(--text-4xl); }
+    .price { font-family: var(--font-display); font-size: var(--text-2xl); font-variant-numeric: tabular-nums; }
+    .rating { font-size: var(--text-sm); color: var(--ink-muted); }
+
+    fieldset { border: 0; padding: 0; display: grid; gap: var(--space-3); }
+    legend { font-size: var(--text-sm); font-weight: 600; margin-bottom: var(--space-3); }
+    legend span { font-weight: 400; color: var(--ink-muted); }
+    .swatches { display: flex; gap: var(--space-3); }
+    .swatch { position: relative; }
+    .swatch input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+    .swatch span { display: block; width: 2.75rem; height: 2.75rem; border-radius: 50%; background: var(--glaze); border: 2px solid var(--bg); box-shadow: 0 0 0 1px var(--line); transition: box-shadow var(--dur-1) var(--ease-out); }
+    .swatch input:checked + span { box-shadow: 0 0 0 2px var(--ink); }
+    .swatch input:focus-visible + span { outline: 2px solid var(--focus); outline-offset: 4px; }
+
+    .qty-row { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-3); }
+    .qty-row .btn { white-space: normal; padding-inline: var(--space-4); text-align: center; }
+    .qty { display: inline-flex; border: var(--border-w) solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .qty button { width: 2.75rem; border: 0; background: none; cursor: pointer; font-size: var(--text-lg); }
+    .qty input { width: 2.75rem; text-align: center; border: 0; background: none; font-variant-numeric: tabular-nums; -moz-appearance: textfield; }
+    .qty input::-webkit-inner-spin-button { -webkit-appearance: none; }
+    .facts { list-style: none; padding: 0; display: grid; gap: var(--space-2); font-size: var(--text-sm); border-top: var(--border-w) solid var(--line); padding-top: var(--space-4); }
+    .facts li { display: grid; grid-template-columns: 7rem 1fr; gap: var(--space-3); }
+    .facts b { font-weight: 600; }
+
+    details { border-top: var(--border-w) solid var(--line); padding-block: var(--space-3); }
+    details:last-of-type { border-bottom: var(--border-w) solid var(--line); }
+    summary { cursor: pointer; font-weight: 600; font-size: var(--text-sm); }
+    details p { margin-top: var(--space-2); font-size: var(--text-sm); color: var(--ink-muted); }
+
+    .reviews { display: grid; gap: var(--space-6); }
+    @media (min-width: 60rem) { .reviews { grid-template-columns: 4fr 8fr; } }
+    .review { border-top: var(--border-w) solid var(--line); padding-top: var(--space-4); display: grid; gap: var(--space-2); }
+    .stars { letter-spacing: 0.1em; color: var(--accent); }
+    .bar { display: grid; grid-template-columns: 2rem 1fr 2.5rem; gap: var(--space-2); align-items: center; font-size: var(--text-sm); font-variant-numeric: tabular-nums; }
+    .bar span:nth-child(2) { height: 6px; background: var(--surface-2); border-radius: var(--radius-pill); overflow: hidden; }
+    .bar i { display: block; height: 100%; background: var(--ink); }
+
+    .toast { position: fixed; left: 50%; bottom: var(--space-5); translate: -50% calc(100% + var(--space-6)); visibility: hidden; background: var(--ink); color: var(--bg); padding: var(--space-3) var(--space-5); border-radius: var(--radius); font-size: var(--text-sm); transition: translate var(--dur-3) var(--ease-out), visibility 0s linear var(--dur-3); z-index: var(--z-toast); }
+    .toast[data-show] { translate: -50% 0; visibility: visible; transition-delay: 0s; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="nav">
+    <nav class="container nav__inner" aria-label="Primary">
+      <a class="nav__brand" href="#">Van Heusden</a>
+      <ul class="nav__links">
+        <li><a href="#" aria-current="page">Tableware</a></li>
+        <li><a href="#">Vases</a></li>
+        <li><a href="#">Seconds</a></li>
+        <li><a href="#">The workshop</a></li>
+      </ul>
+      <a class="btn btn--sm" href="#" id="bag"><span>Bag (<span id="bag-count">0</span>)</span></a>
+    </nav>
+  </header>
+
+  <main id="main" class="container">
+    <ol class="crumbs" aria-label="Breadcrumb"><li><a href="#">Tableware</a></li><li><a href="#">Bowls</a></li><li aria-current="page">Kiln bowl, 16 cm</li></ol>
+
+    <section class="product">
+      <div>
+        <div class="stage" id="stage" role="img" aria-label="Kiln bowl in Ash glaze, seen from above"><div class="bowl"></div></div>
+        <div class="thumbs" aria-label="More views">
+          <button type="button" aria-pressed="true" aria-label="Top view"><span class="mini"></span></button>
+          <button type="button" aria-pressed="false" aria-label="Side view"><span class="side"></span></button>
+          <button type="button" aria-pressed="false" aria-label="Stack of four"><span class="mini" style="box-shadow:6px 6px 0 var(--line)"></span></button>
+          <button type="button" aria-pressed="false" aria-label="Foot ring with maker's stamp"><span class="mini" style="width:30%"></span></button>
+        </div>
+      </div>
+
+      <form class="buy" id="buy">
+        <div class="stack" style="--stack:var(--space-2)">
+          <p class="eyebrow">Stoneware · made in Delft</p>
+          <h1>Kiln bowl, 16 cm</h1>
+          <p class="rating"><span class="stars" aria-hidden="true">★★★★★</span> 4.8 from 312 reviews</p>
+        </div>
+        <p class="price">€34.00</p>
+        <p class="muted">Thrown by hand in batches of 40 and fired at 1,280 °C, so it's heavier than it looks and won't chip on the dishwasher rack. Sized for soup, ramen or a salad for one.</p>
+
+        <fieldset>
+          <legend>Glaze: <span id="glaze-name">Ash</span></legend>
+          <div class="swatches">
+            <label class="swatch"><input type="radio" name="glaze" value="Ash" data-color="#8f8a80" checked><span style="--glaze:#8f8a80"></span><span class="visually-hidden">Ash</span></label>
+            <label class="swatch"><input type="radio" name="glaze" value="Oxblood" data-color="#6e2a22"><span style="--glaze:#6e2a22"></span><span class="visually-hidden">Oxblood</span></label>
+            <label class="swatch"><input type="radio" name="glaze" value="Celadon" data-color="#9fb6a2"><span style="--glaze:#9fb6a2"></span><span class="visually-hidden">Celadon</span></label>
+          </div>
+        </fieldset>
+
+        <div class="qty-row">
+          <div class="qty">
+            <button type="button" data-step="-1" aria-label="One fewer">−</button>
+            <label class="visually-hidden" for="qty">Quantity</label>
+            <input id="qty" name="qty" type="number" min="1" max="12" value="1" inputmode="numeric">
+            <button type="button" data-step="1" aria-label="One more">+</button>
+          </div>
+          <button class="btn btn--primary btn--lg" type="submit"><span>Add to bag · <span id="total">€34.00</span></span></button>
+        </div>
+
+        <ul class="facts">
+          <li><b>Delivery</b><span>2–4 working days in the EU, €4.95. Free over €80.</span></li>
+          <li><b>Returns</b><span>30 days, unused. We cover the postage if it arrives broken.</span></li>
+          <li><b>In stock</b><span>23 in Ash. The next Oxblood batch leaves the kiln on 3 October.</span></li>
+        </ul>
+
+        <div>
+          <details><summary>Size and weight</summary><p>16 cm across, 7 cm tall, holds 650 ml. 480 g.</p></details>
+          <details><summary>Care</summary><p>Dishwasher and microwave safe. Not for the oven or hob. Glazes vary slightly between batches — that's the kiln, not a defect.</p></details>
+          <details><summary>Who made it</summary><p>Thrown by Saskia or Bram in our Delft workshop; their initial is stamped next to the foot ring.</p></details>
+        </div>
+      </form>
+    </section>
+
+    <section class="section" aria-labelledby="rev-h">
+      <div class="reviews">
+        <div class="stack">
+          <h2 id="rev-h" class="h3">What owners say</h2>
+          <p class="muted small">312 reviews from verified orders.</p>
+          <div class="stack" style="--stack:var(--space-2)">
+            <div class="bar"><span>5★</span><span><i style="width:84%"></i></span><span>262</span></div>
+            <div class="bar"><span>4★</span><span><i style="width:11%"></i></span><span>34</span></div>
+            <div class="bar"><span>3★</span><span><i style="width:3%"></i></span><span>10</span></div>
+            <div class="bar"><span>2★</span><span><i style="width:1%"></i></span><span>4</span></div>
+            <div class="bar"><span>1★</span><span><i style="width:1%"></i></span><span>2</span></div>
+          </div>
+        </div>
+        <div class="stack" style="--stack:var(--space-5)">
+          <article class="review"><span class="stars" aria-label="5 out of 5">★★★★★</span><h3 class="h4">Survived two years and a toddler</h3><p class="small">Bought four in Oxblood in 2024. One has been dropped on tiles twice. Still no chips.</p><p class="small muted">Femke, Utrecht · Oxblood</p></article>
+          <article class="review"><span class="stars" aria-label="4 out of 5">★★★★☆</span><h3 class="h4">Smaller than I pictured</h3><p class="small">Perfect for soup, a bit tight for a big salad. Check the 650 ml before ordering. The glaze is beautiful in daylight.</p><p class="small muted">Tom, Ghent · Celadon</p></article>
+          <article class="review"><span class="stars" aria-label="5 out of 5">★★★★★</span><h3 class="h4">Each one is slightly different</h3><p class="small">My set of six has visible throwing lines that vary bowl to bowl. That's why I bought handmade.</p><p class="small muted">Jana, Berlin · Ash</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container split"><span>Van Heusden Ceramics · Delft since 1914</span><span class="cluster"><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Wholesale</a></span></div></footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const form = document.getElementById("buy");
+    const qty = document.getElementById("qty");
+    const stage = document.getElementById("stage");
+    const price = 34;
+    const eur = (n) => "€" + n.toFixed(2);
+    const setGlaze = (input) => {
+      stage.style.setProperty("--glaze", input.dataset.color);
+      document.querySelectorAll(".thumbs").forEach((t) => t.style.setProperty("--glaze", input.dataset.color));
+      document.getElementById("glaze-name").textContent = input.value;
+      stage.setAttribute("aria-label", `Kiln bowl in ${input.value} glaze, seen from above`);
+    };
+    const update = () => {
+      qty.value = Math.min(12, Math.max(1, parseInt(qty.value, 10) || 1));
+      document.getElementById("total").textContent = eur(price * qty.value);
+    };
+    form.querySelectorAll("[name=glaze]").forEach((r) => r.addEventListener("change", () => setGlaze(r)));
+    setGlaze(form.querySelector("[name=glaze]:checked"));
+    form.querySelectorAll("[data-step]").forEach((b) => b.addEventListener("click", () => { qty.value = +qty.value + +b.dataset.step; update(); }));
+    qty.addEventListener("change", update);
+    document.querySelectorAll(".thumbs button").forEach((b) => b.addEventListener("click", () => {
+      document.querySelectorAll(".thumbs button").forEach((x) => x.setAttribute("aria-pressed", x === b));
+    }));
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const count = document.getElementById("bag-count");
+      count.textContent = +count.textContent + +qty.value;
+      const toast = document.getElementById("toast");
+      toast.textContent = `Added ${qty.value} × Kiln bowl (${form.glaze.value}) to your bag`;
+      toast.setAttribute("data-show", "");
+      setTimeout(() => toast.removeAttribute("data-show"), 2600);
+    });
+  </script>
+</body>
+</html>

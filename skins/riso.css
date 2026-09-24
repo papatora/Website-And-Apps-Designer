@@ -1,0 +1,39 @@
+/* Riso — risograph print. Blue-black ink on warm stock, fluorescent pink
+   accent, offset "misregistered" shadows, chunky wide display.
+   Good for: creative events, community projects, kids & education, zines. */
+
+[data-skin="riso"] {
+  color-scheme: light dark;
+
+  --font-display: "Syne", "Arial Black", system-ui, sans-serif;
+  --font-body: "Work Sans", system-ui, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, monospace;
+  --display-weight: 700;
+  --display-tracking: -0.02em;
+  --display-transform: none;
+  --body-weight: 400;
+  --eyebrow-tracking: 0.1em;
+
+  --bg: light-dark(#f4efe6, #16141a);
+  --surface: light-dark(#fbf8f2, #1e1b23);
+  --surface-2: light-dark(#ebe3d6, #28242e);
+  --ink: light-dark(#1b1a3a, #efe9df);
+  --ink-muted: light-dark(#55526b, #aaa4b6);
+  --line: light-dark(#d4c9b8, #3a3542);
+
+  --accent: light-dark(#ff4f9a, #ff7fb5);
+  --accent-ink: light-dark(#1b1a3a, #16141a);
+  /* Fluoro pink is a fill, not a text color on cream: links print in riso blue. */
+  --link: light-dark(#2a3bb8, #ff7fb5);
+
+  --focus: light-dark(#2a3bb8, #9aa6ff);
+  --success: light-dark(#1d6b3a, #6fd49a);
+  --warning: light-dark(#8a4f00, #f0b35a);
+  --danger: light-dark(#b3202a, #ff8a8f);
+
+  --radius: var(--radius-2);
+  --radius-lg: var(--radius-3);
+  --border-w: 2px;
+  --shadow-1: 3px 3px 0 light-dark(#2a3bb8, #ff7fb5);
+  --shadow-2: 5px 5px 0 light-dark(#2a3bb8, #ff7fb5);
+}

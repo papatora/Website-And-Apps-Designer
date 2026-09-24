@@ -8,7 +8,7 @@ Run through this before anything goes live.
 - [ ] Lighthouse: Accessibility ≥ 95, Best Practices ≥ 95, CLS < 0.1
 
 ## Content
-- [ ] No sample copy left (search for Ledgerline, Hollis, Handover, Margins, example.com)
+- [ ] No sample copy left (search for Ledgerline, Hollis, Handover, Margins, Van Heusden, Pressroom, example.com)
 - [ ] Every headline names a concrete outcome; every button is verb + object
 - [ ] Every number has a unit, denominator or comparison
 - [ ] Spelling checked; real punctuation (’ “ ” – — …)

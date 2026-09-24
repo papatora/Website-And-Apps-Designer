@@ -1,0 +1,46 @@
+/* ==========================================================================
+   Tailwind CSS v4 adapter
+   Maps the skin contract onto Tailwind utilities (bg-accent, text-ink,
+   font-heading, rounded-skin …) and REMOVES Tailwind's default color palette,
+   so purple-500 & friends simply don't exist in your project.
+
+   app.css:
+     @import "tailwindcss";
+     @import "<kit>/tokens/base.css";
+     @import "<kit>/skins/studio.css";
+     @import "<kit>/adapters/tailwind/theme.css";
+
+   Then put data-skin="studio" on <html>.
+   ========================================================================== */
+
+@theme inline {
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-white: #fff;
+  --color-black: #000;
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-link: var(--link, var(--accent));
+  --color-focus: var(--focus);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+
+  /* Distinct names avoid clashing with the skin's own --font-* variables. */
+  --font-heading: var(--font-display);
+  --font-copy: var(--font-body);
+  --font-code: var(--font-mono);
+
+  --radius-skin: var(--radius);
+  --radius-skin-lg: var(--radius-lg);
+  --shadow-skin: var(--shadow-1);
+  --shadow-skin-lg: var(--shadow-2);
+}

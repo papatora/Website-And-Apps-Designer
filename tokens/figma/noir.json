@@ -1,0 +1,197 @@
+{
+  "$description": "noir skin — generated from skins/noir.css by tools/export-tokens.mjs. Do not edit by hand.",
+  "color": {
+    "light": {
+      "bg": {
+        "$type": "color",
+        "$value": "#f4f1ec"
+      },
+      "surface": {
+        "$type": "color",
+        "$value": "#fbf9f6"
+      },
+      "surface-2": {
+        "$type": "color",
+        "$value": "#e8e3da"
+      },
+      "ink": {
+        "$type": "color",
+        "$value": "#151311"
+      },
+      "ink-muted": {
+        "$type": "color",
+        "$value": "#5c554d"
+      },
+      "line": {
+        "$type": "color",
+        "$value": "#d6cfc3"
+      },
+      "accent": {
+        "$type": "color",
+        "$value": "#7d5f26"
+      },
+      "accent-ink": {
+        "$type": "color",
+        "$value": "#fbf9f6"
+      },
+      "link": {
+        "$type": "color",
+        "$value": "#7d5f26"
+      },
+      "focus": {
+        "$type": "color",
+        "$value": "#1f56b3"
+      },
+      "success": {
+        "$type": "color",
+        "$value": "#2d6a39"
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "#80590a"
+      },
+      "danger": {
+        "$type": "color",
+        "$value": "#a3261b"
+      }
+    },
+    "dark": {
+      "bg": {
+        "$type": "color",
+        "$value": "#0c0b0a"
+      },
+      "surface": {
+        "$type": "color",
+        "$value": "#141311"
+      },
+      "surface-2": {
+        "$type": "color",
+        "$value": "#1c1a17"
+      },
+      "ink": {
+        "$type": "color",
+        "$value": "#ebe5da"
+      },
+      "ink-muted": {
+        "$type": "color",
+        "$value": "#9b9388"
+      },
+      "line": {
+        "$type": "color",
+        "$value": "#2a2723"
+      },
+      "accent": {
+        "$type": "color",
+        "$value": "#cdac6c"
+      },
+      "accent-ink": {
+        "$type": "color",
+        "$value": "#0c0b0a"
+      },
+      "link": {
+        "$type": "color",
+        "$value": "#cdac6c"
+      },
+      "focus": {
+        "$type": "color",
+        "$value": "#9dbbff"
+      },
+      "success": {
+        "$type": "color",
+        "$value": "#8ccf98"
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "#e3bb6a"
+      },
+      "danger": {
+        "$type": "color",
+        "$value": "#ff8e80"
+      }
+    }
+  },
+  "font": {
+    "display": {
+      "$type": "fontFamily",
+      "$value": "Cormorant Garamond"
+    },
+    "body": {
+      "$type": "fontFamily",
+      "$value": "Manrope"
+    },
+    "mono": {
+      "$type": "fontFamily",
+      "$value": "IBM Plex Mono"
+    },
+    "display-weight": {
+      "$type": "fontWeight",
+      "$value": 500
+    },
+    "display-tracking": {
+      "$type": "dimension",
+      "$value": "0.01em"
+    }
+  },
+  "radius": {
+    "default": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "large": {
+      "$type": "dimension",
+      "$value": "0px"
+    }
+  },
+  "border": {
+    "width": {
+      "$type": "dimension",
+      "$value": "1px"
+    }
+  },
+  "space": {
+    "0": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "1": {
+      "$type": "dimension",
+      "$value": "4px"
+    },
+    "2": {
+      "$type": "dimension",
+      "$value": "8px"
+    },
+    "3": {
+      "$type": "dimension",
+      "$value": "12px"
+    },
+    "4": {
+      "$type": "dimension",
+      "$value": "16px"
+    },
+    "5": {
+      "$type": "dimension",
+      "$value": "24px"
+    },
+    "6": {
+      "$type": "dimension",
+      "$value": "32px"
+    },
+    "7": {
+      "$type": "dimension",
+      "$value": "48px"
+    },
+    "8": {
+      "$type": "dimension",
+      "$value": "64px"
+    },
+    "9": {
+      "$type": "dimension",
+      "$value": "96px"
+    },
+    "10": {
+      "$type": "dimension",
+      "$value": "128px"
+    }
+  }
+}

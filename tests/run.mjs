@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 /* Zero-dependency tests for the tools. Run: npm test */
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync, mkdtempSync, rmSync, existsSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { execFileSync } from "node:child_process";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import assert from "node:assert/strict";
@@ -39,5 +41,26 @@ test("parses light-dark() and var() references", () => {
   assert.equal(s.vars.dark["--focus"], "#123456");
   assert.equal(s.vars.light["--link"], "#123456");
 });
+
+console.log("new-project");
+const root = join(here, "..");
+const templates = readdirSync(join(root, "templates")).filter((d) => !d.startsWith("_"));
+for (const t of templates) {
+  test(`scaffolds ${t} into a standalone folder`, () => {
+    const out = mkdtempSync(join(tmpdir(), "wad-"));
+    try {
+      execFileSync("node", [join(root, "tools/new-project.mjs"), "--template", t, "--skin", "clarity", "--out", out, "--force"], { stdio: "pipe" });
+      const html = readFileSync(join(out, "index.html"), "utf8");
+      assert.ok(!html.includes("../"), "no paths back into the kit");
+      assert.ok(!/registry\.js|skin-switcher/.test(html), "preview scripts removed");
+      assert.ok(html.includes('data-skin="clarity"'), "skin applied");
+      assert.ok(html.includes("fonts.googleapis.com/css2?family=Public+Sans"), "skin fonts linked");
+      for (const f of ["base.css", "skin.css", "components.css"]) assert.ok(existsSync(join(out, "css", f)), f);
+      assert.deepEqual(lintText(html, "index.html").filter((f) => f.severity === "error"), []);
+    } finally {
+      rmSync(out, { recursive: true, force: true });
+    }
+  });
+}
 
 console.log(`\n${passed} passed`);

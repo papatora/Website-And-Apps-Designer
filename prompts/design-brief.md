@@ -11,7 +11,7 @@ Primary action:     <the one thing we want them to do>
 Voice (3 words):    <e.g. calm, exact, dry>
 Not like:           <2–3 sites or styles to avoid, and why>
 Like:               <2–3 references, and what specifically to take from each>
-Skin:               <editorial | swiss | brutalist | terminal | studio | noir | custom>
+Skin:               <editorial | swiss | brutalist | terminal | studio | noir | clarity | riso | custom>
 Real content:       <headline, key claims with numbers, names, prices — paste it>
 Must include:       <sections/features that are non-negotiable>
 Constraints:        <stack, brand colors/fonts, accessibility level, languages>

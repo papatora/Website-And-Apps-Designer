@@ -1,0 +1,197 @@
+{
+  "$description": "brutalist skin — generated from skins/brutalist.css by tools/export-tokens.mjs. Do not edit by hand.",
+  "color": {
+    "light": {
+      "bg": {
+        "$type": "color",
+        "$value": "#f1eee4"
+      },
+      "surface": {
+        "$type": "color",
+        "$value": "#ffffff"
+      },
+      "surface-2": {
+        "$type": "color",
+        "$value": "#e3dfd1"
+      },
+      "ink": {
+        "$type": "color",
+        "$value": "#0a0a0a"
+      },
+      "ink-muted": {
+        "$type": "color",
+        "$value": "#454545"
+      },
+      "line": {
+        "$type": "color",
+        "$value": "#0a0a0a"
+      },
+      "accent": {
+        "$type": "color",
+        "$value": "#ffd400"
+      },
+      "accent-ink": {
+        "$type": "color",
+        "$value": "#0a0a0a"
+      },
+      "link": {
+        "$type": "color",
+        "$value": "#0a0a0a"
+      },
+      "focus": {
+        "$type": "color",
+        "$value": "#2340ff"
+      },
+      "success": {
+        "$type": "color",
+        "$value": "#0f6b2f"
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "#8a4b00"
+      },
+      "danger": {
+        "$type": "color",
+        "$value": "#c0170f"
+      }
+    },
+    "dark": {
+      "bg": {
+        "$type": "color",
+        "$value": "#111111"
+      },
+      "surface": {
+        "$type": "color",
+        "$value": "#1b1b1b"
+      },
+      "surface-2": {
+        "$type": "color",
+        "$value": "#262626"
+      },
+      "ink": {
+        "$type": "color",
+        "$value": "#f4f1e8"
+      },
+      "ink-muted": {
+        "$type": "color",
+        "$value": "#b5b1a5"
+      },
+      "line": {
+        "$type": "color",
+        "$value": "#f4f1e8"
+      },
+      "accent": {
+        "$type": "color",
+        "$value": "#ffd400"
+      },
+      "accent-ink": {
+        "$type": "color",
+        "$value": "#0a0a0a"
+      },
+      "link": {
+        "$type": "color",
+        "$value": "#ffd400"
+      },
+      "focus": {
+        "$type": "color",
+        "$value": "#8c9bff"
+      },
+      "success": {
+        "$type": "color",
+        "$value": "#5fe08a"
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "#ffb347"
+      },
+      "danger": {
+        "$type": "color",
+        "$value": "#ff6b5e"
+      }
+    }
+  },
+  "font": {
+    "display": {
+      "$type": "fontFamily",
+      "$value": "Anton"
+    },
+    "body": {
+      "$type": "fontFamily",
+      "$value": "IBM Plex Sans"
+    },
+    "mono": {
+      "$type": "fontFamily",
+      "$value": "IBM Plex Mono"
+    },
+    "display-weight": {
+      "$type": "fontWeight",
+      "$value": 400
+    },
+    "display-tracking": {
+      "$type": "dimension",
+      "$value": "0.005em"
+    }
+  },
+  "radius": {
+    "default": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "large": {
+      "$type": "dimension",
+      "$value": "0px"
+    }
+  },
+  "border": {
+    "width": {
+      "$type": "dimension",
+      "$value": "3px"
+    }
+  },
+  "space": {
+    "0": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "1": {
+      "$type": "dimension",
+      "$value": "4px"
+    },
+    "2": {
+      "$type": "dimension",
+      "$value": "8px"
+    },
+    "3": {
+      "$type": "dimension",
+      "$value": "12px"
+    },
+    "4": {
+      "$type": "dimension",
+      "$value": "16px"
+    },
+    "5": {
+      "$type": "dimension",
+      "$value": "24px"
+    },
+    "6": {
+      "$type": "dimension",
+      "$value": "32px"
+    },
+    "7": {
+      "$type": "dimension",
+      "$value": "48px"
+    },
+    "8": {
+      "$type": "dimension",
+      "$value": "64px"
+    },
+    "9": {
+      "$type": "dimension",
+      "$value": "96px"
+    },
+    "10": {
+      "$type": "dimension",
+      "$value": "128px"
+    }
+  }
+}
